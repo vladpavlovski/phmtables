@@ -1,0 +1,36 @@
+import 'sanitize.css'
+import { createGlobalStyle } from 'styled-components'
+import theme from './theme'
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    &::after,
+    &::before {
+      box-sizing: border-box;
+    }
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    font-size: 1.6rem;
+    font-family: ${theme.font.regular};
+    font-weight: 100;
+    background-color: ${theme.color.white};
+    color: ${theme.color.greyChateau};
+    line-height: ${theme.lineHeight.basic};
+  }
+
+  #root {
+    width: 100vw;
+    min-width: 32rem;
+    height: 100vh;
+  }
+
+`
+
+export { GlobalStyle }

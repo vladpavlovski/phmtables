@@ -2,16 +2,56 @@
   "name": "phmtables",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test"
+  },
+  "dependencies": {
+    "@strv/react-scripts": "^3.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "sanitize.css": "^11.0.0",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "@strv/eslint-config-react": "^3.0.3",
+    "@strv/stylelint-config-styled-components": "^1.1.1",
+    "babel-plugin-styled-components": "^1.10.6",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.4.3",
+    "prettier": "^1.19.1",
+    "stylelint": "^12.0.0",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-config-standard": "^19.0.0",
+    "stylelint-config-styled-components": "^0.1.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint . --fix",
+      "stylelint",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.css": [
+      "stylelint",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
