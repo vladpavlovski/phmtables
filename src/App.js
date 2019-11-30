@@ -6,6 +6,8 @@ import { ErrorBoundary } from './components/ErrorBoundary'
 
 import * as ROUTES from './routes'
 
+import { Result } from './pages/Result'
+
 const App = () => (
   <>
     <GlobalStyle />
@@ -16,7 +18,7 @@ const App = () => (
           exact
           render={() => <Redirect to={ROUTES.RESULT} />}
         />
-        {/* <Route path={ROUTES.RESULT} exact component={Photomaker} /> */}
+        <Route path={ROUTES.RESULT} exact component={Result} />
       </Switch>
     </ErrorBoundary>
   </>
