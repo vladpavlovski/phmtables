@@ -26,10 +26,7 @@ const Table = ({ columns, data }) => {
         <thead>
           {headerGroups.map(headerGroup => {
             return (
-              <tr
-                {...headerGroup.getHeaderGroupProps()}
-                key={headerGroup.Hreader}
-              >
+              <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map(column => {
                   return (
                     <th {...column.getHeaderProps()}>
@@ -85,8 +82,8 @@ const Result = () => {
         accessor: 'Datum a Místo',
         Cell: row => (
           <ul>
-            {row.cell.value.split(',').map(item => (
-              <li key={item}>{item}</li>
+            {row.cell.value.split(',').map((item, i) => (
+              <li key={i}>{item}</li>
             ))}
           </ul>
         ),
@@ -96,8 +93,8 @@ const Result = () => {
         accessor: 'Detaily zápasu',
         Cell: row => (
           <ul>
-            {row.cell.value.split(',').map(item => (
-              <li key={item}>{item}</li>
+            {row.cell.value.split(',').map((item, i) => (
+              <li key={i}>{item}</li>
             ))}
           </ul>
         ),
@@ -107,8 +104,8 @@ const Result = () => {
         accessor: 'Zúčastněné týmy',
         Cell: row => (
           <ol>
-            {row.cell.value.split(',').map(item => (
-              <li key={item}>
+            {row.cell.value.split(',').map((item, i) => (
+              <li key={i}>
                 <strong>{item}</strong>
               </li>
             ))}
