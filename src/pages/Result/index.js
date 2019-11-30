@@ -25,14 +25,12 @@ const Table = ({ columns, data }) => {
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => {
-            console.log('headerGroup', headerGroup)
             return (
               <tr
                 {...headerGroup.getHeaderGroupProps()}
                 key={headerGroup.Hreader}
               >
                 {headerGroup.headers.map(column => {
-                  console.log('column', column)
                   return (
                     <th {...column.getHeaderProps()}>
                       {column.render('Header')}
@@ -54,7 +52,6 @@ const Table = ({ columns, data }) => {
             return (
               <tr {...row.getRowProps()} key={row.index}>
                 {row.cells.map(cell => {
-                  console.log('cell', cell)
                   return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
               </tr>
