@@ -4,6 +4,7 @@ module.exports = {
     '@strv/eslint-config-react/optional',
     'prettier',
     'prettier/react',
+    'stylelint',
   ],
   plugins: ['react-hooks'],
   root: true,

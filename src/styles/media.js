@@ -1,6 +1,7 @@
 import { css } from 'styled-components'
 
 export const sizes = {
+  xxxs: 320,
   xxs: 480,
   xs: 736,
   sm: 980,
