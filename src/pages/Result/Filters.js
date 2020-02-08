@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
-// import Fuse from 'fuse.js'
-import { Wrapper } from './styled'
+import { useMedia } from 'use-media'
+import { useOnClickOutside } from '../../utils/hooks/useOnClickOutside'
+
+import { Wrapper, FilterButton } from './styled'
 
 const getValue = value =>
   typeof value === 'string' ? value.toUpperCase() : value
@@ -53,6 +55,7 @@ const Filters = ({ data, setFilteredData }) => {
   const [seasons, setSeasons] = useState([])
   const [selectedSeason, setSelectedSeason] = useState(null)
 
+  const [showFilters, setShowFilters] = useState(true)
   const setAllFilters = useCallback(() => {
     const teams1 = data.map(i => i['Tým 1 název'])
     const teams2 = data.map(i => i['Tým 2 název'])
@@ -174,89 +177,113 @@ const Filters = ({ data, setFilteredData }) => {
     setAllFilters()
   }, [setAllFilters])
 
+  const min1280 = useMedia({ minWidth: '1280px' })
+  useEffect(() => {
+    if (!min1280) {
+      setShowFilters(false)
+    } else {
+      setShowFilters(true)
+    }
+  }, [min1280])
+
+  const handleShowFilters = useCallback(() => {
+    setShowFilters(!showFilters)
+  }, [showFilters])
+
+  const wrapperRef = useRef()
+  useOnClickOutside(wrapperRef, () => setShowFilters(false))
+
   return (
-    <Wrapper>
-      <Select
-        value={selectedTeam}
-        onChange={setSelectedTeam}
-        options={teams}
-        placeholder="Filtruj tým"
-        isMulti
-      />
-      <br />
-      <Select
-        value={selectedReferee}
-        onChange={setSelectedReferee}
-        options={referees}
-        placeholder="Rozhodčí"
-        isMulti
-      />
-      <br />
-      <Select
-        value={selectedGroup}
-        onChange={setSelectedGroup}
-        options={groups}
-        placeholder="Skupina"
-        isMulti
-      />
-      <br />
-      <Select
-        value={selectedWeek}
-        onChange={setSelectedWeek}
-        options={weeks}
-        placeholder="Week"
-        isMulti
-      />
-      <br />
-      <Select
-        value={selectedMonth}
-        onChange={setSelectedMonth}
-        options={months}
-        placeholder="Měsíc"
-        isMulti
-      />
-      <br />
+    <Wrapper ref={wrapperRef} showFilter={showFilters}>
+      {!min1280 && (
+        <FilterButton onClick={handleShowFilters}>Filtry</FilterButton>
+      )}
+      {showFilters && (
+        <>
+          {!min1280 && <br />}
+          <Select
+            value={selectedTeam}
+            onChange={setSelectedTeam}
+            options={teams}
+            placeholder="Filtruj tým"
+            isMulti
+          />
+          <br />
+          <Select
+            value={selectedReferee}
+            onChange={setSelectedReferee}
+            options={referees}
+            placeholder="Rozhodčí"
+            isMulti
+          />
+          <br />
+          <Select
+            value={selectedGroup}
+            onChange={setSelectedGroup}
+            options={groups}
+            placeholder="Skupina"
+            isMulti
+          />
+          <br />
+          <Select
+            value={selectedWeek}
+            onChange={setSelectedWeek}
+            options={weeks}
+            placeholder="Week"
+            isMulti
+          />
+          <br />
+          <Select
+            value={selectedMonth}
+            onChange={setSelectedMonth}
+            options={months}
+            placeholder="Měsíc"
+            isMulti
+          />
+          <br />
 
-      <Select
-        value={selectedDay}
-        onChange={setSelectedDay}
-        options={days}
-        placeholder="Den"
-        isMulti
-      />
-      <br />
-      <Select
-        value={selectedCompetition}
-        onChange={setSelectedCompetition}
-        options={competitions}
-        placeholder="Soutěž"
-        isMulti
-      />
-      <br />
-      <Select
-        value={selectedVenue}
-        onChange={setSelectedVenue}
-        options={venues}
-        placeholder="Arena"
-        isMulti
-      />
-      <br />
+          <Select
+            value={selectedDay}
+            onChange={setSelectedDay}
+            options={days}
+            placeholder="Den"
+            isMulti
+          />
+          <br />
+          <Select
+            value={selectedCompetition}
+            onChange={setSelectedCompetition}
+            options={competitions}
+            placeholder="Soutěž"
+            isMulti
+          />
+          <br />
+          <Select
+            value={selectedVenue}
+            onChange={setSelectedVenue}
+            options={venues}
+            placeholder="Arena"
+            isMulti
+          />
+          <br />
 
-      <Select
-        value={selectedTimekeeper}
-        onChange={setSelectedTimekeeper}
-        options={timekeepers}
-        placeholder="Časoměřič"
-        isMulti
-      />
-      <br />
-      <Select
-        value={selectedSeason}
-        onChange={setSelectedSeason}
-        options={seasons}
-        placeholder="Sezóna"
-        isMulti
-      />
+          <Select
+            value={selectedTimekeeper}
+            onChange={setSelectedTimekeeper}
+            options={timekeepers}
+            placeholder="Časoměřič"
+            isMulti
+          />
+          <br />
+          <Select
+            value={selectedSeason}
+            onChange={setSelectedSeason}
+            options={seasons}
+            placeholder="Sezóna"
+            isMulti
+          />
+        </>
+      )}
     </Wrapper>
   )
 }

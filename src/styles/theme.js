@@ -30,10 +30,10 @@ export default {
     xxLarge: '2.8rem',
   },
   font: {
-    light: '"Mukta Light", sans-serif',
-    regular: '"Mukta", sans-serif',
-    medium: '"Mukta SemiBold", sans-serif',
-    bold: '"Mukta Bold", sans-serif',
+    light: '"Roboto Condensed Light", sans-serif',
+    regular: '"Roboto Condensed", sans-serif',
+    medium: '"Roboto Condensed SemiBold", sans-serif',
+    bold: '"Roboto Condensed Bold", sans-serif',
   },
   lineHeight: {
     basic: '2.4rem',

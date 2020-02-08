@@ -1,51 +1,68 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import media from '../../styles/media'
 import theme from '../../styles/theme'
-export const Wrapper = styled.div`
-  width: 24rem;
-  height: 100vh;
-  position: fixed;
-  background: #272727;
-  padding: 1rem;
-`
 
 export const TableStyles = styled.div`
   ${media.md`
     margin-left: 26rem;
 `}
   padding: 0;
-  font-size: 1.2rem;
+  font-size: ${theme.fontSize.medium};
   line-height: 1.5rem;
-  font-weight: bold;
+  font-weight: normal;
 
   table {
     border-spacing: 0;
-    border: 1px solid black;
 
     th,
     td {
       margin: 0;
-      padding: 0.4rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
+      padding: 0 0.4rem;
 
       :last-child {
         border-right: 0;
       }
     }
-
-    ul,
-    ol {
-      margin: 0;
-      padding-left: 1.6rem;
-    }
   }
 `
 
+export const TrOver = styled.tr`
+  border-top: 1px solid black;
+`
+
+export const Tr = styled.tr`
+  padding: 0.2rem 0;
+  vertical-align: top;
+  ${props =>
+    props.borders &&
+    css`
+      border-bottom: 1px solid black;
+    `};
+`
+
+export const TrUnder = styled.tr`
+  border-bottom: 1px solid black;
+`
+
+export const ScoreWrapper = styled.div`
+  ${media.xxxs`
+    width: 10rem;
+  `}
+
+  ${media.sm`
+    width: 12rem;
+  `}
+  display: block;
+  height: 5rem;
+  text-align: center;
+  background-color: ${theme.color.bigStone};
+`
+
 export const ScoreLink = styled.a`
-  display: grid;
-  justify-content: center;
   text-decoration: none;
+  text-align: center;
+  width: 12rem;
+  height: 5rem;
   ${media.xxxs`
     min-width: 3rem;
   `}
@@ -67,33 +84,25 @@ export const ScoreLink = styled.a`
 `
 
 export const Score = styled.span`
-  ${media.xxxs`
-    font-size: ${theme.fontSize.normal};
-  `}
-  ${media.xxs`
-    font-size: ${theme.fontSize.medium};
-  `}
-  ${media.xs`
-    font-size: ${theme.fontSize.large};
-  `}
-  ${media.sm`
-    font-size: ${theme.fontSize.xLarge};
-  `}
-  ${media.md`
-    font-size: ${theme.fontSize.xxLarge};
-  `}
-  ${media.lg`
-    font-size: 3.2rem;
-  `}
-
-  color: #00e;
+  font-size: 3.5rem;
+  height: 5rem;
+  line-height: 5rem;
+  color: ${theme.color.appBg};
   font-weight: bold;
 `
 
-export const LogoWrapper = styled.div`
-  display: grid;
-  justify-items: center;
+export const Team = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin: 1rem 0;
 `
+
+export const TeamHome = styled(Team)`
+  align-items: flex-end;
+`
+
+export const LogoWrapper = styled.div``
 
 export const TeamLogo = styled.img`
   ${media.xxxs`
@@ -109,30 +118,101 @@ export const TeamLogo = styled.img`
     height: 5rem;
   `}
   ${media.sm`
+    width: 5rem;
+    height: 5rem;
+  `}
+  ${media.md`
     width: 5.5rem;
     height: 5.5rem;
   `}
-  ${media.md`
+  ${media.lg`
     width: 6rem;
     height: 6rem;
-  `}
-  ${media.lg`
-    width: 7rem;
-    height: 7rem;
   `}
 
 `
 
 export const PhotoLink = styled.a`
   text-decoration: none;
+  color: #666;
 `
 
-export const PhotoContent = styled.span`
-  font-size: ${theme.fontSize.medium};
-  padding: 0.5rem 1rem;
-  margin: 0.5rem;
-  color: #fff;
-  background-color: #ffc107;
-  border-radius: 5px;
-  text-transform: uppercase;
+export const TeamName = styled.span`
+  ${media.xxxs`
+    font-size: ${theme.fontSize.small};
+  `}
+  ${media.xxs`
+    font-size: ${theme.fontSize.normal};
+  `}
+  ${media.xs`
+    font-size: ${theme.fontSize.medium};
+  `}
+  ${media.sm`
+    font-size: ${theme.fontSize.medium};
+  `}
+
+  font-weight: bold;
+  text-align: start;
+  margin: 0 1rem;
+  line-height: ${theme.lineHeight.basic};
+  color: ${theme.color.bigStone};
+`
+
+export const TeamNameHome = styled(TeamName)`
+  text-align: end;
+`
+
+export const Info = styled.p`
+  margin: 0;
+  line-height: ${theme.lineHeight.basic};
+`
+
+export const InfoMobile = styled.p`
+  font-size: 1.7rem;
+  text-align: center;
+  margin: 0.4rem;
+`
+
+export const InfoDetails = styled(Info)`
+  font-size: ${theme.fontSize.small};
+  margin-top: 2rem;
+  line-height: 1.8rem;
+`
+
+export const Wrapper = styled.div`
+  background: #272727;
+  padding: 1rem;
+  ${media.xxxs`
+    display: block;
+    position: relative;
+    ${props =>
+      props.showFilters &&
+      css`
+        height: 100vh;
+      `};
+  `}
+  ${media.md`
+    width: 24rem;
+    height: 100vh;
+    position: fixed;
+  `}
+`
+
+export const FilterButton = styled.div`
+  font-size: 2rem;
+  width: 20rem;
+  text-align: center;
+  padding: 2px;
+  margin: 0 auto;
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  min-height: 3.8rem;
+  line-height: 3.8rem;
+  position: relative;
+  transition: all 100ms;
+  box-sizing: border-box;
 `

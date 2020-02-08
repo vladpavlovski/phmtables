@@ -6,6 +6,6 @@
     "stylelint-config-prettier"
   ],
   "rules": {
-    "no-empty-source": "never"
+    "no-empty-source": null
   }
 }

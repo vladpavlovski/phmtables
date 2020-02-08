@@ -1,40 +1,57 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { useMedia } from 'use-media'
 
-import { useTable, useSortBy } from 'react-table'
+import { useTable, useSortBy, useExpanded } from 'react-table'
 import { getData } from './data'
 import {
   TableStyles,
+  TrOver,
+  Tr,
+  TrUnder,
+  ScoreWrapper,
   ScoreLink,
   Score,
   LogoWrapper,
+  Team,
+  TeamHome,
   TeamLogo,
+  TeamName,
+  TeamNameHome,
   PhotoLink,
-  PhotoContent,
+  Info,
+  InfoDetails,
+  InfoMobile,
 } from './styled'
 import { Filters } from './Filters'
+
+import { TiStopwatch, TiCameraOutline } from 'react-icons/ti'
+import { GiWhistle } from 'react-icons/gi'
 
 const spreadsheetUrl =
   'https://docs.google.com/spreadsheets/d/1XE3Vjp_E6tZ9nY1QKlNl9v1DAQqIeNIQJJuvXHQsE9Q/edit?usp=sharing'
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
   const {
     getTableProps,
     getTableBodyProps,
-    headerGroups,
+    // headerGroups,
     rows,
     prepareRow,
+    flatColumns,
   } = useTable(
     {
       columns,
       data,
     },
-    useSortBy
+    useSortBy,
+    useExpanded
   )
+
+  const min630 = useMedia({ minWidth: '630px' })
+
   return (
-    <>
-      <table {...getTableProps()}>
-        <thead>
+    <table {...getTableProps()}>
+      {/* <thead>
           {headerGroups.map(headerGroup => {
             return (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -57,21 +74,34 @@ const Table = ({ columns, data }) => {
               </tr>
             )
           })}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
-            prepareRow(row)
-            return (
-              <tr {...row.getRowProps()} key={row.index}>
+        </thead> */}
+      <tbody {...getTableBodyProps()}>
+        {rows.map(row => {
+          prepareRow(row)
+          return (
+            <React.Fragment key={row.index}>
+              {!min630 && (
+                <TrOver>
+                  <td colSpan={flatColumns.length}>{renderRowOver({ row })}</td>
+                </TrOver>
+              )}
+              <Tr borders={min630} {...row.getRowProps()}>
                 {row.cells.map(cell => (
                   <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 ))}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-    </>
+              </Tr>
+              {!min630 && (
+                <TrUnder>
+                  <td colSpan={flatColumns.length}>
+                    {renderRowUnder({ row })}
+                  </td>
+                </TrUnder>
+              )}
+            </React.Fragment>
+          )
+        })}
+      </tbody>
+    </table>
   )
 }
 
@@ -84,107 +114,112 @@ const Result = () => {
       const newData = data.Data.elements.slice(1).filter(item => {
         return item['Game ID'] !== '' && item['Skóre'] !== ':'
       })
-      // console.log('newData', newData)
       setData(newData)
       setFilteredData(newData)
     })
   }, [])
 
   // const min320 = useMedia({ minWidth: '320px' })
-  const min480 = useMedia({ minWidth: '480px' })
+  // const min480 = useMedia({ minWidth: '480px' })
   const min630 = useMedia({ minWidth: '630px' })
-  const min736 = useMedia({ minWidth: '736px' })
+  // const min736 = useMedia({ minWidth: '736px' })
   const min980 = useMedia({ minWidth: '980px' })
-  const min1280 = useMedia({ minWidth: '1280px' })
+  // const min1280 = useMedia({ minWidth: '1280px' })
   // const min1690 = useMedia({ minWidth: '1690px' })
 
   const columns = useMemo(
     () => [
       {
-        Header: 'Datum a Místo',
+        // Header: 'Datum a Místo',
         accessor: 'Datum a Místo',
-        show: min480,
-        Cell: row => (
-          <div style={{}}>
-            <ul>
-              {row.cell.value.split(',').map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ),
-      },
-      {
-        Header: 'Detaily zápasu',
-        accessor: 'Detaily zápasu',
         show: min630,
-        Cell: row => (
-          <ul>
-            {row.cell.value.split(',').map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        ),
-      },
-      {
-        Header: 'Zúčastněné týmy',
-        accessor: 'Zúčastněné týmy',
-        show: min736,
-        Cell: row => (
-          <ol>
-            {row.cell.value.split(',').map((item, i) => (
-              <li key={i}>
-                <strong>{item}</strong>
-              </li>
-            ))}
-          </ol>
-        ),
-      },
-      {
-        Header: 'Tým (domácí)',
-        accessor: 'Tým (domácí)',
-        Cell: row => (
-          <LogoWrapper>
-            <TeamLogo src={row.cell.value} alt={data[row.row.index]} />
-          </LogoWrapper>
-        ),
-      },
-      {
-        Header: 'Skóre',
-        accessor: 'Skóre',
         Cell: data => {
+          const detailsValue = data.data[data.row.index]['Detaily zápasu']
+            .split(',')
+            .join(', ')
+          const cellData = data.cell.value.split(',')
           return (
-            <ScoreLink
-              href={data.cell.row.original['Link na Zápis z utkání']}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Score>{data.cell.value}</Score>
-            </ScoreLink>
+            <>
+              <Info>{`${cellData[0]} ${cellData[1]}`}</Info>
+              <Info>
+                <strong>{`${cellData[2]} ${cellData[3]}`}</strong>
+              </Info>
+              <InfoDetails>{detailsValue}</InfoDetails>
+            </>
           )
         },
       },
       {
-        Header: 'Tým (hosté)',
-        accessor: 'Tým (hosté)',
-        Cell: data => (
-          <LogoWrapper>
-            <TeamLogo src={data.cell.value} alt={data[data.row.index]} />
-          </LogoWrapper>
-        ),
+        // Header: 'Tým (domácí)',
+        accessor: 'Tým (domácí)',
+        Cell: data => {
+          return (
+            <TeamHome>
+              <LogoWrapper>
+                <TeamLogo src={data.cell.value} alt={data[data.row.index]} />
+              </LogoWrapper>
+              <TeamNameHome>{data.row.original['Tým 1 název']}</TeamNameHome>
+            </TeamHome>
+          )
+        },
       },
       {
-        Header: 'Časoměřič',
+        // Header: 'Skóre',
+        accessor: 'Skóre',
+        Cell: data => {
+          return (
+            <ScoreWrapper>
+              <ScoreLink
+                href={data.cell.row.original['Link na Zápis z utkání']}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Score>{data.cell.value}</Score>
+              </ScoreLink>
+            </ScoreWrapper>
+          )
+        },
+      },
+      {
+        // Header: 'Tým (hosté)',
+        accessor: 'Tým (hosté)',
+        Cell: data => {
+          return (
+            <Team>
+              <LogoWrapper>
+                <TeamLogo src={data.cell.value} alt={data[data.row.index]} />
+              </LogoWrapper>
+              <TeamName>{data.row.original['Tým 2 název']}</TeamName>
+            </Team>
+          )
+        },
+      },
+      {
+        // Header: 'Časoměřič',
         accessor: 'Časoměřič',
         show: min980,
+        Cell: data => {
+          return (
+            <>
+              <p>
+                <TiStopwatch />
+                {data.cell.value}
+              </p>
+              <p>
+                <GiWhistle />
+                {data.row.original['Rozhodčí']}
+              </p>
+            </>
+          )
+        },
       },
+      // {
+      //   Header: 'Rozhodčí',
+      //   accessor: 'Rozhodčí',
+      //   show: min980,
+      // },
       {
-        Header: 'Rozhodčí',
-        accessor: 'Rozhodčí',
-        show: min980,
-      },
-      {
-        Header: 'Foto',
+        // Header: 'Foto',
         accessor: 'Link na Fotoalbum',
         Cell: data => {
           return (
@@ -195,20 +230,40 @@ const Result = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <PhotoContent>Foto</PhotoContent>
+                <TiCameraOutline style={{ fontSize: '4rem' }} />
               </PhotoLink>
             )
           )
         },
       },
     ],
-    [data, min480, min630, min736, min980]
+    [min630, min980]
   )
+
+  const renderRowOver = useCallback(
+    ({ row }) => <InfoMobile>{row.values['Datum a Místo']}</InfoMobile>,
+    []
+  )
+
+  const renderRowUnder = useCallback(
+    ({ row }) => (
+      <InfoMobile>
+        {row.original['Detaily zápasu'].split(',').join(', ')}
+      </InfoMobile>
+    ),
+    []
+  )
+
   return (
     <>
-      {min1280 && <Filters data={data} setFilteredData={setFilteredData} />}
+      <Filters data={data} setFilteredData={setFilteredData} />
       <TableStyles>
-        <Table columns={columns} data={filteredData} />
+        <Table
+          columns={columns}
+          data={filteredData}
+          renderRowUnder={renderRowUnder}
+          renderRowOver={renderRowOver}
+        />
       </TableStyles>
     </>
   )

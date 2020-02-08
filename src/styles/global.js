@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-size: 1.6rem;
+    font-size: ${theme.fontSize.normal};
     font-family: ${theme.font.regular};
     font-weight: 100;
     background-color: ${theme.color.white};
