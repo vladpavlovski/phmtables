@@ -201,6 +201,7 @@ const Filters = ({ data, setFilteredData }) => {
       {showFilters && (
         <>
           {!min1280 && <br />}
+
           <Select
             value={selectedTeam}
             onChange={setSelectedTeam}
@@ -241,7 +242,6 @@ const Filters = ({ data, setFilteredData }) => {
             isMulti
           />
           <br />
-
           <Select
             value={selectedDay}
             onChange={setSelectedDay}
@@ -266,7 +266,6 @@ const Filters = ({ data, setFilteredData }) => {
             isMulti
           />
           <br />
-
           <Select
             value={selectedTimekeeper}
             onChange={setSelectedTimekeeper}

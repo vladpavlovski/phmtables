@@ -184,7 +184,8 @@ export const Wrapper = styled.div`
   padding: 1rem;
   ${media.xxxs`
     display: block;
-    position: relative;
+    position: fixed;
+    width: 100%;
     ${props =>
       props.showFilters &&
       css`
@@ -215,4 +216,11 @@ export const FilterButton = styled.div`
   position: relative;
   transition: all 100ms;
   box-sizing: border-box;
+`
+
+export const AllFilters = styled.div`
+  padding-top: 6.5rem;
+  ${media.md`
+    padding-top: 0;
+  `};
 `

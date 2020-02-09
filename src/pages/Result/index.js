@@ -21,6 +21,7 @@ import {
   Info,
   InfoDetails,
   InfoMobile,
+  AllFilters,
 } from './styled'
 import { Filters } from './Filters'
 
@@ -257,14 +258,16 @@ const Result = () => {
   return (
     <>
       <Filters data={data} setFilteredData={setFilteredData} />
-      <TableStyles>
-        <Table
-          columns={columns}
-          data={filteredData}
-          renderRowUnder={renderRowUnder}
-          renderRowOver={renderRowOver}
-        />
-      </TableStyles>
+      <AllFilters>
+        <TableStyles>
+          <Table
+            columns={columns}
+            data={filteredData}
+            renderRowUnder={renderRowUnder}
+            renderRowOver={renderRowOver}
+          />
+        </TableStyles>
+      </AllFilters>
     </>
   )
 }
