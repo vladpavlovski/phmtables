@@ -114,7 +114,7 @@ const Result = () => {
 
   useEffect(() => {
     getData(resultUrl, (data, tabletop) => {
-      const newData = data['Matches4publish'].elements.slice(1).filter(item => {
+      const newData = data['Matches4publish'].elements.slice(0).filter(item => {
         return item['Game ID'] !== '' && item['Skóre'] !== ':'
       })
       setData(newData)

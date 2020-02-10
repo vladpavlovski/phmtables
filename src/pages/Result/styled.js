@@ -55,7 +55,7 @@ export const ScoreWrapper = styled.div`
   display: block;
   height: 5rem;
   text-align: center;
-  background-color: ${theme.color.bigStone};
+  background-color: #272727;
 `
 
 export const ScoreLink = styled.a`
@@ -135,6 +135,8 @@ export const TeamLogo = styled.img`
 export const PhotoLink = styled.a`
   text-decoration: none;
   color: #666;
+  height: 10rem;
+  line-height: 10rem;
 `
 
 export const TeamName = styled.span`
@@ -163,6 +165,7 @@ export const TeamNameHome = styled(TeamName)`
 `
 
 export const Info = styled.p`
+  color: ${theme.color.bigStone};
   margin: 0;
   line-height: ${theme.lineHeight.basic};
 `
