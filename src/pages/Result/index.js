@@ -28,9 +28,11 @@ import { Filters } from './Filters'
 import { TiStopwatch, TiCameraOutline } from 'react-icons/ti'
 import { GiWhistle } from 'react-icons/gi'
 
-const spreadsheetUrl =
-  'https://docs.google.com/spreadsheets/d/1XE3Vjp_E6tZ9nY1QKlNl9v1DAQqIeNIQJJuvXHQsE9Q/edit?usp=sharing'
+// const spreadsheetUrl =
+//   'https://docs.google.com/spreadsheets/d/1XE3Vjp_E6tZ9nY1QKlNl9v1DAQqIeNIQJJuvXHQsE9Q/edit?usp=sharing'
 
+const resultUrl =
+  'https://docs.google.com/spreadsheets/d/1PpATiNI_WDl-Wt7O7yLnN89UfGzLoT1_xnVcWAJ_77I/edit?usp=sharing'
 const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
   const {
     getTableProps,
@@ -111,8 +113,8 @@ const Result = () => {
   const [filteredData, setFilteredData] = useState([])
 
   useEffect(() => {
-    getData(spreadsheetUrl, (data, tabletop) => {
-      const newData = data.Data.elements.slice(1).filter(item => {
+    getData(resultUrl, (data, tabletop) => {
+      const newData = data['Matches4publish'].elements.slice(1).filter(item => {
         return item['Game ID'] !== '' && item['Skóre'] !== ':'
       })
       setData(newData)
@@ -171,7 +173,7 @@ const Result = () => {
           return (
             <ScoreWrapper>
               <ScoreLink
-                href={data.cell.row.original['Link na Zápis z utkání']}
+                href={data.cell.row.original['Reportáž']}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -221,7 +223,7 @@ const Result = () => {
       // },
       {
         // Header: 'Foto',
-        accessor: 'Link na Fotoalbum',
+        accessor: 'Fotoalbum',
         Cell: data => {
           return (
             data.cell.value !== '' &&

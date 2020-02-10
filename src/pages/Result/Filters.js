@@ -191,7 +191,9 @@ const Filters = ({ data, setFilteredData }) => {
   }, [showFilters])
 
   const wrapperRef = useRef()
-  useOnClickOutside(wrapperRef, () => setShowFilters(false))
+  useOnClickOutside(wrapperRef, () => {
+    if (!min1280) setShowFilters(false)
+  })
 
   return (
     <Wrapper ref={wrapperRef} showFilter={showFilters}>
