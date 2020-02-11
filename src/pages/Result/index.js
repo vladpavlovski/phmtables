@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { useMedia } from 'use-media'
+import Loader from 'react-loader-spinner'
 
 import { useTable, useSortBy, useExpanded } from 'react-table'
 import { getData } from './data'
@@ -21,7 +22,9 @@ import {
   Info,
   InfoDetails,
   InfoMobile,
+  InfoMobileBottom,
   AllFilters,
+  LoaderWrapper,
 } from './styled'
 import { Filters } from './Filters'
 
@@ -111,14 +114,16 @@ const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
 const Result = () => {
   const [data, setData] = useState([])
   const [filteredData, setFilteredData] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getData(resultUrl, (data, tabletop) => {
-      const newData = data['Matches4publish'].elements.slice(0).filter(item => {
-        return item['Game ID'] !== '' && item['Skóre'] !== ':'
-      })
+      const newData = data['Matches4publish'].elements
+        .slice(0)
+        .filter(item => item['Game ID'] !== '')
       setData(newData)
       setFilteredData(newData)
+      setIsLoading(false)
     })
   }, [])
 
@@ -133,7 +138,6 @@ const Result = () => {
   const columns = useMemo(
     () => [
       {
-        // Header: 'Datum a Místo',
         accessor: 'Datum a Místo',
         show: min630,
         Cell: data => {
@@ -153,7 +157,6 @@ const Result = () => {
         },
       },
       {
-        // Header: 'Tým (domácí)',
         accessor: 'Tým (domácí)',
         Cell: data => {
           return (
@@ -167,24 +170,41 @@ const Result = () => {
         },
       },
       {
-        // Header: 'Skóre',
         accessor: 'Skóre',
         Cell: data => {
+          const photoLink = data.data[data.row.index]['Fotoalbum']
+
           return (
-            <ScoreWrapper>
-              <ScoreLink
-                href={data.cell.row.original['Reportáž']}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Score>{data.cell.value}</Score>
-              </ScoreLink>
-            </ScoreWrapper>
+            <>
+              <ScoreWrapper>
+                <ScoreLink
+                  href={data.cell.row.original['Reportáž']}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Score>{data.cell.value}</Score>
+                </ScoreLink>
+              </ScoreWrapper>
+              {photoLink !== '' && photoLink !== 'Missing' && !min630 && (
+                <PhotoLink
+                  href={photoLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TiCameraOutline
+                    style={{
+                      display: 'block',
+                      margin: '0 auto',
+                      fontSize: '4rem',
+                    }}
+                  />
+                </PhotoLink>
+              )}
+            </>
           )
         },
       },
       {
-        // Header: 'Tým (hosté)',
         accessor: 'Tým (hosté)',
         Cell: data => {
           return (
@@ -198,7 +218,6 @@ const Result = () => {
         },
       },
       {
-        // Header: 'Časoměřič',
         accessor: 'Časoměřič',
         show: min980,
         Cell: data => {
@@ -216,14 +235,9 @@ const Result = () => {
           )
         },
       },
-      // {
-      //   Header: 'Rozhodčí',
-      //   accessor: 'Rozhodčí',
-      //   show: min980,
-      // },
       {
-        // Header: 'Foto',
         accessor: 'Fotoalbum',
+        show: min630,
         Cell: data => {
           return (
             data.cell.value !== '' &&
@@ -250,14 +264,20 @@ const Result = () => {
 
   const renderRowUnder = useCallback(
     ({ row }) => (
-      <InfoMobile>
+      <InfoMobileBottom>
         {row.original['Detaily zápasu'].split(',').join(', ')}
-      </InfoMobile>
+      </InfoMobileBottom>
     ),
     []
   )
 
-  return (
+  return isLoading ? (
+    <LoaderWrapper>
+      <Loader type="Rings" color="#323C46" height={250} width={250} />
+      <p>Tahám výsledky z centrály...</p>
+      <p>Prosím vydrž...</p>
+    </LoaderWrapper>
+  ) : (
     <>
       <Filters data={data} setFilteredData={setFilteredData} />
       <AllFilters>

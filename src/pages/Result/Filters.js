@@ -4,7 +4,7 @@ import Select from 'react-select'
 import { useMedia } from 'use-media'
 import { useOnClickOutside } from '../../utils/hooks/useOnClickOutside'
 
-import { Wrapper, FilterButton } from './styled'
+import { phmStyles, Wrapper, FilterButton } from './styled'
 
 const getValue = value =>
   typeof value === 'string' ? value.toUpperCase() : value
@@ -204,6 +204,7 @@ const Filters = ({ data, setFilteredData }) => {
           {!min1280 && <br />}
 
           <Select
+            styles={phmStyles}
             value={selectedTeam}
             onChange={setSelectedTeam}
             options={teams}
@@ -212,6 +213,7 @@ const Filters = ({ data, setFilteredData }) => {
           />
           <br />
           <Select
+            styles={phmStyles}
             value={selectedReferee}
             onChange={setSelectedReferee}
             options={referees}
@@ -220,6 +222,7 @@ const Filters = ({ data, setFilteredData }) => {
           />
           <br />
           <Select
+            styles={phmStyles}
             value={selectedGroup}
             onChange={setSelectedGroup}
             options={groups}
@@ -228,6 +231,7 @@ const Filters = ({ data, setFilteredData }) => {
           />
           <br />
           <Select
+            styles={phmStyles}
             value={selectedWeek}
             onChange={setSelectedWeek}
             options={weeks}
@@ -236,6 +240,7 @@ const Filters = ({ data, setFilteredData }) => {
           />
           <br />
           <Select
+            styles={phmStyles}
             value={selectedMonth}
             onChange={setSelectedMonth}
             options={months}
@@ -244,6 +249,7 @@ const Filters = ({ data, setFilteredData }) => {
           />
           {/* <br />
           <Select
+            styles={phmStyles}
             value={selectedDay}
             onChange={setSelectedDay}
             options={days}
@@ -252,6 +258,7 @@ const Filters = ({ data, setFilteredData }) => {
           /> */}
           <br />
           <Select
+            styles={phmStyles}
             value={selectedCompetition}
             onChange={setSelectedCompetition}
             options={competitions}
@@ -260,6 +267,7 @@ const Filters = ({ data, setFilteredData }) => {
           />
           <br />
           <Select
+            styles={phmStyles}
             value={selectedVenue}
             onChange={setSelectedVenue}
             options={venues}
@@ -268,6 +276,7 @@ const Filters = ({ data, setFilteredData }) => {
           />
           <br />
           <Select
+            styles={phmStyles}
             value={selectedTimekeeper}
             onChange={setSelectedTimekeeper}
             options={timekeepers}
@@ -276,6 +285,7 @@ const Filters = ({ data, setFilteredData }) => {
           />
           <br />
           <Select
+            styles={phmStyles}
             value={selectedSeason}
             onChange={setSelectedSeason}
             options={seasons}

@@ -2,6 +2,26 @@ import styled, { css } from 'styled-components'
 import media from '../../styles/media'
 import theme from '../../styles/theme'
 
+export const phmStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    color: theme.color.bigStone,
+    fontWeight: 'bold',
+  }),
+  dropdownIndicator: provided => ({
+    ...provided,
+    color: theme.color.bigStone,
+  }),
+  input: provided => ({
+    ...provided,
+    color: theme.color.bigStone,
+  }),
+  placeholder: provided => ({
+    ...provided,
+    color: theme.color.bigStone,
+  }),
+}
+
 export const TableStyles = styled.div`
   ${media.md`
     margin-left: 26rem;
@@ -46,11 +66,11 @@ export const TrUnder = styled.tr`
 
 export const ScoreWrapper = styled.div`
   ${media.xxxs`
-    width: 10rem;
+    min-width: 10rem;
   `}
 
   ${media.sm`
-    width: 12rem;
+    min-width: 12rem;
   `}
   display: block;
   height: 5rem;
@@ -176,6 +196,10 @@ export const InfoMobile = styled.p`
   margin: 0.4rem;
 `
 
+export const InfoMobileBottom = styled(InfoMobile)`
+  font-size: 1.4rem;
+`
+
 export const InfoDetails = styled(Info)`
   font-size: ${theme.fontSize.small};
   margin-top: 2rem;
@@ -226,4 +250,9 @@ export const AllFilters = styled.div`
   ${media.md`
     padding-top: 0;
   `};
+`
+export const LoaderWrapper = styled.div`
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
 `
