@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { useMedia } from 'use-media'
-import Loader from 'react-loader-spinner'
-
 import { useTable, useSortBy, useExpanded } from 'react-table'
-import { getData } from './data'
+
+import { LoaderPHM } from '../../components/Loader'
+import { getData } from '../../api/get-data'
 import {
   TableStyles,
   TrOver,
@@ -24,15 +24,11 @@ import {
   InfoMobile,
   InfoMobileBottom,
   AllFilters,
-  LoaderWrapper,
 } from './styled'
 import { Filters } from './Filters'
 
 import { TiStopwatch, TiCameraOutline } from 'react-icons/ti'
 import { GiWhistle } from 'react-icons/gi'
-
-// const spreadsheetUrl =
-//   'https://docs.google.com/spreadsheets/d/1XE3Vjp_E6tZ9nY1QKlNl9v1DAQqIeNIQJJuvXHQsE9Q/edit?usp=sharing'
 
 const resultUrl =
   'https://docs.google.com/spreadsheets/d/1PpATiNI_WDl-Wt7O7yLnN89UfGzLoT1_xnVcWAJ_77I/edit?usp=sharing'
@@ -272,11 +268,7 @@ const Result = () => {
   )
 
   return isLoading ? (
-    <LoaderWrapper>
-      <Loader type="Rings" color="#323C46" height={250} width={250} />
-      <p>Tahám výsledky z centrály...</p>
-      <p>Prosím vydrž...</p>
-    </LoaderWrapper>
+    <LoaderPHM />
   ) : (
     <>
       <Filters data={data} setFilteredData={setFilteredData} />

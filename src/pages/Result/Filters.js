@@ -44,8 +44,6 @@ const Filters = ({ data, setFilteredData }) => {
   const [selectedWeek, setSelectedWeek] = useState(null)
   const [months, setMonths] = useState([])
   const [selectedMonth, setSelectedMonth] = useState(null)
-  // const [days, setDays] = useState([])
-  // const [selectedDay, setSelectedDay] = useState(null)
   const [competitions, setCompetitions] = useState([])
   const [selectedCompetition, setSelectedCompetition] = useState(null)
   const [venues, setVenues] = useState([])
@@ -56,6 +54,7 @@ const Filters = ({ data, setFilteredData }) => {
   const [selectedSeason, setSelectedSeason] = useState(null)
 
   const [showFilters, setShowFilters] = useState(true)
+
   const setAllFilters = useCallback(() => {
     const teams1 = data.map(i => i['Tým 1 název'])
     const teams2 = data.map(i => i['Tým 2 název'])
@@ -81,10 +80,7 @@ const Filters = ({ data, setFilteredData }) => {
       value: i,
       label: i,
     }))
-    // const newDays = [...new Set(data.map(i => i['Den']))].map(i => ({
-    //   value: i,
-    //   label: i,
-    // }))
+
     const newCompetitions = [...new Set(data.map(i => i['Soutěž']))].map(i => ({
       value: i,
       label: i,
@@ -110,7 +106,6 @@ const Filters = ({ data, setFilteredData }) => {
     setGroups(newGroups)
     setMonths(newMonths)
     setWeeks(newWeeks)
-    // setDays(newDays)
     setCompetitions(newCompetitions)
     setVenues(newVenues)
     setTimekeepers(newTimekeepers)
@@ -128,7 +123,6 @@ const Filters = ({ data, setFilteredData }) => {
     const monthsFilter =
       (selectedMonth && selectedMonth.map(i => i.value)) || []
     const weeksFilter = (selectedWeek && selectedWeek.map(i => i.value)) || []
-    // const daysFilter = (selectedDay && selectedDay.map(i => i.value)) || []
     const competitionsFilter =
       (selectedCompetition && selectedCompetition.map(i => i.value)) || []
     const venuesFilter =
@@ -144,7 +138,6 @@ const Filters = ({ data, setFilteredData }) => {
       Skupina: groupsFilter,
       Měsíc: monthsFilter,
       Week: weeksFilter,
-      // Den: daysFilter,
       Soutěž: competitionsFilter,
       Arena: venuesFilter,
       Časoměřič: timkeepersFilter,
@@ -247,15 +240,6 @@ const Filters = ({ data, setFilteredData }) => {
             placeholder="Měsíc"
             isMulti
           />
-          {/* <br />
-          <Select
-            styles={phmStyles}
-            value={selectedDay}
-            onChange={setSelectedDay}
-            options={days}
-            placeholder="Den"
-            isMulti
-          /> */}
           <br />
           <Select
             styles={phmStyles}

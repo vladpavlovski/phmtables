@@ -1,2 +1,5 @@
 export const HOMEPAGE = '/'
 export const RESULT = '/result'
+export const STANDINGS20 = '/standings20'
+export const STANDINGS20TOP = '/standings20top'
+export const STANDINGS20KLASIK = '/standings20klasik'
