@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react'
-// import { useMedia } from 'use-media'
+import { useMedia } from 'use-media'
 import { useTable, useSortBy, useExpanded } from 'react-table'
 
 import Rating from 'react-rating'
@@ -95,6 +95,8 @@ const Standings20 = () => {
     })
   }, [])
 
+  const min736 = useMedia({ minWidth: '736px' })
+
   const columns = useMemo(
     () => [
       {
@@ -157,32 +159,36 @@ const Standings20 = () => {
         Cell: data => <Points>{data.cell.value}</Points>,
       },
       {
-        accessor: 'Tr.Min',
+        accessor: 'PIM',
         Header: 'PIM',
         Cell: data => <div>{data.cell.value}</div>,
       },
       {
         accessor: 'VG',
         Header: 'VG',
+        show: min736,
         Cell: data => <div>{data.cell.value}</div>,
       },
       {
         accessor: 'OG',
         Header: 'OG',
+        show: min736,
         Cell: data => <div>{data.cell.value}</div>,
       },
       {
         accessor: 'Střely',
         Header: 'Střely',
+        show: min736,
         Cell: data => <div>{data.cell.value}</div>,
       },
       {
         accessor: 'vhazování %',
         Header: 'vhazování %',
+        show: min736,
         Cell: data => <div>{data.cell.value}</div>,
       },
     ],
-    []
+    [min736]
   )
 
   return isLoading ? (

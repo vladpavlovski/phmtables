@@ -33,7 +33,7 @@ export const TableStyles = styled.div`
 
   table {
     border-spacing: 0;
-
+    min-width: 63rem;
     tr {
       padding: 0.2rem 0;
       vertical-align: middle;
@@ -60,35 +60,36 @@ export const AllFilters = styled.div`
 
 export const TeamLogo = styled.img`
   ${media.xxxs`
-    width: 4rem;
-    height: 4rem;
+    width: 10rem;
+    height: 2rem;
   `}
   ${media.xxs`
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 10rem;
+    height: 2rem;
   `}
   ${media.xs`
-    width: 5rem;
-    height: 5rem;
+    width: 11rem;
+    height: 2.5rem;
   `}
   ${media.sm`
-    width: 5rem;
-    height: 5rem;
+    width: 11rem;
+    height: 2.5rem;
   `}
   ${media.md`
-    width: 5.5rem;
-    height: 5.5rem;
+    width: 11.5rem;
+    height: 3.5rem;
   `}
   ${media.lg`
-    width: 6rem;
-    height: 6rem;
+    width: 12rem;
+    height: 3rem;
   `}
-
+  object-fit: cover;
 `
 
 export const Wrapper = styled.div`
   background: #272727;
   padding: 1rem;
+  z-index: 1;
   ${media.xxxs`
     display: block;
     position: fixed;

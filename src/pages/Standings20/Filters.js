@@ -38,13 +38,22 @@ const Filters = ({ data, setFilteredData }) => {
   const [divisions, setDivisions] = useState([])
   const [selectedDivision, setSelectedDivision] = useState(null)
 
+  const [teams, setTeams] = useState([])
+  const [selectedTeams, setSelectedTeams] = useState(null)
+
   const setAllFilters = useCallback(() => {
     const newDivisions = [...new Set(data.map(i => i['divize']))].map(i => ({
       value: i,
       label: i,
     }))
 
+    const newTeams = [...new Set(data.map(i => i['teamName']))].map(i => ({
+      value: i,
+      label: i,
+    }))
+
     setDivisions(newDivisions)
+    setTeams(newTeams)
 
     setFiltersData(data)
   }, [data])
@@ -53,14 +62,16 @@ const Filters = ({ data, setFilteredData }) => {
     const divisionsFilter =
       (selectedDivision && selectedDivision.map(i => i.value)) || []
 
+    const teamsFilter = (selectedTeams && selectedTeams.map(i => i.value)) || []
     const filt = {
       divize: divisionsFilter,
+      teamName: teamsFilter,
     }
     const result =
       filtersData.length > 0 ? filterPlainArray(filtersData, filt) : filtersData
 
     setFilteredData(result)
-  }, [filtersData, selectedDivision, setFilteredData])
+  }, [filtersData, selectedDivision, selectedTeams, setFilteredData])
 
   useEffect(() => {
     filteredCollected()
@@ -103,6 +114,15 @@ const Filters = ({ data, setFilteredData }) => {
             onChange={setSelectedDivision}
             options={divisions}
             placeholder="Divize"
+            isMulti
+          />
+          <br />
+          <Select
+            styles={phmStyles}
+            value={selectedTeams}
+            onChange={setSelectedTeams}
+            options={teams}
+            placeholder="Team"
             isMulti
           />
           <br />
