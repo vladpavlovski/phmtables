@@ -1,12 +1,12 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import { useMedia } from 'use-media'
-import { useTable, useSortBy, useExpanded } from 'react-table'
-
 import Rating from 'react-rating'
+import { useMedia } from 'use-media'
+import { TiStarFullOutline, TiStarOutline } from 'react-icons/ti'
 
+import { Table } from '../../components/Table'
 import { LoaderPHM } from '../../components/Loader'
 import { getData } from '../../api/get-data'
-
+import { STANDINGS_URL } from '../../api/data-url'
 import { Filters } from './Filters'
 import {
   TableStyles,
@@ -20,74 +20,13 @@ import {
   Points,
 } from './styled'
 
-import { TiStarFullOutline, TiStarOutline } from 'react-icons/ti'
-
-const standingsUrl =
-  'https://docs.google.com/spreadsheets/d/1SKoCbwFLoSi_hH_b5mSzk38EU1iRFWf4QY0jkoOXm6E/edit?usp=sharing'
-
-const Table = ({ columns, data }) => {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable(
-    {
-      columns,
-      data,
-    },
-    useSortBy,
-    useExpanded
-  )
-
-  return (
-    <table {...getTableProps()}>
-      <thead>
-        {headerGroups.map(headerGroup => {
-          return (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => {
-                return (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    {column.render('Header')}
-                    <span>
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? ' 🔽'
-                          : ' 🔼'
-                        : ''}
-                    </span>
-                  </th>
-                )
-              })}
-            </tr>
-          )
-        })}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map(row => {
-          prepareRow(row)
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map(cell => (
-                <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-              ))}
-            </tr>
-          )
-        })}
-      </tbody>
-    </table>
-  )
-}
-
 const Standings20 = () => {
   const [data, setData] = useState([])
   const [filteredData, setFilteredData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getData(standingsUrl, data => {
+    getData(STANDINGS_URL, data => {
       const newData = data['Standing_ALL4publish'].elements.slice(0)
       setData(newData)
       setFilteredData(newData)

@@ -4,6 +4,7 @@ import { useTable, useSortBy, useExpanded } from 'react-table'
 
 import { LoaderPHM } from '../../components/Loader'
 import { getData } from '../../api/get-data'
+import { RESULT_URL } from '../../api/data-url'
 import {
   TableStyles,
   TrOver,
@@ -30,13 +31,10 @@ import { Filters } from './Filters'
 import { TiStopwatch, TiCameraOutline } from 'react-icons/ti'
 import { GiWhistle } from 'react-icons/gi'
 
-const resultUrl =
-  'https://docs.google.com/spreadsheets/d/1PpATiNI_WDl-Wt7O7yLnN89UfGzLoT1_xnVcWAJ_77I/edit?usp=sharing'
 const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
   const {
     getTableProps,
     getTableBodyProps,
-    // headerGroups,
     rows,
     prepareRow,
     flatColumns,
@@ -53,30 +51,6 @@ const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
 
   return (
     <table {...getTableProps()}>
-      {/* <thead>
-          {headerGroups.map(headerGroup => {
-            return (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map(column => {
-                  return (
-                    <th
-                      {...column.getHeaderProps(column.getSortByToggleProps())}
-                    >
-                      {column.render('Header')}
-                      <span>
-                        {column.isSorted
-                          ? column.isSortedDesc
-                            ? ' 🔽'
-                            : ' 🔼'
-                          : ''}
-                      </span>
-                    </th>
-                  )
-                })}
-              </tr>
-            )
-          })}
-        </thead> */}
       <tbody {...getTableBodyProps()}>
         {rows.map(row => {
           prepareRow(row)
@@ -113,7 +87,7 @@ const Result = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getData(resultUrl, (data, tabletop) => {
+    getData(RESULT_URL, (data, tabletop) => {
       const newData = data['Matches4publish'].elements
         .slice(0)
         .filter(item => item['Game ID'] !== '')
@@ -123,13 +97,8 @@ const Result = () => {
     })
   }, [])
 
-  // const min320 = useMedia({ minWidth: '320px' })
-  // const min480 = useMedia({ minWidth: '480px' })
   const min630 = useMedia({ minWidth: '630px' })
-  // const min736 = useMedia({ minWidth: '736px' })
   const min980 = useMedia({ minWidth: '980px' })
-  // const min1280 = useMedia({ minWidth: '1280px' })
-  // const min1690 = useMedia({ minWidth: '1690px' })
 
   const columns = useMemo(
     () => [
