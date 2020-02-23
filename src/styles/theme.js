@@ -3,7 +3,7 @@ export default {
     white: '#FFF',
     bigStone: '#323C46',
     solitude: '#DAE1E7',
-    zumthor: '#D2D6DA',
+    zumthor: '#f0f1f2',
     wildStrawberry: '#FF4081',
     mountainMeadow: '#22D486',
     linkWater: '#D9DCE1',

@@ -33,16 +33,20 @@ export const TableStyles = styled.div`
 
   table {
     border-spacing: 0;
-    min-width: 63rem;
+    min-width: 36rem;
+    color: ${theme.color.bigStone};
     tr {
       padding: 0.2rem 0;
       vertical-align: middle;
     }
 
+    tr:nth-child(even) {
+      background: ${theme.color.zumthor};
+    }
+
     th,
     td {
       margin: 0;
-      padding: 0 0.4rem;
 
       :last-child {
         border-right: 0;
@@ -59,30 +63,13 @@ export const AllFilters = styled.div`
 `
 
 export const TeamLogo = styled.img`
-  ${media.xxxs`
-    width: 10rem;
-    height: 2rem;
-  `}
+  width: 8rem;
+  height: 3rem;
   ${media.xxs`
-    width: 10rem;
-    height: 2rem;
-  `}
-  ${media.xs`
-    width: 11rem;
-    height: 2.5rem;
-  `}
-  ${media.sm`
-    width: 11rem;
-    height: 2.5rem;
-  `}
-  ${media.md`
-    width: 11.5rem;
-    height: 3.5rem;
-  `}
-  ${media.lg`
-    width: 12rem;
-    height: 3rem;
-  `}
+  width: 10rem;
+  height: 4rem;
+`}
+
   object-fit: cover;
 `
 
@@ -150,18 +137,22 @@ export const Rank = styled.div`
   font-weight: bold;
 `
 
-export const Wins = styled.div`
+export const CellValue = styled.div`
+  text-align: right;
+`
+
+export const Wins = styled(CellValue)`
   color: green;
 `
 
-export const Draws = styled.div`
+export const Draws = styled(CellValue)`
   color: orange;
 `
 
-export const Loss = styled.div`
+export const Loss = styled(CellValue)`
   color: red;
 `
 
-export const Points = styled.div`
+export const Points = styled(CellValue)`
   color: black;
 `

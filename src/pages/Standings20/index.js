@@ -18,6 +18,7 @@ import {
   Draws,
   Loss,
   Points,
+  CellValue,
 } from './styled'
 
 const Standings20 = () => {
@@ -35,6 +36,7 @@ const Standings20 = () => {
   }, [])
 
   const min736 = useMedia({ minWidth: '736px' })
+  const min480 = useMedia({ minWidth: '480px' })
 
   const columns = useMemo(
     () => [
@@ -52,6 +54,7 @@ const Standings20 = () => {
       },
       {
         accessor: 'teamName',
+        show: min480,
         Cell: data => {
           return (
             <>
@@ -69,7 +72,7 @@ const Standings20 = () => {
       {
         accessor: 'Z',
         Header: 'GP',
-        Cell: data => <div>{data.cell.value}</div>,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'V',
@@ -89,7 +92,7 @@ const Standings20 = () => {
       {
         accessor: 'Skóre',
         Header: 'Skóre',
-        Cell: data => <div>{data.cell.value}</div>,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
 
       {
@@ -100,34 +103,34 @@ const Standings20 = () => {
       {
         accessor: 'PIM',
         Header: 'PIM',
-        Cell: data => <div>{data.cell.value}</div>,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'VG',
         Header: 'VG',
         show: min736,
-        Cell: data => <div>{data.cell.value}</div>,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'OG',
         Header: 'OG',
         show: min736,
-        Cell: data => <div>{data.cell.value}</div>,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'Střely',
         Header: 'Střely',
         show: min736,
-        Cell: data => <div>{data.cell.value}</div>,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'vhazování %',
         Header: 'vhazování %',
         show: min736,
-        Cell: data => <div>{data.cell.value}</div>,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
     ],
-    [min736]
+    [min480, min736]
   )
 
   return isLoading ? (
