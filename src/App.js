@@ -10,6 +10,7 @@ import { Result } from './pages/Result'
 import { Standings20 } from './pages/Standings20'
 import { Standings20Top } from './pages/Standings20Top'
 import { Standings20Klasik } from './pages/Standings20Klasik'
+import { AllPlayers } from './pages/AllPlayers'
 
 const App = () => (
   <>
@@ -29,6 +30,7 @@ const App = () => (
           exact
           component={Standings20Klasik}
         />
+        <Route path={ROUTES.ALLPLAYERS} exact component={AllPlayers} />
       </Switch>
     </ErrorBoundary>
   </>
