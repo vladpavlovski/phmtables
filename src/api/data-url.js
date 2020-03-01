@@ -3,3 +3,6 @@ export const STANDINGS_URL =
 
 export const RESULT_URL =
   'https://docs.google.com/spreadsheets/d/1PpATiNI_WDl-Wt7O7yLnN89UfGzLoT1_xnVcWAJ_77I/edit?usp=sharing'
+
+export const PLAYERS_URL =
+  'https://docs.google.com/spreadsheets/d/1mDTYChWWv7RZ6Os3iIvAyYEflRpz0Mxksj2NOGr8gj8/edit?usp=sharing'
