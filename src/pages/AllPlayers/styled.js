@@ -23,8 +23,8 @@ export const phmStyles = {
 }
 
 export const TableStyles = styled.div`
-  ${media.md`
-    margin-left: 26rem;
+  ${media.sm`
+    margin-left: 24rem;
 `}
   padding: 0;
   font-size: ${theme.fontSize.medium};
@@ -69,7 +69,7 @@ export const Wrapper = styled.div`
         height: 100vh;
       `};
   `}
-  ${media.md`
+  ${media.sm`
     width: 24rem;
     height: 100vh;
     position: fixed;
@@ -97,7 +97,7 @@ export const FilterButton = styled.div`
 
 export const AllFilters = styled.div`
   padding-top: 6.5rem;
-  ${media.md`
+  ${media.sm`
     padding-top: 0;
   `};
 `
