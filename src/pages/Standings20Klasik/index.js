@@ -20,6 +20,11 @@ import {
   Loss,
   Points,
   CellValue,
+  HeaderValue,
+  HeaderWins,
+  HeaderDraws,
+  HeaderLoss,
+  HeaderPoints,
 } from '../Standings20/styled'
 
 const Standings20Klasik = () => {
@@ -72,61 +77,61 @@ const Standings20Klasik = () => {
       },
       {
         accessor: 'Z',
-        Header: 'GP',
+        Header: () => <HeaderValue title="Zápasy">{'Z'}</HeaderValue>,
         Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'V',
-        Header: 'V',
+        Header: () => <HeaderWins title="Výhry">{'V'}</HeaderWins>,
         Cell: data => <Wins>{data.cell.value}</Wins>,
       },
       {
         accessor: 'R',
-        Header: 'R',
+        Header: () => <HeaderDraws title="Remízy">{'R'}</HeaderDraws>,
         Cell: data => <Draws>{data.cell.value}</Draws>,
       },
       {
         accessor: 'P',
-        Header: 'P',
+        Header: () => <HeaderLoss title="Prohry">{'P'}</HeaderLoss>,
         Cell: data => <Loss>{data.cell.value}</Loss>,
       },
       {
         accessor: 'Skóre',
-        Header: 'Skóre',
+        Header: () => <HeaderValue title="Skóre">{':'}</HeaderValue>,
         Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
 
       {
         accessor: 'Body',
-        Header: 'B',
+        Header: () => <HeaderPoints title="Body">{'B'}</HeaderPoints>,
         Cell: data => <Points>{data.cell.value}</Points>,
       },
       {
         accessor: 'PIM',
-        Header: 'PIM',
+        Header: () => <HeaderValue title="Tr. Minuty">{'PIM'}</HeaderValue>,
         Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'VG',
-        Header: 'VG',
+        Header: () => <HeaderValue title="Vstř. góly">{'VG'}</HeaderValue>,
         show: min736,
         Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'OG',
-        Header: 'OG',
+        Header: () => <HeaderValue title="Obd. góly">{'OG'}</HeaderValue>,
         show: min736,
         Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'Střely',
-        Header: 'Střely',
+        Header: () => <HeaderValue title="Střely">{'S'}</HeaderValue>,
         show: min736,
         Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'vhazování %',
-        Header: 'vhazování %',
+        Header: () => <HeaderValue title="Vhazování">{'FO%'}</HeaderValue>,
         show: min736,
         Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },

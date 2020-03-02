@@ -47,10 +47,13 @@ export const TableStyles = styled.div`
     th,
     td {
       margin: 0;
+      border: 1px solid ${theme.color.solitude};
+      border-top: 0;
+      border-bottom: 0;
 
-      :last-child {
+      /* :last-child {
         border-right: 0;
-      }
+      } */
     }
   }
 `
@@ -139,6 +142,7 @@ export const Rank = styled.div`
 
 export const CellValue = styled.div`
   text-align: right;
+  padding: 0.2rem 0.5rem;
 `
 
 export const Wins = styled(CellValue)`
@@ -154,5 +158,24 @@ export const Loss = styled(CellValue)`
 `
 
 export const Points = styled(CellValue)`
+  color: black;
+`
+
+export const HeaderValue = styled.span`
+  text-align: center;
+`
+
+export const HeaderWins = styled(CellValue)`
+  color: green;
+`
+export const HeaderDraws = styled(CellValue)`
+  color: orange;
+`
+
+export const HeaderLoss = styled(CellValue)`
+  color: red;
+`
+
+export const HeaderPoints = styled(CellValue)`
   color: black;
 `
