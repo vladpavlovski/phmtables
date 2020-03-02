@@ -23,8 +23,8 @@ export const phmStyles = {
 }
 
 export const TableStyles = styled.div`
-  ${media.sm`
-    margin-left: 24rem;
+  ${media.md`
+    margin-left: 26rem;
 `}
   padding: 0;
   font-size: ${theme.fontSize.medium};
@@ -50,14 +50,17 @@ export const TableStyles = styled.div`
       border: 1px solid ${theme.color.solitude};
       border-top: 0;
       border-bottom: 0;
-      min-width: 3.4rem;
+
+      /* :last-child {
+        border-right: 0;
+      } */
     }
   }
 `
 
 export const AllFilters = styled.div`
   padding-top: 6.5rem;
-  ${media.sm`
+  ${media.md`
     padding-top: 0;
   `};
 `
@@ -87,7 +90,7 @@ export const Wrapper = styled.div`
         height: 100vh;
       `};
   `}
-  ${media.sm`
+  ${media.md`
     width: 24rem;
     height: 100vh;
     position: fixed;

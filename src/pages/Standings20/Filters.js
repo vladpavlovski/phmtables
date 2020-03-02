@@ -81,14 +81,14 @@ const Filters = ({ data, setFilteredData }) => {
     setAllFilters()
   }, [setAllFilters])
 
-  const min920 = useMedia({ minWidth: '920px' })
+  const min1280 = useMedia({ minWidth: '1280px' })
   useEffect(() => {
-    if (!min920) {
+    if (!min1280) {
       setShowFilters(false)
     } else {
       setShowFilters(true)
     }
-  }, [min920])
+  }, [min1280])
 
   const handleShowFilters = useCallback(() => {
     setShowFilters(!showFilters)
@@ -96,17 +96,17 @@ const Filters = ({ data, setFilteredData }) => {
 
   const wrapperRef = useRef()
   useOnClickOutside(wrapperRef, () => {
-    if (!min920) setShowFilters(false)
+    if (!min1280) setShowFilters(false)
   })
 
   return (
     <Wrapper ref={wrapperRef} showFilter={showFilters}>
-      {!min920 && (
+      {!min1280 && (
         <FilterButton onClick={handleShowFilters}>Filtry</FilterButton>
       )}
       {showFilters && (
         <>
-          {!min920 && <br />}
+          {!min1280 && <br />}
 
           <Select
             styles={phmStyles}

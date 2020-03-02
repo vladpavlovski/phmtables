@@ -4,7 +4,7 @@ export const sizes = {
   xxxs: 320,
   xxs: 480,
   xs: 736,
-  sm: 920,
+  sm: 980,
   md: 1280,
   lg: 1690,
 }
