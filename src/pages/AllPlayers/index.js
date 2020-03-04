@@ -131,7 +131,6 @@ const AllPlayers = () => {
 }
 
 const PlayerCell = props => {
-  const { src, alt } = props
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -143,10 +142,10 @@ const PlayerCell = props => {
         setHovered(false)
       }}
     >
-      <PlayerPhoto src={src} alt={alt} />
+      <PlayerPhoto {...props} />
       {hovered && (
         <ZoomWrapper>
-          <PlayerPhotoZoomed src={src} alt={alt} />
+          <PlayerPhotoZoomed {...props} />
         </ZoomWrapper>
       )}
     </PlayerCellWrapper>

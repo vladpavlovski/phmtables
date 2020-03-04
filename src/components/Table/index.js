@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTable, useSortBy, useExpanded } from 'react-table'
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, rowOnMouseEnter, rowOnMouseLeave }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -45,7 +45,11 @@ const Table = ({ columns, data }) => {
         {rows.map(row => {
           prepareRow(row)
           return (
-            <tr {...row.getRowProps()}>
+            <tr
+              {...row.getRowProps()}
+              onMouseEnter={() => rowOnMouseEnter(row)}
+              onTouchStart={() => rowOnMouseEnter(row)}
+            >
               {row.cells.map(cell => (
                 <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
               ))}
