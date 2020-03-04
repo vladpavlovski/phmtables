@@ -62,7 +62,7 @@ const Standings20 = () => {
         show: min480,
         Cell: data => {
           return (
-            <>
+            <CellValue>
               <TeamName>{data.cell.value}</TeamName>
               <Rating
                 readonly
@@ -70,7 +70,7 @@ const Standings20 = () => {
                 fullSymbol={<TiStarFullOutline style={{ color: 'gold' }} />}
                 initialRating={parseFloat(data.row.original.teamRating) || 0}
               />
-            </>
+            </CellValue>
           )
         },
       },

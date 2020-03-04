@@ -72,7 +72,6 @@ export const TeamLogo = styled.img`
   width: 10rem;
   height: 4rem;
 `}
-
   object-fit: cover;
 `
 
@@ -138,11 +137,13 @@ export const TeamName = styled.div`
 export const Rank = styled.div`
   font-size: ${theme.fontSize.large};
   font-weight: bold;
+  width: max-content;
 `
 
 export const CellValue = styled.div`
   text-align: right;
   padding: 0.2rem 0.5rem;
+  width: max-content;
 `
 
 export const Wins = styled(CellValue)`
