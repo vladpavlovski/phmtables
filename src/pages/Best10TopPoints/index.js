@@ -5,33 +5,27 @@ import { LoaderPHM } from '../../components/Loader'
 import { getData } from '../../api/get-data'
 import { PLAYERS_URL } from '../../api/data-url'
 
-import {
-  TableStyles,
-  // AllFilters,
-  // TeamName,
-  // PlayerName,
-  // PlayerPhoto,
-  // PlayerCellWrapper,
-  // ZoomWrapper,
-  // PlayerPhotoZoomed,
-  // CellValue,
-  // Goals,
-  // Assistance,
-  // Points,
-  // Pim,
-  // Star,
-} from '../AllPlayers/styled'
+import { ItemInfo } from '../../components/ItemInfo'
 
-const Best5TopPoints = () => {
+import { TableStyles } from '../AllPlayers/styled'
+
+const Best10TopPoints = () => {
   const [data, setData] = useState([])
-  const [filteredData, setFilteredData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [dataPreview, setDataPreview] = useState({
+    previewImageLink: '',
+    title: '',
+    description: '',
+    key: '',
+    value: '',
+  })
 
   useEffect(() => {
     getData(PLAYERS_URL, data => {
-      const newData = data['Best5TOPpoints4publish'].elements.slice(0)
+      const newData = data['Best10TOPpoints4publish'].elements.slice(0)
       setData(newData)
-      setFilteredData(newData)
+      rowOnMouseEnter({ original: newData[0] })
+      // setFilteredData(newData)
       setIsLoading(false)
     })
   }, [])
@@ -119,18 +113,32 @@ const Best5TopPoints = () => {
     []
   )
 
+  const rowOnMouseEnter = data => {
+    const { original } = data
+    const nextDataPreview = {
+      previewImageLink: original['Fotka'],
+      title: original['Jméno'],
+      description: original['Tým'],
+      key: 'Body',
+      value: original['Bodů'],
+    }
+    setDataPreview(nextDataPreview)
+  }
+
   return isLoading ? (
     <LoaderPHM />
   ) : (
     <>
-      {/* <Filters data={data} setFilteredData={setFilteredData} /> */}
-      {/* <AllFilters> */}
+      <ItemInfo data={dataPreview} />
       <TableStyles>
-        <Table columns={columns} data={filteredData} />
+        <Table
+          columns={columns}
+          data={data}
+          rowOnMouseEnter={rowOnMouseEnter}
+        />
       </TableStyles>
-      {/* </AllFilters> */}
     </>
   )
 }
 
-export { Best5TopPoints }
+export { Best10TopPoints }
