@@ -3,7 +3,7 @@ import media from '../../styles/media'
 import theme from '../../styles/theme'
 
 export const phmStyles = {
-  option: (provided, state) => ({
+  option: provided => ({
     ...provided,
     color: theme.color.bigStone,
     fontWeight: 'bold',
@@ -25,7 +25,7 @@ export const phmStyles = {
 export const TableStyles = styled.div`
   ${media.md`
     margin-left: 26rem;
-`}
+  `}
   padding: 0;
   font-size: ${theme.fontSize.medium};
   line-height: 1.5rem;
@@ -47,7 +47,6 @@ export const TableStyles = styled.div`
     th,
     td {
       margin: 0;
-
       :last-child {
         border-right: 0;
       }
@@ -138,18 +137,22 @@ export const PlayerPhotoZoomed = styled.img`
 `
 
 export const PlayerName = styled.div`
+  text-align: left;
   font-size: ${theme.fontSize.large};
   font-weight: bold;
   line-height: ${theme.lineHeight.basic};
 `
 
 export const TeamName = styled.div`
+  text-align: left;
   font-size: ${theme.fontSize.small};
   line-height: ${theme.lineHeight.basic};
 `
 
 export const CellValue = styled.div`
   text-align: right;
+  width: max-content;
+  padding: 0.2rem 0.5rem;
 `
 
 export const Goals = styled(CellValue)`

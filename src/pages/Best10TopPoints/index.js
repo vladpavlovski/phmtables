@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react'
-
+import React, { useState, useMemo, useEffect, useCallback } from 'react'
+import { useMedia } from 'use-media'
 import { Table } from '../../components/Table'
 import { LoaderPHM } from '../../components/Loader'
 import { getData } from '../../api/get-data'
@@ -7,7 +7,7 @@ import { PLAYERS_URL } from '../../api/data-url'
 
 import { ItemInfo } from '../../components/ItemInfo'
 
-import { TableStyles } from '../AllPlayers/styled'
+import { TableStyles, TeamLogo } from './styled'
 
 const Best10TopPoints = () => {
   const [data, setData] = useState([])
@@ -20,100 +20,7 @@ const Best10TopPoints = () => {
     value: '',
   })
 
-  useEffect(() => {
-    getData(PLAYERS_URL, data => {
-      const newData = data['Best10TOPpoints4publish'].elements.slice(0)
-      setData(newData)
-      rowOnMouseEnter({ original: newData[0] })
-      // setFilteredData(newData)
-      setIsLoading(false)
-    })
-  }, [])
-
-  const columns = useMemo(
-    () => [
-      {
-        accessor: 'TeamLogo',
-        Cell: data => {
-          return (
-            <>
-              <img src={data.cell.value} width="50" height="50" alt={'team'} />
-              {/* <PlayerName>{data.cell.value}</PlayerName>
-            <TeamName>{data.data[data.row.index]['Tým']}</TeamName> */}
-            </>
-          )
-        },
-      },
-      {
-        accessor: 'Jméno',
-        Header: 'Jméno',
-        Cell: data => {
-          return (
-            <>
-              {data.cell.value}
-              {/* <PlayerName>{data.cell.value}</PlayerName>
-            <TeamName>{data.data[data.row.index]['Tým']}</TeamName> */}
-            </>
-          )
-        },
-      },
-      {
-        accessor: 'Zápasů',
-        Header: 'GP',
-        Cell: data => {
-          return (
-            <>
-              {data.cell.value}
-              {/* <PlayerName>{data.cell.value}</PlayerName>
-            <TeamName>{data.data[data.row.index]['Tým']}</TeamName> */}
-            </>
-          )
-        },
-      },
-      {
-        accessor: 'Gólů',
-        Header: 'G',
-        Cell: data => {
-          return (
-            <>
-              {data.cell.value}
-              {/* <PlayerName>{data.cell.value}</PlayerName>
-            <TeamName>{data.data[data.row.index]['Tým']}</TeamName> */}
-            </>
-          )
-        },
-      },
-      {
-        accessor: 'Asistencí',
-        Header: 'A',
-        Cell: data => {
-          return (
-            <>
-              {data.cell.value}
-              {/* <PlayerName>{data.cell.value}</PlayerName>
-            <TeamName>{data.data[data.row.index]['Tým']}</TeamName> */}
-            </>
-          )
-        },
-      },
-      {
-        accessor: 'Bodů',
-        Header: 'B',
-        Cell: data => {
-          return (
-            <>
-              {data.cell.value}
-              {/* <PlayerName>{data.cell.value}</PlayerName>
-            <TeamName>{data.data[data.row.index]['Tým']}</TeamName> */}
-            </>
-          )
-        },
-      },
-    ],
-    []
-  )
-
-  const rowOnMouseEnter = data => {
+  const rowOnMouseEnter = useCallback(data => {
     const { original } = data
     const nextDataPreview = {
       previewImageLink: original['Fotka'],
@@ -123,7 +30,71 @@ const Best10TopPoints = () => {
       value: original['Bodů'],
     }
     setDataPreview(nextDataPreview)
-  }
+  }, [])
+
+  useEffect(() => {
+    getData(PLAYERS_URL, data => {
+      const newData = data['Best10TOPpoints4publish'].elements.slice(0)
+      setData(newData)
+      rowOnMouseEnter({ original: newData[0] })
+      setIsLoading(false)
+    })
+  }, [rowOnMouseEnter])
+
+  const min736 = useMedia({ minWidth: '736' })
+
+  const columns = useMemo(
+    () => [
+      {
+        accessor: 'TeamLogo',
+        Cell: data => {
+          return (
+            <>
+              <TeamLogo src={data.cell.value} alt={'team'} />
+            </>
+          )
+        },
+      },
+      {
+        accessor: 'Jméno',
+        Cell: data => {
+          return <>{data.cell.value}</>
+        },
+      },
+      {
+        accessor: 'Zápasů',
+        Header: 'GP',
+        show: min736,
+        Cell: data => {
+          return <>{data.cell.value}</>
+        },
+      },
+      {
+        accessor: 'Gólů',
+        Header: 'G',
+        show: min736,
+        Cell: data => {
+          return <>{data.cell.value}</>
+        },
+      },
+      {
+        accessor: 'Asistencí',
+        Header: 'A',
+        show: min736,
+        Cell: data => {
+          return <>{data.cell.value}</>
+        },
+      },
+      {
+        accessor: 'Bodů',
+        Header: 'B',
+        Cell: data => {
+          return <>{data.cell.value}</>
+        },
+      },
+    ],
+    [min736]
+  )
 
   return isLoading ? (
     <LoaderPHM />
@@ -132,6 +103,7 @@ const Best10TopPoints = () => {
       <ItemInfo data={dataPreview} />
       <TableStyles>
         <Table
+          className="best-players"
           columns={columns}
           data={data}
           rowOnMouseEnter={rowOnMouseEnter}

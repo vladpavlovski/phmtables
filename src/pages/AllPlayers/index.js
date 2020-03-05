@@ -21,6 +21,7 @@ import {
   Pim,
   Star,
 } from './styled'
+import { TiStarFullOutline } from 'react-icons/ti'
 
 const AllPlayers = () => {
   const [data, setData] = useState([])
@@ -60,7 +61,6 @@ const AllPlayers = () => {
       },
       {
         accessor: 'Jméno',
-        Header: 'Jméno',
         Cell: data => {
           return (
             <>
@@ -72,42 +72,42 @@ const AllPlayers = () => {
       },
       {
         accessor: 'Zápasů',
-        Header: 'Zápasů',
+        Header: 'Z',
         Cell: data => {
           return <CellValue>{data.cell.value}</CellValue>
         },
       },
       {
         accessor: 'Gólů',
-        Header: 'Gólů',
+        Header: 'G',
         Cell: data => {
           return <Goals>{data.cell.value}</Goals>
         },
       },
       {
         accessor: 'Asistencí',
-        Header: 'Asistencí',
+        Header: 'A',
         Cell: data => {
           return <Assistance>{data.cell.value}</Assistance>
         },
       },
       {
         accessor: 'Bodů',
-        Header: 'Bodů',
+        Header: 'B',
         Cell: data => {
           return <Points>{data.cell.value}</Points>
         },
       },
       {
         accessor: 'PIM',
-        Header: 'Tr.min',
+        Header: 'Tr.M',
         Cell: data => {
           return <Pim>{data.cell.value}</Pim>
         },
       },
       {
         accessor: 'Hvězda',
-        Header: 'Hvězda',
+        Header: <TiStarFullOutline style={{ color: 'gold' }} />,
         Cell: data => {
           return <Star>{data.cell.value}</Star>
         },

@@ -50,10 +50,6 @@ export const TableStyles = styled.div`
       border: 1px solid ${theme.color.solitude};
       border-top: 0;
       border-bottom: 0;
-
-      /* :last-child {
-        border-right: 0;
-      } */
     }
   }
 `

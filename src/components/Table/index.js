@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTable, useSortBy, useExpanded } from 'react-table'
 
-const Table = ({ columns, data, rowOnMouseEnter, rowOnMouseLeave }) => {
+const Table = ({ columns, data, rowOnMouseEnter }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -27,13 +27,9 @@ const Table = ({ columns, data, rowOnMouseEnter, rowOnMouseLeave }) => {
                 return (
                   <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {column.render('Header')}
-                    <span>
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? ' 🔽'
-                          : ' 🔼'
-                        : ''}
-                    </span>
+                    {column.isSorted && (
+                      <span>{column.isSortedDesc ? ' 🔽' : ' 🔼'}</span>
+                    )}
                   </th>
                 )
               })}
@@ -59,6 +55,10 @@ const Table = ({ columns, data, rowOnMouseEnter, rowOnMouseLeave }) => {
       </tbody>
     </table>
   )
+}
+
+Table.defaultProps = {
+  rowOnMouseEnter: () => {},
 }
 
 export { Table }
