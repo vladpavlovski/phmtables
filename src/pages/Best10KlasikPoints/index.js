@@ -7,9 +7,9 @@ import { PLAYERS_URL } from '../../api/data-url'
 
 import { ItemInfo } from '../../components/ItemInfo'
 
-import { TableStyles, TeamLogo, CellValue } from './styled'
+import { TableStyles, TeamLogo, CellValue } from '../Best10TopPoints/styled'
 
-const Best10TopPoints = () => {
+const Best10KlasikPoints = () => {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [dataPreview, setDataPreview] = useState({
@@ -34,7 +34,7 @@ const Best10TopPoints = () => {
 
   useEffect(() => {
     getData(PLAYERS_URL, data => {
-      const newData = data['Best10TOPpoints4publish'].elements.slice(0)
+      const newData = data['Best10KLASIKpoints4publish'].elements.slice(0)
       setData(newData)
       rowOnMouseEnter({ original: newData[0] })
       setIsLoading(false)
@@ -112,4 +112,4 @@ const Best10TopPoints = () => {
   )
 }
 
-export { Best10TopPoints }
+export { Best10KlasikPoints }

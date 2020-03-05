@@ -12,6 +12,7 @@ import { Standings20Top } from './pages/Standings20Top'
 import { Standings20Klasik } from './pages/Standings20Klasik'
 import { AllPlayers } from './pages/AllPlayers'
 import { Best10TopPoints } from './pages/Best10TopPoints'
+import { Best10KlasikPoints } from './pages/Best10KlasikPoints'
 
 const App = () => (
   <>
@@ -36,6 +37,11 @@ const App = () => (
           path={ROUTES.BEST10TOPPOINTS}
           exact
           component={Best10TopPoints}
+        />
+        <Route
+          path={ROUTES.BEST10KLASIKPOINTS}
+          exact
+          component={Best10KlasikPoints}
         />
       </Switch>
     </ErrorBoundary>
