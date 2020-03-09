@@ -9,3 +9,6 @@ export const PLAYERS_URL =
 
 export const RESULTS_ALL_TIME_URL =
   'https://docs.google.com/spreadsheets/d/1IioqstDayjXaTUIyWDlb8XBhdvGEBeG1Wg6fLNqN_gI/edit?usp=sharing'
+
+export const ALL_PLAYERS_19 =
+  'https://docs.google.com/spreadsheets/d/1cWBs8DZu7Jk989XoPJ4z0kuhExlXihIryKiDtL81O04/edit?usp=sharing'
