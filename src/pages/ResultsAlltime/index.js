@@ -1,15 +1,11 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { useMedia } from 'use-media'
-import { useTable, useSortBy, useExpanded } from 'react-table'
 
 import { LoaderPHM } from '../../components/Loader'
 import { getData } from '../../api/get-data'
-import { RESULT_URL } from '../../api/data-url'
+import { RESULTS_ALL_TIME_URL } from '../../api/data-url'
 import {
   TableStyles,
-  TrOver,
-  Tr,
-  TrUnder,
   ScoreWrapper,
   ScoreLink,
   Score,
@@ -25,70 +21,21 @@ import {
   InfoMobile,
   InfoMobileBottom,
   AllFilters,
-} from './styled'
-import { Filters } from './Filters'
+} from '../Result/styled'
+import { Filters } from '../Result/Filters'
+import { Table } from '../Result'
 
 import { TiStopwatch, TiCameraOutline } from 'react-icons/ti'
 import { GiWhistle } from 'react-icons/gi'
 
-const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    rows,
-    prepareRow,
-    flatColumns,
-  } = useTable(
-    {
-      columns,
-      data,
-    },
-    useSortBy,
-    useExpanded
-  )
-
-  const min630 = useMedia({ minWidth: '630px' })
-
-  return (
-    <table {...getTableProps()}>
-      <tbody {...getTableBodyProps()}>
-        {rows.map(row => {
-          prepareRow(row)
-          return (
-            <React.Fragment key={row.index}>
-              {!min630 && (
-                <TrOver>
-                  <td colSpan={flatColumns.length}>{renderRowOver({ row })}</td>
-                </TrOver>
-              )}
-              <Tr borders={min630} {...row.getRowProps()}>
-                {row.cells.map(cell => (
-                  <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                ))}
-              </Tr>
-              {!min630 && (
-                <TrUnder>
-                  <td colSpan={flatColumns.length}>
-                    {renderRowUnder({ row })}
-                  </td>
-                </TrUnder>
-              )}
-            </React.Fragment>
-          )
-        })}
-      </tbody>
-    </table>
-  )
-}
-
-const Result = () => {
+const ResultsAlltime = () => {
   const [data, setData] = useState([])
   const [filteredData, setFilteredData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getData(RESULT_URL, (data, tabletop) => {
-      const newData = data['Matches4publish'].elements
+    getData(RESULTS_ALL_TIME_URL, (data, tabletop) => {
+      const newData = data['ResultsAllTime4publish'].elements
         .slice(0)
         .filter(item => item['Game ID'] !== '')
       setData(newData)
@@ -255,4 +202,4 @@ const Result = () => {
   )
 }
 
-export { Result, Table }
+export { ResultsAlltime }

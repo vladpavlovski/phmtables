@@ -9,7 +9,7 @@ import { PLAYERS_URL } from '../../api/data-url'
 
 import { ItemInfo } from '../../components/ItemInfo'
 
-import { TableStyles, TeamLogo } from './styled'
+import { TableStyles, TeamLogo, CellValue } from './styled'
 
 const Best10TopPoints = () => {
   const [data, setData] = useState([])
@@ -44,7 +44,7 @@ const Best10TopPoints = () => {
     })
   }, [rowOnMouseEnter])
 
-  const min736 = useMedia({ minWidth: '736px' })
+  const min530 = useMedia({ minWidth: '530px' })
 
   const columns = useMemo(
     () => [
@@ -59,29 +59,29 @@ const Best10TopPoints = () => {
       {
         accessor: 'Zápasů',
         Header: 'GP',
-        show: (!min736 && tabIndex === 1 && tabsOn) || min736,
-        Cell: data => <>{data.cell.value}</>,
+        show: (!min530 && tabIndex === 1 && tabsOn) || min530,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'Gólů',
         Header: 'G',
-        show: (!min736 && tabIndex === 2 && tabsOn) || min736,
-        Cell: data => <>{data.cell.value}</>,
+        show: (!min530 && tabIndex === 2 && tabsOn) || min530,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'Asistencí',
         Header: 'A',
-        show: (!min736 && tabIndex === 3 && tabsOn) || min736,
-        Cell: data => <>{data.cell.value}</>,
+        show: (!min530 && tabIndex === 3 && tabsOn) || min530,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'Bodů',
         Header: 'B',
-        show: (!min736 && tabIndex === 0 && tabsOn) || min736,
-        Cell: data => <>{data.cell.value}</>,
+        show: (!min530 && tabIndex === 0 && tabsOn) || min530,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
     ],
-    [min736, tabIndex, tabsOn]
+    [min530, tabIndex, tabsOn]
   )
 
   const renderTable = useCallback(
@@ -101,15 +101,15 @@ const Best10TopPoints = () => {
   )
 
   useEffect(() => {
-    if (!min736) {
+    if (!min530) {
       setTabIndex(0)
       setTabsOn(true)
     }
-  }, [min736])
+  }, [min530])
 
   return isLoading ? (
     <LoaderPHM />
-  ) : min736 ? (
+  ) : min530 ? (
     renderTable()
   ) : (
     <Tabs
