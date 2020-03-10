@@ -1,5 +1,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { useMedia } from 'use-media'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+
 import { Table } from '../../components/Table'
 import { LoaderPHM } from '../../components/Loader'
 import { getData } from '../../api/get-data'
@@ -19,7 +21,8 @@ const Best10TopPoints = () => {
     key: '',
     value: '',
   })
-
+  const [tabIndex, setTabIndex] = useState(0)
+  const [tabsOn, setTabsOn] = useState(false)
   const rowOnMouseEnter = useCallback(data => {
     const { original } = data
     const nextDataPreview = {
@@ -41,75 +44,92 @@ const Best10TopPoints = () => {
     })
   }, [rowOnMouseEnter])
 
-  const min736 = useMedia({ minWidth: '736' })
+  const min736 = useMedia({ minWidth: '736px' })
 
   const columns = useMemo(
     () => [
       {
         accessor: 'TeamLogo',
-        Cell: data => {
-          return (
-            <>
-              <TeamLogo src={data.cell.value} alt={'team'} />
-            </>
-          )
-        },
+        Cell: data => <TeamLogo src={data.cell.value} alt={'team'} />,
       },
       {
         accessor: 'Jméno',
-        Cell: data => {
-          return <>{data.cell.value}</>
-        },
+        Cell: data => <>{data.cell.value}</>,
       },
       {
         accessor: 'Zápasů',
         Header: 'GP',
-        show: min736,
-        Cell: data => {
-          return <>{data.cell.value}</>
-        },
+        show: (!min736 && tabIndex === 1 && tabsOn) || min736,
+        Cell: data => <>{data.cell.value}</>,
       },
       {
         accessor: 'Gólů',
         Header: 'G',
-        show: min736,
-        Cell: data => {
-          return <>{data.cell.value}</>
-        },
+        show: (!min736 && tabIndex === 2 && tabsOn) || min736,
+        Cell: data => <>{data.cell.value}</>,
       },
       {
         accessor: 'Asistencí',
         Header: 'A',
-        show: min736,
-        Cell: data => {
-          return <>{data.cell.value}</>
-        },
+        show: (!min736 && tabIndex === 3 && tabsOn) || min736,
+        Cell: data => <>{data.cell.value}</>,
       },
       {
         accessor: 'Bodů',
         Header: 'B',
-        Cell: data => {
-          return <>{data.cell.value}</>
-        },
+        show: (!min736 && tabIndex === 0 && tabsOn) || min736,
+        Cell: data => <>{data.cell.value}</>,
       },
     ],
-    [min736]
+    [min736, tabIndex, tabsOn]
   )
+
+  const renderTable = useCallback(
+    () => (
+      <>
+        <ItemInfo data={dataPreview} />
+        <TableStyles>
+          <Table
+            columns={columns}
+            data={data}
+            rowOnMouseEnter={rowOnMouseEnter}
+          />
+        </TableStyles>
+      </>
+    ),
+    [columns, data, dataPreview, rowOnMouseEnter]
+  )
+
+  useEffect(() => {
+    if (!min736) {
+      setTabIndex(0)
+      setTabsOn(true)
+    }
+  }, [min736])
 
   return isLoading ? (
     <LoaderPHM />
+  ) : min736 ? (
+    renderTable()
   ) : (
-    <>
-      <ItemInfo data={dataPreview} />
-      <TableStyles>
-        <Table
-          className="best-players"
-          columns={columns}
-          data={data}
-          rowOnMouseEnter={rowOnMouseEnter}
-        />
-      </TableStyles>
-    </>
+    <Tabs
+      defaultFocus
+      onSelect={index => {
+        setTabIndex(index)
+      }}
+    >
+      <TabList>
+        <Tab>B</Tab>
+        <Tab>GP</Tab>
+        <Tab>G</Tab>
+        <Tab>A</Tab>
+      </TabList>
+
+      <TabPanel>{renderTable()}</TabPanel>
+      <TabPanel>{renderTable()}</TabPanel>
+      <TabPanel>{renderTable()}</TabPanel>
+      <TabPanel>{renderTable()}</TabPanel>
+    </Tabs>
   )
 }
 

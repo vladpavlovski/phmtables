@@ -1,6 +1,7 @@
 import 'sanitize.css'
 import { createGlobalStyle } from 'styled-components'
 import theme from './theme'
+import 'react-tabs/style/react-tabs.css'
 
 const GlobalStyle = createGlobalStyle`
   * {
