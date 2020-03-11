@@ -12,3 +12,9 @@ export const RESULTS_ALL_TIME_URL =
 
 export const ALL_PLAYERS_19 =
   'https://docs.google.com/spreadsheets/d/1cWBs8DZu7Jk989XoPJ4z0kuhExlXihIryKiDtL81O04/edit?usp=sharing'
+
+export const ALL_PLAYERS_18 =
+  'https://docs.google.com/spreadsheets/d/1ZfR7EY1oGsfvDn-U68bW7wmqaawL2gW8w1_WZVSMbrQ/edit?usp=sharing'
+
+export const ALL_PLAYERS_17 =
+  'https://docs.google.com/spreadsheets/d/1acjzzksS6cx76Sp7ZO4w4fOJg5CQKDYpdAztoZRzEos/edit?usp=sharing'

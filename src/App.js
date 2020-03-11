@@ -15,6 +15,7 @@ import { Best10TopPoints } from './pages/Best10TopPoints'
 import { Best10KlasikPoints } from './pages/Best10KlasikPoints'
 import { ResultsAlltime } from './pages/ResultsAlltime'
 import { AllPlayers19 } from './pages/AllPlayers19'
+import { AllPlayersYears } from './pages/AllPlayersYears'
 
 const App = () => (
   <>
@@ -47,6 +48,11 @@ const App = () => (
         />
         <Route path={ROUTES.RESULSTALLTIME} exact component={ResultsAlltime} />
         <Route path={ROUTES.ALLPLAYERS19} exact component={AllPlayers19} />
+        <Route
+          path={ROUTES.ALLPLAYERSYEARS}
+          exact
+          component={AllPlayersYears}
+        />
       </Switch>
     </ErrorBoundary>
   </>
