@@ -59,6 +59,24 @@ const AllPlayersYears = () => {
       setData2020,
       setFilteredData2020
     )
+    requestData(
+      ALL_PLAYERS_19,
+      'allPlayers19_4publish',
+      setData2019,
+      setFilteredData2019
+    )
+    requestData(
+      ALL_PLAYERS_18,
+      'allPlayers18_4publish',
+      setData2018,
+      setFilteredData2018
+    )
+    requestData(
+      ALL_PLAYERS_17,
+      'allPlayers17_4publish',
+      setData2017,
+      setFilteredData2017
+    )
   }, [requestData])
 
   const columns = useMemo(
@@ -173,45 +191,21 @@ const AllPlayersYears = () => {
       case 0:
         if (data2020.length === 0) {
           setIsLoading(true)
-          requestData(
-            PLAYERS_URL,
-            'allPlayers4publish',
-            setData2020,
-            setFilteredData2020
-          )
         }
         break
       case 1:
         if (data2019.length === 0) {
           setIsLoading(true)
-          requestData(
-            ALL_PLAYERS_19,
-            'allPlayers19_4publish',
-            setData2019,
-            setFilteredData2019
-          )
         }
         break
       case 2:
         if (data2018.length === 0) {
           setIsLoading(true)
-          requestData(
-            ALL_PLAYERS_18,
-            'allPlayers18_4publish',
-            setData2018,
-            setFilteredData2018
-          )
         }
         break
       case 3:
         if (data2017.length === 0) {
           setIsLoading(true)
-          requestData(
-            ALL_PLAYERS_17,
-            'allPlayers17_4publish',
-            setData2017,
-            setFilteredData2017
-          )
         }
         break
       default:
@@ -227,7 +221,7 @@ const AllPlayersYears = () => {
 
   return (
     <Tabs
-      // defaultFocus
+      forceRenderTabPanel
       onSelect={index => {
         setIsLoading(false)
         setTabIndex(index)

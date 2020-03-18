@@ -4,7 +4,7 @@ import theme from '../../styles/theme'
 
 export const Wrapper = styled.div`
   margin-top: 1rem;
-  width: 20rem;
+  width: 18rem;
   ${media.xs`
   width: 26rem;
 `}
@@ -14,20 +14,20 @@ export const Wrapper = styled.div`
 
 export const Preview = styled.img`
   display: block;
-  width: 15rem;
-  height: 15rem;
+  width: 14rem;
+  height: 14rem;
   margin: 0 auto;
 `
 
 export const Title = styled.div`
-  font-size: ${theme.fontSize.medium};
+  font-size: ${theme.fontSize.normal};
   font-weight: bold;
   text-align: center;
   color: ${theme.color.bigStone};
 `
 
 export const Description = styled.div`
-  font-size: ${theme.fontSize.normal};
+  font-size: ${theme.fontSize.small};
   text-align: center;
   color: ${theme.color.bigStone};
 `
@@ -44,10 +44,10 @@ export const Key = styled.div`
 
 export const Value = styled.div`
   text-align: center;
-  font-size: 6rem;
-  line-height: 6rem;
+  font-size: 5rem;
+  line-height: 5rem;
   ${media.xs`
-  font-size: 10rem;
-  line-height: 10rem;
+  font-size: 8rem;
+  line-height: 8rem;
 `}
 `

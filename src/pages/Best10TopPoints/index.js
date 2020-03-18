@@ -54,7 +54,7 @@ const Best10TopPoints = () => {
       },
       {
         accessor: 'Jméno',
-        Cell: data => <>{data.cell.value}</>,
+        Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
       {
         accessor: 'Zápasů',
@@ -119,10 +119,10 @@ const Best10TopPoints = () => {
       }}
     >
       <TabList>
-        <Tab>B</Tab>
-        <Tab>GP</Tab>
-        <Tab>G</Tab>
-        <Tab>A</Tab>
+        <Tab>Body</Tab>
+        <Tab>Zápasy</Tab>
+        <Tab>Góly</Tab>
+        <Tab>Asistencí</Tab>
       </TabList>
 
       <TabPanel>{renderTable()}</TabPanel>

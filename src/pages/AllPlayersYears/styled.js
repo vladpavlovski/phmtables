@@ -163,7 +163,10 @@ export const PlayerPhotoZoomed = styled.img`
 
 export const PlayerName = styled.div`
   text-align: left;
+  font-size: ${theme.fontSize.normal};
+  ${media.xs`
   font-size: ${theme.fontSize.large};
+  `}
   font-weight: bold;
   line-height: ${theme.lineHeight.basic};
 `
