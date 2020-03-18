@@ -3,11 +3,10 @@ import media from '../../styles/media'
 import theme from '../../styles/theme'
 
 export const TableStyles = styled.div`
-  margin-left: 20rem;
+  margin-left: 18rem;
   ${media.xs`
-
-  margin-left: 26rem;
-`}
+    margin-left: 26rem;
+  `}
   padding: 0;
   font-size: ${theme.fontSize.medium};
   line-height: 1.5rem;
@@ -15,7 +14,7 @@ export const TableStyles = styled.div`
 
   table {
     border-spacing: 0;
-    min-width: 21rem;
+    min-width: 20rem;
     color: ${theme.color.bigStone};
     tr {
       padding: 0.2rem 0;
@@ -49,4 +48,7 @@ export const CellValue = styled.div`
   text-align: right;
   width: max-content;
   padding: 0.2rem 0.5rem;
+  ${media.xxxs`
+    font-size: ${theme.fontSize.xSmall};
+  `}
 `
