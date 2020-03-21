@@ -23,17 +23,44 @@ const Best10KlasikPoints = () => {
   })
   const [tabIndex, setTabIndex] = useState(0)
   const [tabsOn, setTabsOn] = useState(false)
-  const rowOnMouseEnter = useCallback(data => {
-    const { original } = data
-    const nextDataPreview = {
-      previewImageLink: original['Fotka'],
-      title: original['Jméno'],
-      description: original['Tým'],
-      key: 'Body',
-      value: original['Bodů'],
+  const [columnToSort, setColumnToSort] = useState(null)
+
+  const getColumnId = useCallback(index => {
+    let columnId
+    switch (index) {
+      case 0:
+        columnId = 'Bodů'
+        break
+      case 1:
+        columnId = 'Zápasů'
+        break
+      case 2:
+        columnId = 'Gólů'
+        break
+      case 3:
+        columnId = 'Asistencí'
+        break
+      default:
+        columnId = null
     }
-    setDataPreview(nextDataPreview)
+
+    return columnId
   }, [])
+
+  const rowOnMouseEnter = useCallback(
+    data => {
+      const { original } = data
+      const nextDataPreview = {
+        previewImageLink: original['Fotka'],
+        title: original['Jméno'],
+        description: original['Tým'],
+        key: getColumnId(tabIndex),
+        value: original[getColumnId(tabIndex)],
+      }
+      setDataPreview(nextDataPreview)
+    },
+    [getColumnId, tabIndex]
+  )
 
   useEffect(() => {
     getData(PLAYERS_URL, data => {
@@ -93,11 +120,12 @@ const Best10KlasikPoints = () => {
             columns={columns}
             data={data}
             rowOnMouseEnter={rowOnMouseEnter}
+            columnToSort={columnToSort}
           />
         </TableStyles>
       </>
     ),
-    [columns, data, dataPreview, rowOnMouseEnter]
+    [columnToSort, columns, data, dataPreview, rowOnMouseEnter]
   )
 
   useEffect(() => {
@@ -107,17 +135,28 @@ const Best10KlasikPoints = () => {
     }
   }, [min530])
 
+  const onTabSelect = useCallback(
+    index => {
+      setTabIndex(index)
+
+      const columnId = getColumnId(index)
+      if (columnId) {
+        const newColumnToSort = {
+          columnId,
+          desc: true,
+        }
+        setColumnToSort(newColumnToSort)
+      }
+    },
+    [getColumnId]
+  )
+
   return isLoading ? (
     <LoaderPHM />
   ) : min530 ? (
     renderTable()
   ) : (
-    <Tabs
-      defaultFocus
-      onSelect={index => {
-        setTabIndex(index)
-      }}
-    >
+    <Tabs defaultFocus onSelect={onTabSelect}>
       <TabList>
         <Tab>Body</Tab>
         <Tab>Zápasy</Tab>
