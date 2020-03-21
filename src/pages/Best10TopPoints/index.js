@@ -23,6 +23,7 @@ const Best10TopPoints = () => {
   })
   const [tabIndex, setTabIndex] = useState(0)
   const [tabsOn, setTabsOn] = useState(false)
+  const [columnToSort, setColumnToSort] = useState(null)
   const rowOnMouseEnter = useCallback(data => {
     const { original } = data
     const nextDataPreview = {
@@ -93,11 +94,12 @@ const Best10TopPoints = () => {
             columns={columns}
             data={data}
             rowOnMouseEnter={rowOnMouseEnter}
+            columnToSort={columnToSort}
           />
         </TableStyles>
       </>
     ),
-    [columns, data, dataPreview, rowOnMouseEnter]
+    [columnToSort, columns, data, dataPreview, rowOnMouseEnter]
   )
 
   useEffect(() => {
@@ -107,17 +109,40 @@ const Best10TopPoints = () => {
     }
   }, [min530])
 
+  const onTabSelect = useCallback(index => {
+    setTabIndex(index)
+    let columnId
+    switch (index) {
+      case 0:
+        columnId = 'Bodů'
+        break
+      case 1:
+        columnId = 'Zápasů'
+        break
+      case 2:
+        columnId = 'Gólů'
+        break
+      case 3:
+        columnId = 'Asistencí'
+        break
+      default:
+        columnId = null
+    }
+    if (columnId) {
+      const newColumnToSort = {
+        columnId,
+        desc: true,
+      }
+      setColumnToSort(newColumnToSort)
+    }
+  }, [])
+
   return isLoading ? (
     <LoaderPHM />
   ) : min530 ? (
     renderTable()
   ) : (
-    <Tabs
-      defaultFocus
-      onSelect={index => {
-        setTabIndex(index)
-      }}
-    >
+    <Tabs defaultFocus onSelect={onTabSelect}>
       <TabList>
         <Tab>Body</Tab>
         <Tab>Zápasy</Tab>
