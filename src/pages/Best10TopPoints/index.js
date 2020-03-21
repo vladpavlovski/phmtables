@@ -24,17 +24,43 @@ const Best10TopPoints = () => {
   const [tabIndex, setTabIndex] = useState(0)
   const [tabsOn, setTabsOn] = useState(false)
   const [columnToSort, setColumnToSort] = useState(null)
-  const rowOnMouseEnter = useCallback(data => {
-    const { original } = data
-    const nextDataPreview = {
-      previewImageLink: original['Fotka'],
-      title: original['Jméno'],
-      description: original['Tým'],
-      key: 'Body',
-      value: original['Bodů'],
+
+  const getColumnId = useCallback(index => {
+    let columnId
+    switch (index) {
+      case 0:
+        columnId = 'Bodů'
+        break
+      case 1:
+        columnId = 'Zápasů'
+        break
+      case 2:
+        columnId = 'Gólů'
+        break
+      case 3:
+        columnId = 'Asistencí'
+        break
+      default:
+        columnId = null
     }
-    setDataPreview(nextDataPreview)
+
+    return columnId
   }, [])
+
+  const rowOnMouseEnter = useCallback(
+    data => {
+      const { original } = data
+      const nextDataPreview = {
+        previewImageLink: original['Fotka'],
+        title: original['Jméno'],
+        description: original['Tým'],
+        key: getColumnId(tabIndex),
+        value: original[getColumnId(tabIndex)],
+      }
+      setDataPreview(nextDataPreview)
+    },
+    [getColumnId, tabIndex]
+  )
 
   useEffect(() => {
     getData(PLAYERS_URL, data => {
@@ -109,33 +135,21 @@ const Best10TopPoints = () => {
     }
   }, [min530])
 
-  const onTabSelect = useCallback(index => {
-    setTabIndex(index)
-    let columnId
-    switch (index) {
-      case 0:
-        columnId = 'Bodů'
-        break
-      case 1:
-        columnId = 'Zápasů'
-        break
-      case 2:
-        columnId = 'Gólů'
-        break
-      case 3:
-        columnId = 'Asistencí'
-        break
-      default:
-        columnId = null
-    }
-    if (columnId) {
-      const newColumnToSort = {
-        columnId,
-        desc: true,
+  const onTabSelect = useCallback(
+    index => {
+      setTabIndex(index)
+
+      const columnId = getColumnId(index)
+      if (columnId) {
+        const newColumnToSort = {
+          columnId,
+          desc: true,
+        }
+        setColumnToSort(newColumnToSort)
       }
-      setColumnToSort(newColumnToSort)
-    }
-  }, [])
+    },
+    [getColumnId]
+  )
 
   return isLoading ? (
     <LoaderPHM />
