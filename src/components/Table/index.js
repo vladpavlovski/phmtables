@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTable, useSortBy, useExpanded } from 'react-table'
 
-const Table = ({ columns, data, rowOnMouseEnter }) => {
+const Table = ({ columns, data, rowOnMouseEnter, columnToSort }) => {
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
     prepareRow,
+    toggleSortBy,
   } = useTable(
     {
       columns,
@@ -16,6 +17,19 @@ const Table = ({ columns, data, rowOnMouseEnter }) => {
     useSortBy,
     useExpanded
   )
+
+  const [cts, setCts] = useState(columnToSort)
+
+  useEffect(() => {
+    if (cts && columnToSort && cts.columnId === columnToSort.columnId) {
+      toggleSortBy(cts.columnId, cts.desc, false)
+      setCts(null)
+    }
+  }, [columnToSort, cts, rowOnMouseEnter, rows, toggleSortBy])
+
+  useEffect(() => {
+    rowOnMouseEnter(rows[0])
+  }, [rowOnMouseEnter, rows])
 
   return (
     <table {...getTableProps()}>
@@ -59,6 +73,7 @@ const Table = ({ columns, data, rowOnMouseEnter }) => {
 
 Table.defaultProps = {
   rowOnMouseEnter: () => {},
+  columnToSort: null,
 }
 
 export { Table }
