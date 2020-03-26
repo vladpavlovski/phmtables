@@ -16,6 +16,7 @@ import { Best10KlasikPoints } from './pages/Best10KlasikPoints'
 import { ResultsAlltime } from './pages/ResultsAlltime'
 import { AllPlayers19 } from './pages/AllPlayers19'
 import { AllPlayersYears } from './pages/AllPlayersYears'
+import { Cakes } from './pages/Cakes'
 
 const App = () => (
   <>
@@ -53,6 +54,7 @@ const App = () => (
           exact
           component={AllPlayersYears}
         />
+        <Route path={ROUTES.CAKES} exact component={Cakes} />
       </Switch>
     </ErrorBoundary>
   </>

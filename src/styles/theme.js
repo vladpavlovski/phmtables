@@ -36,6 +36,7 @@ export default {
     bold: '"Roboto Condensed Bold", sans-serif',
   },
   lineHeight: {
+    normal: '1.5rem',
     basic: '2.4rem',
     large: '4.8rem',
   },
