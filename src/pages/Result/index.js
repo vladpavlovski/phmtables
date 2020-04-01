@@ -37,7 +37,7 @@ const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
     getTableBodyProps,
     rows,
     prepareRow,
-    flatColumns,
+    visibleColumns,
   } = useTable(
     {
       columns,
@@ -52,23 +52,25 @@ const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
   return (
     <table {...getTableProps()}>
       <tbody {...getTableBodyProps()}>
-        {rows.map(row => {
+        {rows.map((row) => {
           prepareRow(row)
           return (
             <React.Fragment key={row.index}>
               {!min630 && (
                 <TrOver>
-                  <td colSpan={flatColumns.length}>{renderRowOver({ row })}</td>
+                  <td colSpan={visibleColumns.length}>
+                    {renderRowOver({ row })}
+                  </td>
                 </TrOver>
               )}
               <Tr borders={min630} {...row.getRowProps()}>
-                {row.cells.map(cell => (
+                {row.cells.map((cell) => (
                   <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 ))}
               </Tr>
               {!min630 && (
                 <TrUnder>
-                  <td colSpan={flatColumns.length}>
+                  <td colSpan={visibleColumns.length}>
                     {renderRowUnder({ row })}
                   </td>
                 </TrUnder>
@@ -90,7 +92,7 @@ const Result = () => {
     getData(RESULT_URL, (data, tabletop) => {
       const newData = data['Matches4publish'].elements
         .slice(0)
-        .filter(item => item['Game ID'] !== '')
+        .filter((item) => item['Game ID'] !== '')
       setData(newData)
       setFilteredData(newData)
       setIsLoading(false)
@@ -105,7 +107,7 @@ const Result = () => {
       {
         accessor: 'Datum a Místo',
         show: min630,
-        Cell: data => {
+        Cell: (data) => {
           const detailsValue = data.data[data.row.index]['Detaily zápasu']
             .split(',')
             .join(', ')
@@ -123,7 +125,7 @@ const Result = () => {
       },
       {
         accessor: 'Tým (domácí)',
-        Cell: data => {
+        Cell: (data) => {
           return (
             <TeamHome>
               <LogoWrapper>
@@ -136,7 +138,7 @@ const Result = () => {
       },
       {
         accessor: 'Skóre',
-        Cell: data => {
+        Cell: (data) => {
           const photoLink = data.data[data.row.index]['Fotoalbum']
 
           return (
@@ -171,7 +173,7 @@ const Result = () => {
       },
       {
         accessor: 'Tým (hosté)',
-        Cell: data => {
+        Cell: (data) => {
           return (
             <Team>
               <LogoWrapper>
@@ -185,7 +187,7 @@ const Result = () => {
       {
         accessor: 'Časoměřič',
         show: min980,
-        Cell: data => {
+        Cell: (data) => {
           return (
             <>
               <p>
@@ -203,7 +205,7 @@ const Result = () => {
       {
         accessor: 'Fotoalbum',
         show: min630,
-        Cell: data => {
+        Cell: (data) => {
           return (
             data.cell.value !== '' &&
             data.cell.value !== 'Missing' && (

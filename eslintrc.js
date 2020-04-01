@@ -1,12 +1,12 @@
 module.exports = {
   extends: [
-    '@strv/eslint-config-react',
-    '@strv/eslint-config-react/optional',
     'prettier',
     'prettier/react',
     'stylelint',
+    'eslint:recommended',
+    'plugin:react/recommended',
   ],
-  plugins: ['react-hooks'],
+  plugins: ['react', 'react-hooks'],
   root: true,
   env: {
     browser: true,
