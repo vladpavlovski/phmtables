@@ -44,17 +44,14 @@
     "*.js": [
       "eslint . --fix",
       "stylelint",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "*.{json,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "*.css": [
       "stylelint",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "husky": {
