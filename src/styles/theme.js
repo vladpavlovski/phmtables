@@ -1,4 +1,5 @@
-export default {
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
+const appTheme = {
   color: {
     white: '#FFF',
     bigStone: '#323C46',
@@ -21,13 +22,13 @@ export default {
     card: '0 0.2rem 0.3rem 0 rgba(0, 0, 0, 0.11)',
   },
   fontSize: {
-    xSmall: '1.2rem',
-    small: '1.4rem',
-    normal: '1.6rem',
-    medium: '1.8rem',
-    large: '2.2rem',
-    xLarge: '2.4rem',
-    xxLarge: '2.8rem',
+    xSmall: '0.6rem',
+    small: '1rem',
+    normal: '1.2rem',
+    medium: '1.4rem',
+    large: '1.8rem',
+    xLarge: '2rem',
+    xxLarge: '2.4rem',
   },
   font: {
     light: '"Roboto Condensed Light", sans-serif',
@@ -36,7 +37,17 @@ export default {
     bold: '"Roboto Condensed Bold", sans-serif',
   },
   lineHeight: {
-    basic: '2.4rem',
-    large: '4.8rem',
+    basic: '2rem',
+    large: '4.4rem',
   },
 }
+
+export const muiTheme = createMuiTheme({
+  typography: {
+    htmlFontSize: 10,
+  },
+})
+
+responsiveFontSizes(muiTheme)
+
+export default appTheme

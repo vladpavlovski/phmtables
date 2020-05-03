@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 import { GlobalStyle } from './styles/global'
+import { muiTheme } from './styles/theme'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
 import * as ROUTES from './routes'
@@ -16,9 +17,12 @@ import { Best10KlasikPoints } from './pages/Best10KlasikPoints'
 import { ResultsAlltime } from './pages/ResultsAlltime'
 import { AllPlayers19 } from './pages/AllPlayers19'
 import { AllPlayersYears } from './pages/AllPlayersYears'
+import { SignUp } from './pages/SignUp'
+
+import { ThemeProvider } from '@material-ui/core/styles'
 
 const App = () => (
-  <>
+  <ThemeProvider theme={muiTheme}>
     <GlobalStyle />
     <ErrorBoundary>
       <Switch>
@@ -53,9 +57,10 @@ const App = () => (
           exact
           component={AllPlayersYears}
         />
+        <Route path={ROUTES.SIGNUP} exact component={SignUp} />
       </Switch>
     </ErrorBoundary>
-  </>
+  </ThemeProvider>
 )
 
 export { App }
