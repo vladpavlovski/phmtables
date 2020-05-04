@@ -18,6 +18,8 @@ import { ResultsAlltime } from './pages/ResultsAlltime'
 import { AllPlayers19 } from './pages/AllPlayers19'
 import { AllPlayersYears } from './pages/AllPlayersYears'
 import { SignUp } from './pages/SignUp'
+import { SignIn } from './pages/SignIn'
+import { SignOut } from './pages/SignOut'
 
 import { ThemeProvider } from '@material-ui/core/styles'
 
@@ -57,7 +59,9 @@ const App = () => (
           exact
           component={AllPlayersYears}
         />
-        <Route path={ROUTES.SIGNUP} exact component={SignUp} />
+        <Route path={ROUTES.SIGN_UP} exact component={SignUp} />
+        <Route path={ROUTES.SIGN_IN} exact component={SignIn} />
+        <Route path={ROUTES.SIGN_OUT} exact component={SignOut} />
       </Switch>
     </ErrorBoundary>
   </ThemeProvider>

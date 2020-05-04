@@ -1,22 +1,25 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import Avatar from '@material-ui/core/Avatar'
-import Button from '@material-ui/core/Button'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import TextField from '@material-ui/core/TextField'
-import Link from '@material-ui/core/Link'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import Typography from '@material-ui/core/Typography'
+import { Link } from 'react-router-dom'
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from '@material-ui/core'
 
-import Container from '@material-ui/core/Container'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { Copyright } from '../../components/Copyright'
 
+import * as ROUTES from '../../routes'
 import { useStyles } from './styled'
 import { schema } from './schema'
 
-const SignUp = () => {
+const SignIn = () => {
   const classes = useStyles()
   const { handleSubmit, errors, control } = useForm({
     validationSchema: schema,
@@ -65,7 +68,7 @@ const SignUp = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Sign in
         </Typography>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -73,39 +76,6 @@ const SignUp = () => {
           noValidate
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <Controller
-                as={TextField}
-                control={control}
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                defaultValue=""
-                error={Boolean(errors.firstName)}
-                helperText={errors.firstName && errors.firstName.message}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Controller
-                as={TextField}
-                control={control}
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                defaultValue=""
-                error={Boolean(errors.lastName)}
-                helperText={errors.lastName && errors.lastName.message}
-              />
-            </Grid>
             <Grid item xs={12}>
               <Controller
                 as={TextField}
@@ -138,7 +108,6 @@ const SignUp = () => {
                 helperText={errors.password && errors.password.message}
               />
             </Grid>
-            {/* s */}
           </Grid>
           <Button
             type="submit"
@@ -146,24 +115,26 @@ const SignUp = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            disabled={isSubmitting}
           >
-            {isSubmitting ? 'Signing Up...' : 'Sign Up'}
+            {isSubmitting ? 'Signing In...' : 'Sign In'}
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container>
+            <Grid item xs>
+              <Link to="#">Forgot password?</Link>
+            </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
+              <Link to={ROUTES.SIGN_IN}>
+                {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
+      <Box mt={8}>
         <Copyright />
       </Box>
     </Container>
   )
 }
 
-export { SignUp }
+export { SignIn }
