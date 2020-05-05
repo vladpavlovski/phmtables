@@ -23,11 +23,28 @@ import { mainListItems } from './listItems'
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
+import { DataTable } from '../../components/DataTable'
 
 import { Copyright } from '../../components/Copyright'
 
 import { useStyles } from './styled'
 // import { schema } from './schema'
+
+const columns = ['Name', 'Company', 'City', 'State']
+
+const data = [
+  ['Joe James', 'Test Corp', 'Yonkers', 'NY'],
+  ['John Walsh', 'Test Corp', 'Hartford', 'CT'],
+  ['Bob Herm', 'Test Corp', 'Tampa', 'FL'],
+  ['James Houston', 'Test Corp', 'Dallas', 'TX'],
+]
+
+const options = {
+  filterType: 'checkbox',
+  print: false,
+  searchOpen: true,
+  download: false,
+}
 
 const Dashboard = () => {
   const classes = useStyles()
@@ -84,6 +101,9 @@ const Dashboard = () => {
         open={open}
       >
         <div className={classes.toolbarIcon}>
+          <Typography variant="h4" component="h1">
+            PHM CUP
+          </Typography>
           <IconButton
             onClick={() => {
               setOpen(false)
@@ -117,10 +137,10 @@ const Dashboard = () => {
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                {/* <Orders /> */}
-                orders
-              </Paper>
+              {/* <Paper className={classes.paper}> */}
+              {/* <Orders /> */}
+              <DataTable columns={columns} data={data} options={options} />
+              {/* </Paper> */}
             </Grid>
           </Grid>
           <Box pt={4}>
