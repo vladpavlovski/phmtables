@@ -20,6 +20,7 @@ import { AllPlayersYears } from './pages/AllPlayersYears'
 import { SignUp } from './pages/SignUp'
 import { SignIn } from './pages/SignIn'
 import { SignOut } from './pages/SignOut'
+import { Dashboard } from './pages/Dashboard'
 
 import { ThemeProvider } from '@material-ui/core/styles'
 
@@ -62,6 +63,7 @@ const App = () => (
         <Route path={ROUTES.SIGN_UP} exact component={SignUp} />
         <Route path={ROUTES.SIGN_IN} exact component={SignIn} />
         <Route path={ROUTES.SIGN_OUT} exact component={SignOut} />
+        <Route path={ROUTES.DASHBOARD} exact component={Dashboard} />
       </Switch>
     </ErrorBoundary>
   </ThemeProvider>
