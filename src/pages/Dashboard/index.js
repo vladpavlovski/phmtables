@@ -23,28 +23,12 @@ import { mainListItems } from './listItems'
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
-import { DataTable } from '../../components/DataTable'
+import { Articles } from '../../components/Articles'
 
 import { Copyright } from '../../components/Copyright'
 
 import { useStyles } from './styled'
 // import { schema } from './schema'
-
-const columns = ['Name', 'Company', 'City', 'State']
-
-const data = [
-  ['Joe James', 'Test Corp', 'Yonkers', 'NY'],
-  ['John Walsh', 'Test Corp', 'Hartford', 'CT'],
-  ['Bob Herm', 'Test Corp', 'Tampa', 'FL'],
-  ['James Houston', 'Test Corp', 'Dallas', 'TX'],
-]
-
-const options = {
-  filterType: 'checkbox',
-  print: false,
-  searchOpen: true,
-  download: false,
-}
 
 const Dashboard = () => {
   const classes = useStyles()
@@ -139,7 +123,7 @@ const Dashboard = () => {
             <Grid item xs={12}>
               {/* <Paper className={classes.paper}> */}
               {/* <Orders /> */}
-              <DataTable columns={columns} data={data} options={options} />
+              <Articles />
               {/* </Paper> */}
             </Grid>
           </Grid>
