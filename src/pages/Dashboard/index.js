@@ -7,7 +7,6 @@ import {
   Box,
   AppBar,
   Toolbar,
-  List,
   Typography,
   Divider,
   IconButton,
@@ -19,7 +18,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 // import NotificationsIcon from '@material-ui/icons/Notifications'
-import { mainListItems } from './listItems'
+import { MainListItems } from './listItems'
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -97,8 +96,8 @@ const Dashboard = () => {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
-        {/* <Divider />
+        <MainListItems />
+        {/*
         <List>{secondaryListItems}</List> */}
       </Drawer>
       <main className={classes.content}>
