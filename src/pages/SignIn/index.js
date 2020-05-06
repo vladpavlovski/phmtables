@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { useMutation, gql } from '@apollo/client'
 import {
   Avatar,
   Button,
@@ -14,51 +15,52 @@ import {
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { Copyright } from '../../components/Copyright'
+import { setToken } from '../../utils/token'
 
 import * as ROUTES from '../../routes'
 import { useStyles } from './styled'
 import { schema } from './schema'
 
+const SIGN_IN = gql`
+  mutation login($input: LoginInput!) {
+    login(input: $input) {
+      id
+      email
+      accessToken
+    }
+  }
+`
+
 const SignIn = () => {
+  const history = useHistory()
   const classes = useStyles()
+  const [login, { data }] = useMutation(SIGN_IN)
   const { handleSubmit, errors, control } = useForm({
     validationSchema: schema,
   })
-  // const [formAsyncError, setFormAsyncError] = useState('')
   const [isSubmitting, setSubmitting] = useState(false)
-  // const [isFinished, setIsFinished] = useState(false)
-
-  // const history = useHistory()
 
   useEffect(() => {
-    return () => {
-      // setIsFinished(false)
-      // setFormAsyncError('')
+    if (data && data.login) {
+      setToken(data.login.accessToken)
+      history.push(ROUTES.DASHBOARD)
     }
-  }, [])
+  }, [data, history])
 
-  const onSubmit = useCallback(data => {
-    try {
-      setSubmitting(true)
-      // const { email, password, firstName, lastName } = data
-      // console.log(data)
-      // .then(() => {
-      //   history.push(ROUTES.MAIN)
-      // })
-      // setIsFinished(true)
-
-      // .catch((error) => {
-      //   setFormAsyncError(error.message)
-      // })
-    } catch (error) {
-      console.error(error)
-      // if (error instanceof AsyncValidationError) {
-      //   setFormAsyncError(error.message)
-      // }
-    } finally {
-      setSubmitting(false)
-    }
-  }, [])
+  const onSubmit = useCallback(
+    dataToSubmit => {
+      try {
+        setSubmitting(true)
+        const { email, password } = dataToSubmit
+        login({ variables: { input: { email, password } } })
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setSubmitting(false)
+      }
+    },
+    [login]
+  )
 
   return (
     <Container component="main" maxWidth="xs">
@@ -103,6 +105,7 @@ const SignIn = () => {
                 label="Password"
                 type="password"
                 id="password"
+                defaultValue=""
                 autoComplete="current-password"
                 error={Boolean(errors.password)}
                 helperText={errors.password && errors.password.message}

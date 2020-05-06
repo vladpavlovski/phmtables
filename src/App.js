@@ -23,50 +23,62 @@ import { SignOut } from './pages/SignOut'
 import { Dashboard } from './pages/Dashboard'
 
 import { ThemeProvider } from '@material-ui/core/styles'
+import { ApolloProvider } from '@apollo/client'
+import { client } from './graphql'
 
 const App = () => (
-  <ThemeProvider theme={muiTheme}>
-    <GlobalStyle />
-    <ErrorBoundary>
-      <Switch>
-        <Route
-          path={ROUTES.HOMEPAGE}
-          exact
-          render={() => <Redirect to={ROUTES.RESULT} />}
-        />
-        <Route path={ROUTES.RESULT} exact component={Result} />
-        <Route path={ROUTES.STANDINGS20} exact component={Standings20} />
-        <Route path={ROUTES.STANDINGS20TOP} exact component={Standings20Top} />
-        <Route
-          path={ROUTES.STANDINGS20KLASIK}
-          exact
-          component={Standings20Klasik}
-        />
-        <Route path={ROUTES.ALLPLAYERS} exact component={AllPlayers} />
-        <Route
-          path={ROUTES.BEST10TOPPOINTS}
-          exact
-          component={Best10TopPoints}
-        />
-        <Route
-          path={ROUTES.BEST10KLASIKPOINTS}
-          exact
-          component={Best10KlasikPoints}
-        />
-        <Route path={ROUTES.RESULSTALLTIME} exact component={ResultsAlltime} />
-        <Route path={ROUTES.ALLPLAYERS19} exact component={AllPlayers19} />
-        <Route
-          path={ROUTES.ALLPLAYERSYEARS}
-          exact
-          component={AllPlayersYears}
-        />
-        <Route path={ROUTES.SIGN_UP} exact component={SignUp} />
-        <Route path={ROUTES.SIGN_IN} exact component={SignIn} />
-        <Route path={ROUTES.SIGN_OUT} exact component={SignOut} />
-        <Route path={ROUTES.DASHBOARD} exact component={Dashboard} />
-      </Switch>
-    </ErrorBoundary>
-  </ThemeProvider>
+  <ApolloProvider client={client}>
+    <ThemeProvider theme={muiTheme}>
+      <GlobalStyle />
+      <ErrorBoundary>
+        <Switch>
+          <Route
+            path={ROUTES.HOMEPAGE}
+            exact
+            render={() => <Redirect to={ROUTES.RESULT} />}
+          />
+          <Route path={ROUTES.RESULT} exact component={Result} />
+          <Route path={ROUTES.STANDINGS20} exact component={Standings20} />
+          <Route
+            path={ROUTES.STANDINGS20TOP}
+            exact
+            component={Standings20Top}
+          />
+          <Route
+            path={ROUTES.STANDINGS20KLASIK}
+            exact
+            component={Standings20Klasik}
+          />
+          <Route path={ROUTES.ALLPLAYERS} exact component={AllPlayers} />
+          <Route
+            path={ROUTES.BEST10TOPPOINTS}
+            exact
+            component={Best10TopPoints}
+          />
+          <Route
+            path={ROUTES.BEST10KLASIKPOINTS}
+            exact
+            component={Best10KlasikPoints}
+          />
+          <Route
+            path={ROUTES.RESULSTALLTIME}
+            exact
+            component={ResultsAlltime}
+          />
+          <Route path={ROUTES.ALLPLAYERS19} exact component={AllPlayers19} />
+          <Route
+            path={ROUTES.ALLPLAYERSYEARS}
+            exact
+            component={AllPlayersYears}
+          />
+          <Route path={ROUTES.SIGN_UP} exact component={SignUp} />
+          <Route path={ROUTES.SIGN_IN} exact component={SignIn} />
+          <Route path={ROUTES.SIGN_OUT} exact component={SignOut} />
+          <Route path={ROUTES.DASHBOARD} exact component={Dashboard} />
+        </Switch>
+      </ErrorBoundary>
+    </ThemeProvider>
+  </ApolloProvider>
 )
 
 export { App }
