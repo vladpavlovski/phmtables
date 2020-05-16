@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react'
 // import { useMedia } from 'use-media'
-import { Table } from '../../components/Table'
-import { LoaderPHM } from '../../components/Loader'
-import { getData } from '../../api/get-data'
-import { ALL_PLAYERS_19 } from '../../api/data-url'
-import { Filters } from '../AllPlayers/Filters'
+import { Table } from '../../../components/Table'
+import { LoaderPHM } from '../../../components/Loader'
+import { getData } from '../../../api/get-data'
+import { PLAYERS_URL } from '../../../api/data-url'
+import { Filters } from './Filters'
 import {
   TableStyles,
   AllFilters,
@@ -20,17 +20,17 @@ import {
   Points,
   Pim,
   Star,
-} from '../AllPlayers/styled'
+} from './styled'
 import { TiStarFullOutline } from 'react-icons/ti'
 
-const AllPlayers19 = () => {
+const AllPlayers = () => {
   const [data, setData] = useState([])
   const [filteredData, setFilteredData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getData(ALL_PLAYERS_19, data => {
-      const newData = data['allPlayers19_4publish'].elements.slice(0)
+    getData(PLAYERS_URL, data => {
+      const newData = data['allPlayers4publish'].elements.slice(0)
       setData(newData)
       setFilteredData(newData)
       setIsLoading(false)
@@ -152,4 +152,4 @@ const PlayerCell = props => {
   )
 }
 
-export { AllPlayers19 }
+export { AllPlayers }

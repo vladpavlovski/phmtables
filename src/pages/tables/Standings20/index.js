@@ -3,10 +3,10 @@ import Rating from 'react-rating'
 import { useMedia } from 'use-media'
 import { TiStarFullOutline, TiStarOutline } from 'react-icons/ti'
 
-import { Table } from '../../components/Table'
-import { LoaderPHM } from '../../components/Loader'
-import { getData } from '../../api/get-data'
-import { STANDINGS_URL } from '../../api/data-url'
+import { Table } from '../../../components/Table'
+import { LoaderPHM } from '../../../components/Loader'
+import { getData } from '../../../api/get-data'
+import { STANDINGS_URL } from '../../../api/data-url'
 import { Filters } from './Filters'
 import {
   TableStyles,

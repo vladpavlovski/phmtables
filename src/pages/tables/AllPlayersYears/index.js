@@ -1,15 +1,15 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { Tab, Tabs, TabPanel } from 'react-tabs'
 
-import { Table } from '../../components/Table'
-import { LoaderPHM } from '../../components/Loader'
-import { getData } from '../../api/get-data'
+import { Table } from '../../../components/Table'
+import { LoaderPHM } from '../../../components/Loader'
+import { getData } from '../../../api/get-data'
 import {
   PLAYERS_URL,
   ALL_PLAYERS_19,
   ALL_PLAYERS_18,
   ALL_PLAYERS_17,
-} from '../../api/data-url'
+} from '../../../api/data-url'
 import { Filters } from './Filters'
 import {
   TableStyles,

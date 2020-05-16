@@ -1,13 +1,12 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import Rating from 'react-rating'
 import { useMedia } from 'use-media'
+import Rating from 'react-rating'
 import { TiStarFullOutline, TiStarOutline } from 'react-icons/ti'
 
-import { Table } from '../../components/Table'
-import { LoaderPHM } from '../../components/Loader'
-import { getData } from '../../api/get-data'
-import { STANDINGS_URL } from '../../api/data-url'
-
+import { Table } from '../../../components/Table'
+import { LoaderPHM } from '../../../components/Loader'
+import { getData } from '../../../api/get-data'
+import { STANDINGS_URL } from '../../../api/data-url'
 import { Filters } from './Filters'
 import {
   TableStyles,
@@ -27,14 +26,14 @@ import {
   HeaderPoints,
 } from '../Standings20/styled'
 
-const Standings20Klasik = () => {
+const Standings20Top = () => {
   const [data, setData] = useState([])
   const [filteredData, setFilteredData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getData(STANDINGS_URL, data => {
-      const newData = data['Standing_KLASIK4publish'].elements.slice(0)
+      const newData = data['Standing_TOP4publish'].elements.slice(0)
       setData(newData)
       setFilteredData(newData)
       setIsLoading(false)
@@ -97,6 +96,7 @@ const Standings20Klasik = () => {
       },
       {
         accessor: 'Skóre',
+        isSorted: false,
         Header: () => <HeaderValue title="Skóre">{':'}</HeaderValue>,
         Cell: data => <CellValue>{data.cell.value}</CellValue>,
       },
@@ -153,4 +153,4 @@ const Standings20Klasik = () => {
   )
 }
 
-export { Standings20Klasik }
+export { Standings20Top }

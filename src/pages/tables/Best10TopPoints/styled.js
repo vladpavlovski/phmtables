@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import media from '../../styles/media'
-import theme from '../../styles/theme'
+import media from '../../../styles/media'
+import theme from '../../../styles/theme'
 
 export const TableStyles = styled.div`
   margin-left: 18rem;

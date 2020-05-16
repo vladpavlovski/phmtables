@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
-import media from '../../styles/media'
-import theme from '../../styles/theme'
+import media from '../../../styles/media'
+import theme from '../../../styles/theme'
 import { TabList } from 'react-tabs'
 
 export const phmStyles = {

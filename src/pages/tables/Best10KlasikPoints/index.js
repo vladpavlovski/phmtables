@@ -2,12 +2,12 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { useMedia } from 'use-media'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
-import { Table } from '../../components/Table'
-import { LoaderPHM } from '../../components/Loader'
-import { getData } from '../../api/get-data'
-import { PLAYERS_URL } from '../../api/data-url'
+import { Table } from '../../../components/Table'
+import { LoaderPHM } from '../../../components/Loader'
+import { getData } from '../../../api/get-data'
+import { PLAYERS_URL } from '../../../api/data-url'
 
-import { ItemInfo } from '../../components/ItemInfo'
+import { ItemInfo } from '../../../components/ItemInfo'
 
 import { TableStyles, TeamLogo, CellValue } from '../Best10TopPoints/styled'
 

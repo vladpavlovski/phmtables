@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
 import { useMedia } from 'use-media'
-import { useOnClickOutside } from '../../utils/hooks/useOnClickOutside'
+import { useOnClickOutside } from '../../../utils/hooks/useOnClickOutside'
 
 import { phmStyles, Wrapper, FilterButton } from './styled'
 
