@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
-import * as ROUTES from '../../routes'
 import { DataTable } from '../DataTable'
+import { getArticleRoute } from '../../routes'
 
 const GET_ARTICLES_LIST = gql`
   query getArticles {
@@ -41,12 +41,11 @@ export const Articles = () => {
       download: false,
       responsive: 'stacked',
       onRowClick: (rowData, rowMeta) => {
-        // console.log('gameId:', data.articles[rowMeta.dataIndex].gameId)
-
-        history.push(ROUTES.DASHBOARD)
+        const { gameId } = data.articles[rowMeta.dataIndex]
+        history.push(getArticleRoute(gameId))
       },
     }),
-    [history]
+    [data.articles, history]
   )
 
   if (loading) return 'Loading...'
