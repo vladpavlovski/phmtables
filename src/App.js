@@ -21,6 +21,7 @@ import { SignUp } from './pages/SignUp'
 import { SignIn } from './pages/SignIn'
 import { SignOut } from './pages/SignOut'
 import { Dashboard } from './pages/Dashboard'
+import { Article } from './pages/Article'
 
 import { ThemeProvider } from '@material-ui/core/styles'
 import { ApolloProvider } from '@apollo/client'
@@ -75,6 +76,7 @@ const App = () => (
           <Route path={ROUTES.SIGN_IN} exact component={SignIn} />
           <Route path={ROUTES.SIGN_OUT} exact component={SignOut} />
           <Route path={ROUTES.DASHBOARD} exact component={Dashboard} />
+          <Route path={ROUTES.ARTICLE} exact component={Article} />
         </Switch>
       </ErrorBoundary>
     </ThemeProvider>

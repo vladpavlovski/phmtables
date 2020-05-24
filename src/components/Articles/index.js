@@ -41,11 +41,13 @@ export const Articles = () => {
       download: false,
       responsive: 'stacked',
       onRowClick: (rowData, rowMeta) => {
-        const { gameId } = data.articles[rowMeta.dataIndex]
-        history.push(getArticleRoute(gameId))
+        if (data) {
+          const { gameId } = data.articles[rowMeta.dataIndex]
+          history.push(getArticleRoute(gameId))
+        }
       },
     }),
-    [data.articles, history]
+    [data, history]
   )
 
   if (loading) return 'Loading...'

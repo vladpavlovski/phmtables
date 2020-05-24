@@ -1,3 +1,4 @@
+import { generatePath } from 'react-router'
 export const HOMEPAGE = '/'
 export const RESULT = '/result'
 export const RESULSTALLTIME = '/resultsAlltime'
@@ -13,3 +14,6 @@ export const SIGN_UP = '/signup'
 export const SIGN_IN = '/signin'
 export const SIGN_OUT = '/signout'
 export const DASHBOARD = '/dashboard'
+export const ARTICLE = '/article/:gameId'
+
+export const getArticleRoute = gameId => generatePath(ARTICLE, { gameId })
