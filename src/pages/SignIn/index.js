@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
-import { useMutation, gql } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import {
   Avatar,
   Button,
@@ -20,16 +20,7 @@ import { setToken } from '../../utils/token'
 import * as ROUTES from '../../routes'
 import { useStyles } from './styled'
 import { schema } from './schema'
-
-const SIGN_IN = gql`
-  mutation login($input: LoginInput!) {
-    login(input: $input) {
-      id
-      email
-      accessToken
-    }
-  }
-`
+import { SIGN_IN } from '../../graphql/requests'
 
 const SignIn = () => {
   const history = useHistory()

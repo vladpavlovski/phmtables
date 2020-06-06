@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
-import { useQuery, gql } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useForm, Controller } from 'react-hook-form'
 
 import { Container, Grid, Paper, TextField } from '@material-ui/core'
@@ -8,80 +8,7 @@ import { Title } from '../../components/Title'
 import { Layout } from '../../components/Layout'
 import { DataTable } from '../../components/DataTable'
 import { useStyles } from './styled'
-
-const GET_ARTICLE = gql`
-  query getArticle($gameId: String!) {
-    article(gameId: $gameId) {
-      id
-      gameId
-      title
-      subTitle
-      perex
-      teamOneNameFull
-      teamOneLogo
-      teamOneGoals
-      leagueName
-      leagueLogo
-      date
-      time
-      place
-      phase
-      group
-      periodsResult
-      teamTwoNameFull
-      teamTwoLogo
-      teamTwoGoals
-      firstPeriodNotes
-      secondPeriodNotes
-      thirdPeriodNotes
-      closingNotes
-      teamOneShots
-      teamTwoShots
-      teamOneMinutes
-      teamTwoMinutes
-      teamOneFaceoffs
-      teamTwoFaceoffs
-      referee
-      delegate
-      gameData {
-        teamOneStarId
-        teamOneStarName
-        teamOneStarAvatar
-        teamOneStarGoals
-        teamOneStarAssists
-        teamOneStarPoints
-        teamOneGoalieId
-        teamOneGoalieAvatar
-        teamOneGoalieName
-        teamOneGoalieWins
-        teamOneGoalieSaves
-        teamOneGoaliePerc
-        teamTwoStarId
-        teamTwoStarName
-        teamTwoStarAvatar
-        teamTwoStarGoals
-        teamTwoStarAssists
-        teamTwoStarPoints
-        teamTwoGoalieId
-        teamTwoGoalieAvatar
-        teamTwoGoalieName
-        teamTwoGoalieWins
-        teamTwoGoalieSaves
-        teamTwoGoaliePerc
-      }
-      gameReport {
-        minute
-        teamLogo
-        teamShortcut
-        situation
-        playerSurnameOne
-        playerSurnameTwo
-        playerSurnameThree
-        details
-      }
-    }
-  }
-`
+import { GET_ARTICLE } from '../../graphql/requests'
 
 const Article = props => {
   const classes = useStyles()

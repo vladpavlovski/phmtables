@@ -1,21 +1,9 @@
 import React, { useMemo } from 'react'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import { DataTable } from '../DataTable'
 import { getArticleRoute } from '../../routes'
-
-const GET_ARTICLES_LIST = gql`
-  query getArticles {
-    articles {
-      id
-      gameId
-      teamOneNameFull
-      teamTwoNameFull
-      date
-      periodsResult
-    }
-  }
-`
+import { GET_ARTICLES_LIST } from '../../graphql/requests'
 
 const columns = [
   { name: 'gameId', label: 'Game Id' },
