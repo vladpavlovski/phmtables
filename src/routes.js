@@ -15,5 +15,8 @@ export const SIGN_IN = '/signin'
 export const SIGN_OUT = '/signout'
 export const DASHBOARD = '/dashboard'
 export const ARTICLE = '/article/:gameId'
+export const ARTICLE_GENERATED = '/articleGenerated/:gameId'
 
 export const getArticleRoute = gameId => generatePath(ARTICLE, { gameId })
+export const getArticleGeneratedRoute = gameId =>
+  generatePath(ARTICLE_GENERATED, { gameId })
