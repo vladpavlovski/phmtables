@@ -1,6 +1,7 @@
 import React from 'react'
 
-export const SubTitle = () => {
+export const SubTitle = props => {
+  const { subTitle } = props.data
   return (
     <section className="u-clearfix u-valign-top u-section-4" id="sec-0307">
       <div
@@ -12,7 +13,7 @@ export const SubTitle = () => {
       >
         <div className="u-container-layout u-container-layout-1">
           <h2 className="u-align-center u-custom-font u-text u-text-default u-text-1">
-            Šíp 2+3, Hužvárová hattrick (LEV) / Kaděra 2+0, Bláha 2+2 (PWP)
+            {subTitle}
           </h2>
         </div>
       </div>

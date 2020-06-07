@@ -1,6 +1,76 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
-export const GameStatistics = () => {
+export const GameStatistics = props => {
+  const {
+    teamOneShots,
+    teamOneFaceoffs,
+    teamOneMinutes,
+    teamTwoShots,
+    teamTwoFaceoffs,
+    teamTwoMinutes,
+    gameReport,
+  } = props.data
+  const generateGameReport = useCallback(
+    () =>
+      gameReport.map(report => (
+        <div key={report.id} className="u-size-17">
+          <div className="u-layout-row">
+            <div className="u-container-style u-hidden-xs u-image u-layout-cell u-left-cell u-size-6 u-size-60-md">
+              {report.teamLogo && (
+                <img
+                  src={report.teamLogo}
+                  alt={report.teamShortcut}
+                  style={{
+                    height: '3rem',
+                    objectFit: 'cover',
+                    position: 'relative',
+                    flex: '1 1',
+                    maxWidth: '100%',
+                  }}
+                />
+              )}
+            </div>
+            <div
+              style={{
+                backgroundColor:
+                  report.situation.toUpperCase() === 'TREST'
+                    ? '#ca1b1b'
+                    : '#0a7412',
+                position: 'relative',
+                display: 'flex',
+                backgroundClip: 'padding-box',
+                backgroundOrigin: 'padding-box',
+              }}
+              className="u-align-center u-container-style u-size-6 u-size-60-md u-layout-cell-2"
+            >
+              <div className="u-container-layout u-valign-middle u-container-layout-6">
+                <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-12">
+                  {report.situation.toUpperCase()}
+                </p>
+              </div>
+            </div>
+            <div className="u-align-left u-container-style u-layout-cell u-size-33 u-size-60-md u-layout-cell-3">
+              <div className="u-container-layout u-valign-middle u-container-layout-7">
+                <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-13">
+                  {`${report.minute}' `}
+                  <b>{`${report.teamShortcut} - ${report.playerSurnameOne}`}</b>
+                  {report.playerSurnameTwo && ', '}
+                  {`${report.playerSurnameTwo}`}
+                  {report.playerSurnameThree && ', '}
+                  {`${report.playerSurnameThree}`}
+                  {report.details && ` (${report.details})`}
+                </p>
+              </div>
+            </div>
+            <div className="u-align-left u-container-style u-layout-cell u-right-cell u-size-15 u-size-60-md u-layout-cell-4">
+              <div className="u-container-layout u-container-layout-8" />
+            </div>
+          </div>
+        </div>
+      )),
+    [gameReport]
+  )
+
   return (
     <section
       className="u-align-center u-clearfix u-image u-shading u-section-6"
@@ -38,10 +108,10 @@ export const GameStatistics = () => {
               Střely
             </p>
             <p className="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-default u-text-3">
-              29
+              {teamTwoShots}
             </p>
             <p className="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-default u-text-4">
-              29
+              {teamOneShots}
             </p>
           </div>
         </div>
@@ -55,10 +125,10 @@ export const GameStatistics = () => {
               Vhazování
             </p>
             <p className="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-default u-text-6">
-              29
+              {teamTwoFaceoffs}
             </p>
             <p className="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-default u-text-7">
-              29
+              {teamOneFaceoffs}
             </p>
           </div>
         </div>
@@ -72,10 +142,10 @@ export const GameStatistics = () => {
               Tr. Minuty
             </p>
             <p className="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-default u-text-9">
-              12
+              {teamTwoMinutes}
             </p>
             <p className="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-10">
-              8
+              {teamOneMinutes}
             </p>
           </div>
         </div>
@@ -84,151 +154,7 @@ export const GameStatistics = () => {
         </h2>
         <div className="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
           <div className="u-layout">
-            <div className="u-layout-col">
-              <div className="u-size-17">
-                <div className="u-layout-row">
-                  <div
-                    className="u-container-style u-hidden-xs u-image u-layout-cell u-left-cell u-size-6 u-size-60-md u-image-6"
-                    data-image-width={763}
-                    data-image-height={770}
-                  >
-                    <div className="u-container-layout u-container-layout-5" />
-                  </div>
-                  <div className="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-6 u-size-60-md u-layout-cell-2">
-                    <div className="u-container-layout u-valign-middle u-container-layout-6">
-                      <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-12">
-                        GÓL
-                      </p>
-                    </div>
-                  </div>
-                  <div className="u-align-left u-container-style u-layout-cell u-size-33 u-size-60-md u-layout-cell-3">
-                    <div className="u-container-layout u-valign-middle u-container-layout-7">
-                      <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-13">
-                        25' <b>PWP</b>&nbsp;-&nbsp;<b>BLÁHA</b>&nbsp;(Kročner,
-                        Peroutka) 5na5
-                      </p>
-                    </div>
-                  </div>
-                  <div className="u-align-left u-container-style u-layout-cell u-right-cell u-size-15 u-size-60-md u-layout-cell-4">
-                    <div className="u-container-layout u-container-layout-8" />
-                  </div>
-                </div>
-              </div>
-              <div className="u-size-10">
-                <div className="u-layout-row">
-                  <div
-                    className="u-container-style u-hidden-xs u-image u-layout-cell u-left-cell u-size-6 u-size-60-md u-image-7"
-                    data-image-width={280}
-                    data-image-height={252}
-                  >
-                    <div className="u-container-layout u-container-layout-9" />
-                  </div>
-                  <div className="u-align-center u-container-style u-custom-color-2 u-layout-cell u-size-6 u-size-60-md u-layout-cell-6">
-                    <div className="u-container-layout u-valign-middle u-container-layout-10">
-                      <p className="u-custom-font u-font-roboto-condensed u-text u-text-14">
-                        TREST
-                      </p>
-                    </div>
-                  </div>
-                  <div className="u-container-style u-layout-cell u-size-33 u-size-60-md u-layout-cell-7">
-                    <div className="u-container-layout u-valign-middle u-container-layout-11">
-                      <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-15">
-                        26'<b> LEV - URBAN</b> Hák
-                      </p>
-                    </div>
-                  </div>
-                  <div className="u-container-style u-layout-cell u-right-cell u-size-15 u-size-60-md u-layout-cell-8">
-                    <div className="u-container-layout u-container-layout-12" />
-                  </div>
-                </div>
-              </div>
-              <div className="u-size-11">
-                <div className="u-layout-row">
-                  <div
-                    className="u-container-style u-hidden-xs u-image u-layout-cell u-left-cell u-size-6 u-size-60-md u-image-8"
-                    data-image-width={280}
-                    data-image-height={252}
-                  >
-                    <div className="u-container-layout u-container-layout-13" />
-                  </div>
-                  <div className="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-6 u-size-60-md u-layout-cell-10">
-                    <div className="u-container-layout u-valign-middle u-container-layout-14">
-                      <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-16">
-                        GÓL
-                      </p>
-                    </div>
-                  </div>
-                  <div className="u-container-style u-layout-cell u-size-33 u-size-60-md u-layout-cell-11">
-                    <div className="u-container-layout u-valign-middle u-container-layout-15">
-                      <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-17">
-                        28' <b>LEV - URBAN</b> (Míhál, Horký) 4na5
-                      </p>
-                    </div>
-                  </div>
-                  <div className="u-container-style u-layout-cell u-right-cell u-size-15 u-size-60-md u-layout-cell-12">
-                    <div className="u-container-layout u-container-layout-16" />
-                  </div>
-                </div>
-              </div>
-              <div className="u-size-11">
-                <div className="u-layout-row">
-                  <div
-                    className="u-container-style u-hidden-xs u-image u-layout-cell u-left-cell u-size-6 u-size-60-md u-image-9"
-                    data-image-width={763}
-                    data-image-height={770}
-                  >
-                    <div className="u-container-layout u-container-layout-17" />
-                  </div>
-                  <div className="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-6 u-size-60-md u-layout-cell-14">
-                    <div className="u-container-layout u-valign-middle u-container-layout-18">
-                      <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-18">
-                        GÓL
-                      </p>
-                    </div>
-                  </div>
-                  <div className="u-container-style u-layout-cell u-size-33 u-size-60-md u-layout-cell-15">
-                    <div className="u-container-layout u-valign-middle u-container-layout-19">
-                      <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-19">
-                        25'&nbsp;<b>PWP</b>&nbsp;-&nbsp;<b>BLÁHA</b>
-                        &nbsp;(Kročner, Peroutka) 5na5
-                      </p>
-                    </div>
-                  </div>
-                  <div className="u-container-style u-layout-cell u-right-cell u-size-15 u-size-60-md u-layout-cell-16">
-                    <div className="u-container-layout u-container-layout-20" />
-                  </div>
-                </div>
-              </div>
-              <div className="u-size-11">
-                <div className="u-layout-row">
-                  <div
-                    className="u-container-style u-hidden-xs u-image u-layout-cell u-left-cell u-size-6 u-size-60-md u-image-10"
-                    data-image-width={763}
-                    data-image-height={770}
-                  >
-                    <div className="u-container-layout u-container-layout-21" />
-                  </div>
-                  <div className="u-align-center u-container-style u-custom-color-1 u-layout-cell u-size-6 u-size-60-md u-layout-cell-18">
-                    <div className="u-container-layout u-valign-middle u-container-layout-22">
-                      <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-20">
-                        GÓL
-                      </p>
-                    </div>
-                  </div>
-                  <div className="u-container-style u-layout-cell u-size-33 u-size-60-md u-layout-cell-19">
-                    <div className="u-container-layout u-valign-top u-container-layout-23">
-                      <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-21">
-                        25'&nbsp;<b>PWP</b>&nbsp;-&nbsp;<b>BLÁHA</b>
-                        &nbsp;(Kročner, Peroutka) 5na5
-                      </p>
-                    </div>
-                  </div>
-                  <div className="u-container-style u-layout-cell u-right-cell u-size-15 u-size-60-md u-layout-cell-20">
-                    <div className="u-container-layout u-container-layout-24" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div className="u-layout-col">{generateGameReport()}</div>
           </div>
         </div>
       </div>

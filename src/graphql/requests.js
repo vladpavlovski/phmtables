@@ -74,6 +74,7 @@ export const GET_ARTICLE = gql`
         teamTwoGoaliePerc
       }
       gameReport {
+        id
         minute
         teamLogo
         teamShortcut

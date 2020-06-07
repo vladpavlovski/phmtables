@@ -1,6 +1,7 @@
 import React from 'react'
 
-export const ClosingComments = () => {
+export const ClosingComments = props => {
+  const { closingNotes } = props.data
   return (
     <section
       className="u-align-center u-clearfix u-section-5"
@@ -8,7 +9,7 @@ export const ClosingComments = () => {
     >
       <div className="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-1">
-          Closing comments. End of the article...
+          {closingNotes}
         </p>
       </div>
     </section>

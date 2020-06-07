@@ -12,7 +12,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `jwt ${token}` : '',
+      ...(token ? { authorization: `jwt ${token}` } : null),
     },
   }
 })

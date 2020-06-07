@@ -1,6 +1,21 @@
 import React from 'react'
 
-export const GameGoalkeepers = () => {
+export const GameGoalkeepers = props => {
+  const {
+    gameData: {
+      teamOneGoalieAvatar,
+      teamOneGoalieName,
+      teamOneGoalieWins,
+      teamOneGoalieSaves,
+      teamOneGoaliePerc,
+      teamTwoGoalieAvatar,
+      teamTwoGoalieName,
+      teamTwoGoalieWins,
+      teamTwoGoalieSaves,
+      teamTwoGoaliePerc,
+    },
+  } = props.data
+
   return (
     <section
       className="u-align-center u-clearfix u-section-13"
@@ -21,23 +36,31 @@ export const GameGoalkeepers = () => {
                     <h2 className="u-align-center u-custom-font u-text u-text-default u-text-2">
                       GOLMAN
                     </h2>
-                    <img
-                      src="images/URBAN_LEV_AVATAR.png"
-                      alt=""
-                      className="u-image u-image-default u-image-2"
-                      data-image-width={1122}
-                      data-image-height={936}
-                    />
+                    {teamOneGoalieAvatar && (
+                      <img
+                        src={teamOneGoalieAvatar}
+                        alt={teamOneGoalieName}
+                        className="u-image u-image-default u-image-2"
+                        data-image-width={1122}
+                        data-image-height={936}
+                      />
+                    )}
                   </div>
                 </div>
                 <h4 className="u-custom-font u-text u-text-default u-text-3">
-                  Zákroků: 35
+                  Zákroků: 35 (no data)
                   <br />
-                  Ob.gólů: 4<br />% úspěš.: 96,7%
+                  {`Ob.gólů: ${teamOneGoalieSaves}`}
                   <br />
-                  Vítězství: 0
+                  {`% úspěš.: ${
+                    Math.round((teamOneGoaliePerc + Number.EPSILON) * 100) / 100
+                  }%`}
+                  <br />
+                  {`Vítězství: ${teamOneGoalieWins}`}
                 </h4>
-                <h4 className="u-custom-font u-text u-text-4">PETER GRUBČÍK</h4>
+                <h4 className="u-custom-font u-text u-text-4">
+                  {teamOneGoalieName.toUpperCase()}
+                </h4>
               </div>
             </div>
             <div
@@ -51,24 +74,28 @@ export const GameGoalkeepers = () => {
                     <h2 className="u-align-center u-custom-font u-text u-text-5">
                       GOLMAN
                     </h2>
-                    <img
-                      src="images/URBAN_LEV_AVATAR.png"
-                      alt=""
-                      className="u-image u-image-default u-image-4"
-                      data-image-width={1122}
-                      data-image-height={936}
-                    />
+                    {teamTwoGoalieAvatar && (
+                      <img
+                        src={teamTwoGoalieAvatar}
+                        alt={teamTwoGoalieName}
+                        className="u-image u-image-default u-image-4"
+                        data-image-width={1122}
+                        data-image-height={936}
+                      />
+                    )}
                   </div>
                 </div>
                 <h4 className="u-align-center u-custom-font u-text u-text-default u-text-6">
                   Zákroků: 35
                   <br />
-                  Ob.gólů: 4<br />% úspěš.: 96,7%
+                  {`Ob.gólů: ${teamTwoGoalieSaves}`}
                   <br />
-                  Vítězství: 0
+                  {`% úspěš.: ${teamTwoGoaliePerc}%`}
+                  <br />
+                  {`Vítězství: ${teamTwoGoalieWins}`}
                 </h4>
                 <h4 className="u-align-center u-custom-font u-text u-text-default u-text-7">
-                  KAREL NOVÁK
+                  {teamTwoGoalieName.toUpperCase()}
                 </h4>
               </div>
             </div>

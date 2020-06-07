@@ -13,6 +13,7 @@
     "@apollo/link-context": "^2.0.0-beta.3",
     "@material-ui/core": "^4.9.12",
     "@material-ui/icons": "^4.9.1",
+    "dayjs": "^1.8.28",
     "graphql": "^15.0.0",
     "mui-datatables": "^2.14.0",
     "prop-types": "^15.7.2",
@@ -32,7 +33,10 @@
     "sanitize.css": "^11.0.0",
     "styled-components": "^5.0.1",
     "tabletop": "^1.6.2",
+    "typeface-bungee-shade": "^0.0.71",
+    "typeface-fugaz-one": "^0.0.72",
     "typeface-roboto": "^0.0.75",
+    "typeface-roboto-condensed": "^0.0.75",
     "use-media": "^1.4.0",
     "yup": "^0.28.5"
   },

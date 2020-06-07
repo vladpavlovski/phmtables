@@ -3,6 +3,9 @@ import { createGlobalStyle } from 'styled-components'
 import theme from './theme'
 import 'react-tabs/style/react-tabs.css'
 import 'typeface-roboto'
+import 'typeface-roboto-condensed'
+import 'typeface-bungee-shade'
+import 'typeface-fugaz-one'
 
 const GlobalStyle = createGlobalStyle`
   * {

@@ -1,6 +1,21 @@
 import React from 'react'
+import dayjs from 'dayjs'
+import phmCupLogo from '../images/PHMCUP_LOGO.png'
 
-export const ResultPreview = () => {
+export const ResultPreview = props => {
+  const {
+    teamOneNameFull,
+    teamOneGoals,
+    teamOneLogo,
+    teamTwoNameFull,
+    teamTwoGoals,
+    teamTwoLogo,
+    date,
+    time,
+    place,
+    phase,
+    group,
+  } = props.data
   return (
     <section className="u-clearfix u-grey-10 u-section-2" id="sec-59f6">
       <div className="u-clearfix u-sheet u-valign-middle u-sheet-1">
@@ -14,8 +29,8 @@ export const ResultPreview = () => {
               <div className="u-container-layout u-container-layout-2">
                 <div className="u-border-1 u-border-grey-75 u-border-radius-26 u-grey-90 u-shape u-shape-round u-shape-1" />
                 <img
-                  src="images/LEV_circle.png"
-                  alt=""
+                  src={teamOneLogo}
+                  alt={teamOneNameFull}
                   className="u-image u-image-default u-image-2"
                   data-image-width={280}
                   data-image-height={252}
@@ -33,7 +48,7 @@ export const ResultPreview = () => {
                       data-animation-delay={0}
                       data-animation-direction
                     >
-                      8
+                      {teamOneGoals}
                     </p>
                   </div>
                 </div>
@@ -44,7 +59,7 @@ export const ResultPreview = () => {
                   data-animation-delay={0}
                   data-animation-direction
                 >
-                  <u style={{}}>FANKLUB LEV</u>
+                  <u>{teamOneNameFull}</u>
                 </p>
               </div>
             </div>
@@ -52,8 +67,8 @@ export const ResultPreview = () => {
               <div className="u-container-layout u-container-layout-4">
                 <div className="u-border-1 u-border-grey-75 u-border-radius-26 u-grey-90 u-shape u-shape-round u-shape-2" />
                 <img
-                  src="images/WOLFPACK_LOGO.png"
-                  alt=""
+                  src={teamTwoLogo}
+                  alt={teamTwoNameFull}
                   className="u-image u-image-default u-image-3"
                   data-image-width={763}
                   data-image-height={770}
@@ -71,7 +86,7 @@ export const ResultPreview = () => {
                       data-animation-delay={0}
                       data-animation-direction
                     >
-                      4
+                      {teamTwoGoals}
                     </p>
                   </div>
                 </div>
@@ -82,7 +97,7 @@ export const ResultPreview = () => {
                   data-animation-delay={0}
                   data-animation-direction
                 >
-                  <u>WOLFPACK</u>
+                  <u>{teamTwoNameFull}</u>
                 </p>
               </div>
             </div>
@@ -90,20 +105,20 @@ export const ResultPreview = () => {
               <div className="u-container-layout u-valign-bottom u-container-layout-6">
                 <div className="u-border-1 u-border-grey-75 u-border-radius-10 u-grey-90 u-shape u-shape-round u-shape-3" />
                 <p className="u-align-center u-custom-font u-font-roboto-condensed u-hidden-xs u-text u-text-default u-text-palette-3-base u-text-5">
-                  Základní část
+                  {phase}
                 </p>
                 <p className="u-align-center u-custom-font u-font-roboto-condensed u-hidden-xs u-text u-text-default u-text-palette-3-base u-text-6">
-                  Klasik divize
+                  {group}
                 </p>
                 <p className="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-default u-text-palette-3-base u-text-7">
-                  22/5/2020 19:35
+                  {`${dayjs(date).format('L')} ${time}`}
                 </p>
                 <p className="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-default u-text-palette-3-base u-text-8">
-                  Škoda Icerink
+                  {place}
                 </p>
                 <img
-                  src="images/PHMCUP_LOGO_PencilSketch_color.png"
-                  alt=""
+                  src={phmCupLogo}
+                  alt="PHM Cup"
                   className="u-image u-image-default u-image-4"
                   data-image-width={785}
                   data-image-height={907}

@@ -1,4 +1,7 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@apollo/client'
+import { LoaderPHM } from '../../components/Loader'
 
 import './article-generated.css'
 import './article-base.css'
@@ -14,25 +17,35 @@ import { ThirdPeriodComments } from './components/ThirdPeriodComments'
 import { GameStars } from './components/GameStars'
 import { GameGoalkeepers } from './components/GameGoalkeepers'
 import { ClosingComments } from './components/ClosingComments'
-import { PageSetup } from './components/PageSetup'
+import { GET_ARTICLE } from '../../graphql/requests'
 
-const ArticleGenerated = props => {
-  return (
+const ArticleGenerated = () => {
+  const { gameId } = useParams()
+  //error
+  const { loading, data } = useQuery(GET_ARTICLE, {
+    variables: { gameId },
+  })
+
+  // useEffect(() => {
+  //   console.log('data:', data)
+  // }, [data])
+
+  return loading ? (
+    <LoaderPHM />
+  ) : (
     <>
-      <PageSetup />
-
-      <Title />
-      <ResultPreview />
-      <Perex />
-      <SubTitle />
-      <FirstPeriodComments />
-      <GameStatistics />
-      <SecondPeriodComments />
-      <Reports />
-      <ThirdPeriodComments />
-      <GameStars />
-      <GameGoalkeepers />
-      <ClosingComments />
+      <Title data={data.article} />
+      <ResultPreview data={data.article} />
+      <Perex data={data.article} />
+      <SubTitle data={data.article} />
+      <FirstPeriodComments data={data.article} />
+      <GameStatistics data={data.article} />
+      <SecondPeriodComments data={data.article} />
+      <Reports data={data.article} />
+      <ThirdPeriodComments data={data.article} />
+      <GameStars data={data.article} />
+      <GameGoalkeepers data={data.article} />
+      <ClosingComments data={data.article} />
     </>
   )
 }
