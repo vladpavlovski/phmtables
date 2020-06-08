@@ -155,4 +155,4 @@ const Standings20 = () => {
 
 Standings20.propTypes = {}
 
-export { Standings20 }
+export { Standings20 as default }

@@ -50,4 +50,4 @@ const ArticleGenerated = () => {
   )
 }
 
-export { ArticleGenerated }
+export { ArticleGenerated as default }

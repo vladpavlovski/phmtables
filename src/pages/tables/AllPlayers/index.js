@@ -152,4 +152,4 @@ const PlayerCell = props => {
   )
 }
 
-export { AllPlayers }
+export { AllPlayers as default }

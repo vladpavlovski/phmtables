@@ -8,4 +8,4 @@ const SignOut = () => {
   return <span>Signing out...</span>
 }
 
-export { SignOut }
+export { SignOut as default }

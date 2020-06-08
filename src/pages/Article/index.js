@@ -909,4 +909,4 @@ const Article = props => {
 
 Article.propTypes = {}
 
-export { Article }
+export { Article as default }

@@ -166,4 +166,4 @@ const SignUp = () => {
   )
 }
 
-export { SignUp }
+export { SignUp as default }

@@ -153,4 +153,4 @@ const Standings20Klasik = () => {
   )
 }
 
-export { Standings20Klasik }
+export { Standings20Klasik as default }

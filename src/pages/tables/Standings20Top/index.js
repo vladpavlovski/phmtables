@@ -153,4 +153,4 @@ const Standings20Top = () => {
   )
 }
 
-export { Standings20Top }
+export { Standings20Top as default }

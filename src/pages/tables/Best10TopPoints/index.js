@@ -172,4 +172,4 @@ const Best10TopPoints = () => {
   )
 }
 
-export { Best10TopPoints }
+export { Best10TopPoints as default }

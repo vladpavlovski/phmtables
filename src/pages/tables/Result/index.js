@@ -257,4 +257,4 @@ const Result = () => {
   )
 }
 
-export { Result, Table }
+export { Result as default, Table }

@@ -131,4 +131,4 @@ const SignIn = () => {
   )
 }
 
-export { SignIn }
+export { SignIn as default }

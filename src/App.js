@@ -1,32 +1,35 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import 'react-imported-component/macro'
+import { ThemeProvider } from '@material-ui/core/styles'
+import { ApolloProvider } from '@apollo/client'
 
 import { GlobalStyle } from './styles/global'
 import { muiTheme } from './styles/theme'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
 import * as ROUTES from './routes'
-
-import { Result } from './pages/tables/Result'
-import { Standings20 } from './pages/tables/Standings20'
-import { Standings20Top } from './pages/tables/Standings20Top'
-import { Standings20Klasik } from './pages/tables/Standings20Klasik'
-import { AllPlayers } from './pages/tables/AllPlayers'
-import { Best10TopPoints } from './pages/tables/Best10TopPoints'
-import { Best10KlasikPoints } from './pages/tables/Best10KlasikPoints'
-import { ResultsAlltime } from './pages/tables/ResultsAlltime'
-import { AllPlayers19 } from './pages/tables/AllPlayers19'
-import { AllPlayersYears } from './pages/tables/AllPlayersYears'
-import { SignUp } from './pages/SignUp'
-import { SignIn } from './pages/SignIn'
-import { SignOut } from './pages/SignOut'
-import { Dashboard } from './pages/Dashboard'
-import { Article } from './pages/Article'
-import { ArticleGenerated } from './pages/ArticleGenerated'
-
-import { ThemeProvider } from '@material-ui/core/styles'
-import { ApolloProvider } from '@apollo/client'
 import { client } from './graphql'
+import Load from './utils/load'
+
+const Result = Load(() => import('./pages/tables/Result'))
+const Standings20 = Load(() => import('./pages/tables/Standings20'))
+const Standings20Top = Load(() => import('./pages/tables/Standings20Top'))
+const Standings20Klasik = Load(() => import('./pages/tables/Standings20Klasik'))
+const AllPlayers = Load(() => import('./pages/tables/AllPlayers'))
+const Best10TopPoints = Load(() => import('./pages/tables/Best10TopPoints'))
+const Best10KlasikPoints = Load(() =>
+  import('./pages/tables/Best10KlasikPoints')
+)
+const ResultsAlltime = Load(() => import('./pages/tables/ResultsAlltime'))
+const AllPlayers19 = Load(() => import('./pages/tables/AllPlayers19'))
+const AllPlayersYears = Load(() => import('./pages/tables/AllPlayersYears'))
+const SignUp = Load(() => import('./pages/SignUp'))
+const SignIn = Load(() => import('./pages/SignIn'))
+const SignOut = Load(() => import('./pages/SignOut'))
+const Dashboard = Load(() => import('./pages/Dashboard'))
+const Article = Load(() => import('./pages/Article'))
+const ArticleGenerated = Load(() => import('./pages/ArticleGenerated'))
 
 const App = () => (
   <ApolloProvider client={client}>

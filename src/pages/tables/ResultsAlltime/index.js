@@ -202,4 +202,4 @@ const ResultsAlltime = () => {
   )
 }
 
-export { ResultsAlltime }
+export { ResultsAlltime as default }

@@ -50,4 +50,4 @@ const Dashboard = () => {
   )
 }
 
-export { Dashboard }
+export { Dashboard as default }

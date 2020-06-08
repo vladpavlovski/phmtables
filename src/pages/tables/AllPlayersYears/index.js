@@ -264,4 +264,4 @@ const PlayerCell = props => {
   )
 }
 
-export { AllPlayersYears }
+export { AllPlayersYears as default }
