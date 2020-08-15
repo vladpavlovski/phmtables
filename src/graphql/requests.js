@@ -97,3 +97,21 @@ export const SIGN_IN = gql`
     }
   }
 `
+
+export const COMPOSE_ARTICLE = gql`
+  mutation composeArticle($url: String!) {
+    composeArticle(url: $url) {
+      id
+      gameId
+      title
+    }
+  }
+`
+
+// export const COMPOSE_ALL_ARTICLES = gql`
+//   mutation composeAllArticles() {
+//     composeAllArticles() {
+//       id
+//     }
+//   }
+// `
