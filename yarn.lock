@@ -10343,10 +10343,10 @@ react-error-overlay@^6.0.7:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
   integrity sha512-TAv1KJFh3RhqxNvhzxj6LeT5NWklP6rDr2a0jaTfsZ5wSZWHOGeqQyejUp3xxLfPt2UpyJEcVQB/zyPcmonNFA==
 
-react-icons@^3.9.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.9.0.tgz#89a00f20a0e02e6bfd899977eaf46eb4624239d5"
-  integrity sha512-gKbYKR+4QsD3PmIHLAM9TDDpnaTsr3XZeK1NTAb6WQQ+gxEdJ0xuCgLq0pxXdS7Utg2AIpcVhM1ut/jlDhcyNg==
+react-icons@^3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.10.0.tgz#6c217a2dde2e8fa8d293210023914b123f317297"
+  integrity sha512-WsQ5n1JToG9VixWilSo1bHv842Cj5aZqTGiS3Ud47myF6aK7S/IUY2+dHcBdmkQcCFRuHsJ9OMUI0kTDfjyZXQ==
   dependencies:
     camelcase "^5.0.0"
 
@@ -11476,6 +11476,16 @@ snyk-config@^3.0.0:
   resolved "https://registry.yarnpkg.com/snyk-config/-/snyk-config-3.1.1.tgz#a511ef8bf769545f0564e09d382b5ea3aacb9c6a"
   integrity sha512-wwrMIEDozfLJ8LmakCsCC1FQ0siIX5icCQPCbUKKgRbeVsZ27NjPJs37BpTXX4rcHkaWpe8TbH3yOtp23qmszg==
   dependencies:
+    debug "^4.1.1"
+    lodash.merge "^4.6.2"
+    nconf "^0.10.0"
+
+snyk-docker-plugin@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/snyk-docker-plugin/-/snyk-docker-plugin-3.2.0.tgz#5fb1cf045e45b4a3cfcdc9878ab29c80334d9742"
+  integrity sha512-LKsvGcRVBYzyTNT/Z5kImm6uHMX3wAs7gvR4dO8zqBVzCsn3zfi//kmRHWh7zhgvIb6reuhUqY1hMXaz0q/mBw==
+  dependencies:
+    "@snyk/rpm-parser" "^1.1.0"
     debug "^4.1.1"
     lodash.merge "^4.6.2"
     nconf "^0.10.0"
