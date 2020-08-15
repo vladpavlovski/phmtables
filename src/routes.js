@@ -18,6 +18,10 @@ export const ARTICLE = '/article/:gameId'
 export const ARTICLE_GENERATED = '/articleGenerated/:gameId'
 export const LINK_MAP = '/linkMap'
 export const RESULT21 = '/result21'
+export const STANDINGS21 = '/standings21'
+export const STANDINGS21TOP = '/standings21top'
+export const STANDINGS21KLASIK = '/standings21klasik'
+export const STANDINGS21HOBBY = '/standings21hobby'
 
 export const getArticleRoute = gameId => generatePath(ARTICLE, { gameId })
 export const getArticleGeneratedRoute = gameId =>

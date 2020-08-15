@@ -11,6 +11,30 @@ const Layout = Load(() => import('../../components/Layout'))
 
 const linkMapData = [
   {
+    title: 'Standings 21',
+    link: ROUTES.STANDINGS21,
+    description: 'Standings 21 table',
+    backgroundLink: 'https://wallpaperaccess.com/full/1744939.jpg',
+  },
+  {
+    title: 'Standings 21 Top',
+    link: ROUTES.STANDINGS21TOP,
+    description: 'Standings 21 Top table',
+    backgroundLink: 'https://wallpaperaccess.com/full/1254044.jpg',
+  },
+  {
+    title: 'Standings 21 Klasik',
+    link: ROUTES.STANDINGS21KLASIK,
+    description: 'Standings 21 Klasik table',
+    backgroundLink: 'https://wallpapercave.com/wp/FXs9JYJ.jpg',
+  },
+  {
+    title: 'Standings 21 Hobby',
+    link: ROUTES.STANDINGS21HOBBY,
+    description: 'Standings 21 Hobby table',
+    backgroundLink: 'https://wallpapercave.com/wp/1Tbv1d3.jpg',
+  },
+  {
     title: 'Result 21',
     link: ROUTES.RESULT21,
     description: 'Result 21 table',
