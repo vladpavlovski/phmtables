@@ -17,7 +17,7 @@ const columns = [
   },
 ]
 
-export const Articles = () => {
+const Articles = () => {
   const history = useHistory()
   const { loading, error, data } = useQuery(GET_ARTICLES_LIST)
 
@@ -25,7 +25,7 @@ export const Articles = () => {
     () => ({
       filterType: 'multiselect',
       print: false,
-      searchOpen: true,
+      searchOpen: false,
       download: false,
       responsive: 'stacked',
       onRowClick: (rowData, rowMeta) => {
@@ -49,3 +49,5 @@ export const Articles = () => {
     />
   )
 }
+
+export { Articles as default }
