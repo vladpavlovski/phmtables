@@ -31,6 +31,7 @@ const Dashboard = Load(() => import('./pages/Dashboard'))
 const Article = Load(() => import('./pages/Article'))
 const ArticleGenerated = Load(() => import('./pages/ArticleGenerated'))
 const LinkMap = Load(() => import('./pages/LinkMap'))
+const Result21 = Load(() => import('./pages/tables/Result21'))
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -88,6 +89,7 @@ const App = () => (
             component={ArticleGenerated}
           />
           <Route path={ROUTES.LINK_MAP} exact component={LinkMap} />
+          <Route path={ROUTES.RESULT21} exact component={Result21} />
         </Switch>
       </ErrorBoundary>
     </ThemeProvider>

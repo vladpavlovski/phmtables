@@ -17,6 +17,7 @@ export const DASHBOARD = '/dashboard'
 export const ARTICLE = '/article/:gameId'
 export const ARTICLE_GENERATED = '/articleGenerated/:gameId'
 export const LINK_MAP = '/linkMap'
+export const RESULT21 = '/result21'
 
 export const getArticleRoute = gameId => generatePath(ARTICLE, { gameId })
 export const getArticleGeneratedRoute = gameId =>

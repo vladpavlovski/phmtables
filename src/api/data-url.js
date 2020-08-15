@@ -18,3 +18,6 @@ export const ALL_PLAYERS_18 =
 
 export const ALL_PLAYERS_17 =
   'https://docs.google.com/spreadsheets/d/1acjzzksS6cx76Sp7ZO4w4fOJg5CQKDYpdAztoZRzEos/edit?usp=sharing'
+
+export const RESULT_21_URL =
+  'https://docs.google.com/spreadsheets/d/1Jw7Fnn9zDs39TDhTxrC-0QxI3czzjAcAnvyFLlG-2Dg/edit?usp=sharing'

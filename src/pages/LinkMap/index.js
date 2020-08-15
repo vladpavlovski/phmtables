@@ -11,6 +11,13 @@ const Layout = Load(() => import('../../components/Layout'))
 
 const linkMapData = [
   {
+    title: 'Result 21',
+    link: ROUTES.RESULT21,
+    description: 'Result 21 table',
+    backgroundLink:
+      'https://nhl.bamcontent.com/images/photos/316579868/raw.png',
+  },
+  {
     title: 'Result',
     link: ROUTES.RESULT,
     description: 'Result table',
