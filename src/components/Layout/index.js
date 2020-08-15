@@ -96,4 +96,4 @@ const Layout = props => {
   )
 }
 
-export { Layout }
+export { Layout as default }

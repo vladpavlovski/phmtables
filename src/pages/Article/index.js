@@ -2,13 +2,17 @@ import React, { useMemo, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { useForm, Controller } from 'react-hook-form'
-
+import 'react-imported-component/macro'
 import { Container, Grid, Paper, TextField } from '@material-ui/core'
+
 import { Title } from '../../components/Title'
-import { Layout } from '../../components/Layout'
+// import { Layout } from '../../components/Layout'
 import { DataTable } from '../../components/DataTable'
 import { useStyles } from './styled'
 import { GET_ARTICLE } from '../../graphql/requests'
+import Load from '../../utils/load'
+
+const Layout = Load(() => import('../../components/Layout'))
 
 const Article = props => {
   const classes = useStyles()
