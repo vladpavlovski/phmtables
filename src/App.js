@@ -30,6 +30,7 @@ const SignOut = Load(() => import('./pages/SignOut'))
 const Dashboard = Load(() => import('./pages/Dashboard'))
 const Article = Load(() => import('./pages/Article'))
 const ArticleGenerated = Load(() => import('./pages/ArticleGenerated'))
+const LinkMap = Load(() => import('./pages/LinkMap'))
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -66,7 +67,7 @@ const App = () => (
             component={Best10KlasikPoints}
           />
           <Route
-            path={ROUTES.RESULSTALLTIME}
+            path={ROUTES.RESULTSALLTIME}
             exact
             component={ResultsAlltime}
           />
@@ -86,6 +87,7 @@ const App = () => (
             exact
             component={ArticleGenerated}
           />
+          <Route path={ROUTES.LINK_MAP} exact component={LinkMap} />
         </Switch>
       </ErrorBoundary>
     </ThemeProvider>
