@@ -32,6 +32,10 @@ const SignIn = () => {
   const [isSubmitting, setSubmitting] = useState(false)
 
   useEffect(() => {
+    window.localStorage.removeItem('phm-generator-tkn')
+  }, [])
+
+  useEffect(() => {
     if (data && data.login) {
       setToken(data.login.accessToken)
       history.push(ROUTES.DASHBOARD)
