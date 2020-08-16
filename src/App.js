@@ -36,6 +36,7 @@ const Standings21 = Load(() => import('./pages/tables/Standings21'))
 const Standings21Top = Load(() => import('./pages/tables/Standings21Top'))
 const Standings21Klasik = Load(() => import('./pages/tables/Standings21Klasik'))
 const Standings21Hobby = Load(() => import('./pages/tables/Standings21Hobby'))
+const AllPlayers21 = Load(() => import('./pages/tables/AllPlayers21'))
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -110,6 +111,7 @@ const App = () => (
             exact
             component={Standings21Hobby}
           />
+          <Route path={ROUTES.ALLPLAYERS21} exact component={AllPlayers21} />
         </Switch>
       </ErrorBoundary>
     </ThemeProvider>

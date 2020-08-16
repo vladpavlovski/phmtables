@@ -24,3 +24,6 @@ export const RESULT_21_URL =
 
 export const STANDINGS_21_URL =
   'https://docs.google.com/spreadsheets/d/1ld3YnBaGMTndmutxbl9Hi57hZAvc3A1AGdxkVYXUn-g/edit?usp=sharing'
+
+export const ALL_PLAYERS_21 =
+  'https://docs.google.com/spreadsheets/d/1sagqFrj97W0v6cHSTKuekwKRcu0Q7r6mu_4_UuvY4b8/edit?usp=sharing'

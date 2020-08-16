@@ -11,6 +11,12 @@ const Layout = Load(() => import('../../components/Layout'))
 
 const linkMapData = [
   {
+    title: 'All Players 21',
+    link: ROUTES.ALLPLAYERS21,
+    description: 'All Players 21 table',
+    backgroundLink: 'https://wallpaperaccess.com/full/3171029.jpg',
+  },
+  {
     title: 'Standings 21',
     link: ROUTES.STANDINGS21,
     description: 'Standings 21 table',
