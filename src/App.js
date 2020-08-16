@@ -37,6 +37,13 @@ const Standings21Top = Load(() => import('./pages/tables/Standings21Top'))
 const Standings21Klasik = Load(() => import('./pages/tables/Standings21Klasik'))
 const Standings21Hobby = Load(() => import('./pages/tables/Standings21Hobby'))
 const AllPlayers21 = Load(() => import('./pages/tables/AllPlayers21'))
+const Best10TopPoints21 = Load(() => import('./pages/tables/Best10TopPoints21'))
+const Best10KlasikPoints21 = Load(() =>
+  import('./pages/tables/Best10KlasikPoints21')
+)
+const Best10HobbyPoints21 = Load(() =>
+  import('./pages/tables/Best10HobbyPoints21')
+)
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -112,6 +119,21 @@ const App = () => (
             component={Standings21Hobby}
           />
           <Route path={ROUTES.ALLPLAYERS21} exact component={AllPlayers21} />
+          <Route
+            path={ROUTES.BEST10TOPPOINTS21}
+            exact
+            component={Best10TopPoints21}
+          />
+          <Route
+            path={ROUTES.BEST10KLASIKPOINTS21}
+            exact
+            component={Best10KlasikPoints21}
+          />
+          <Route
+            path={ROUTES.BEST10HOBBYPOINTS21}
+            exact
+            component={Best10HobbyPoints21}
+          />
         </Switch>
       </ErrorBoundary>
     </ThemeProvider>

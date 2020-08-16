@@ -11,6 +11,24 @@ const Layout = Load(() => import('../../components/Layout'))
 
 const linkMapData = [
   {
+    title: 'Best 10 Top Points 21',
+    link: ROUTES.BEST10TOPPOINTS21,
+    description: 'Best 10 Top Points 21 table',
+    backgroundLink: 'https://wallpaperaccess.com/full/3171150.jpg',
+  },
+  {
+    title: 'Best 10 Klasik Points 21',
+    link: ROUTES.BEST10KLASIKPOINTS21,
+    description: 'Best 10 Klasik Points 21 table',
+    backgroundLink: 'https://wallpaperaccess.com/full/3171143.jpg',
+  },
+  {
+    title: 'Best 10 Hobby Points 21',
+    link: ROUTES.BEST10HOBBYPOINTS21,
+    description: 'Best 10 Hobby Points 21 table',
+    backgroundLink: 'https://wallpaperaccess.com/full/3171100.jpg',
+  },
+  {
     title: 'All Players 21',
     link: ROUTES.ALLPLAYERS21,
     description: 'All Players 21 table',
@@ -26,7 +44,7 @@ const linkMapData = [
     title: 'Standings 21 Top',
     link: ROUTES.STANDINGS21TOP,
     description: 'Standings 21 Top table',
-    backgroundLink: 'https://wallpaperaccess.com/full/1254044.jpg',
+    backgroundLink: 'https://wallpaperaccess.com/full/3171049.jpg',
   },
   {
     title: 'Standings 21 Klasik',
