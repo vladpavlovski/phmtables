@@ -10,7 +10,7 @@ import {
   ListSubheader,
   Divider,
 } from '@material-ui/core'
-import { Dashboard, FormatListNumbered } from '@material-ui/icons'
+import { Dashboard, GridOn } from '@material-ui/icons'
 
 const ListItemLink = props => {
   const { icon, primary, to } = props
@@ -43,36 +43,7 @@ const MainListItems = () => (
     <Divider />
     <List>
       <ListSubheader inset>PHM Tables</ListSubheader>
-      <ListItemLink
-        icon={<FormatListNumbered />}
-        primary="Result"
-        to={ROUTES.RESULT}
-      />
-      <ListItemLink
-        icon={<FormatListNumbered />}
-        primary="Results All Time"
-        to={ROUTES.RESULSTALLTIME}
-      />
-      <ListItemLink
-        icon={<FormatListNumbered />}
-        primary="Standings 20"
-        to={ROUTES.STANDINGS20}
-      />
-      <ListItemLink
-        icon={<FormatListNumbered />}
-        primary="Standings 20 Top"
-        to={ROUTES.STANDINGS20TOP}
-      />
-      <ListItemLink
-        icon={<FormatListNumbered />}
-        primary="Standings 20 Klasik"
-        to={ROUTES.STANDINGS20KLASIK}
-      />
-      <ListItemLink
-        icon={<FormatListNumbered />}
-        primary="All Players"
-        to={ROUTES.ALLPLAYERS}
-      />
+      <ListItemLink icon={<GridOn />} primary="Link Map" to={ROUTES.LINK_MAP} />
     </List>
   </>
 )
