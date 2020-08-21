@@ -1,61 +1,62 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import Avatar from '@material-ui/core/Avatar'
-import Button from '@material-ui/core/Button'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import TextField from '@material-ui/core/TextField'
-import Link from '@material-ui/core/Link'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import Typography from '@material-ui/core/Typography'
+import { Link, useHistory } from 'react-router-dom'
+import { useMutation } from '@apollo/client'
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from '@material-ui/core'
 
-import Container from '@material-ui/core/Container'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import * as ROUTES from '../../routes'
+
 import { Copyright } from '../../components/Copyright'
+import { SIGN_UP } from '../../graphql/requests'
+import { setToken } from '../../utils/token'
 
 import { useStyles } from './styled'
 import { schema } from './schema'
 
 const SignUp = () => {
+  const history = useHistory()
   const classes = useStyles()
+  const [isSubmitting, setSubmitting] = useState(false)
+  const [signup, { data }] = useMutation(SIGN_UP)
   const { handleSubmit, errors, control } = useForm({
     validationSchema: schema,
   })
-  // const [formAsyncError, setFormAsyncError] = useState('')
-  const [isSubmitting, setSubmitting] = useState(false)
-  // const [isFinished, setIsFinished] = useState(false)
-
-  // const history = useHistory()
 
   useEffect(() => {
-    return () => {
-      // setIsFinished(false)
-      // setFormAsyncError('')
-    }
+    window.localStorage.removeItem('phm-generator-tkn')
   }, [])
 
-  const onSubmit = useCallback(data => {
-    try {
-      setSubmitting(true)
-      // const { email, password, firstName, lastName } = data
-      // console.log(data)
-      // .then(() => {
-      //   history.push(ROUTES.MAIN)
-      // })
-      // setIsFinished(true)
-
-      // .catch((error) => {
-      //   setFormAsyncError(error.message)
-      // })
-    } catch (error) {
-      console.error(error)
-      // if (error instanceof AsyncValidationError) {
-      //   setFormAsyncError(error.message)
-      // }
-    } finally {
-      setSubmitting(false)
+  useEffect(() => {
+    if (data && data.signup) {
+      setToken(data.signup.accessToken)
+      history.push(ROUTES.DASHBOARD)
     }
-  }, [])
+  }, [data, history])
+
+  const onSubmit = useCallback(
+    dataToSubmit => {
+      try {
+        setSubmitting(true)
+        const { email, password, name } = dataToSubmit
+        signup({ variables: { input: { email, password, name } } })
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setSubmitting(false)
+      }
+    },
+    [signup]
+  )
 
   return (
     <Container component="main" maxWidth="xs">
@@ -73,37 +74,21 @@ const SignUp = () => {
           noValidate
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <Controller
                 as={TextField}
                 control={control}
                 autoComplete="fname"
-                name="firstName"
+                name="name"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="name"
+                label="Name"
                 autoFocus
                 defaultValue=""
-                error={Boolean(errors.firstName)}
-                helperText={errors.firstName && errors.firstName.message}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Controller
-                as={TextField}
-                control={control}
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                defaultValue=""
-                error={Boolean(errors.lastName)}
-                helperText={errors.lastName && errors.lastName.message}
+                error={Boolean(errors.name)}
+                helperText={errors.name && errors.name.message}
               />
             </Grid>
             <Grid item xs={12}>
@@ -138,7 +123,6 @@ const SignUp = () => {
                 helperText={errors.password && errors.password.message}
               />
             </Grid>
-            {/* s */}
           </Grid>
           <Button
             type="submit"
@@ -152,7 +136,7 @@ const SignUp = () => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to={ROUTES.SIGN_IN} variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
