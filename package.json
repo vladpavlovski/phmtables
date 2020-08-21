@@ -20,7 +20,7 @@
     "@material-ui/icons": "^4.9.1",
     "dayjs": "^1.8.28",
     "graphql": "^15.3.0",
-    "mui-datatables": "^2.14.0",
+    "mui-datatables": "^2.15.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-copy-to-clipboard": "^5.0.2",
