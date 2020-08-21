@@ -18,3 +18,12 @@ export const ALL_PLAYERS_18 =
 
 export const ALL_PLAYERS_17 =
   'https://docs.google.com/spreadsheets/d/1acjzzksS6cx76Sp7ZO4w4fOJg5CQKDYpdAztoZRzEos/edit?usp=sharing'
+
+export const RESULT_21_URL =
+  'https://docs.google.com/spreadsheets/d/1Jw7Fnn9zDs39TDhTxrC-0QxI3czzjAcAnvyFLlG-2Dg/edit?usp=sharing'
+
+export const STANDINGS_21_URL =
+  'https://docs.google.com/spreadsheets/d/1ld3YnBaGMTndmutxbl9Hi57hZAvc3A1AGdxkVYXUn-g/edit?usp=sharing'
+
+export const ALL_PLAYERS_21 =
+  'https://docs.google.com/spreadsheets/d/1sagqFrj97W0v6cHSTKuekwKRcu0Q7r6mu_4_UuvY4b8/edit?usp=sharing'
