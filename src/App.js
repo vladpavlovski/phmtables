@@ -30,6 +30,20 @@ const SignOut = Load(() => import('./pages/SignOut'))
 const Dashboard = Load(() => import('./pages/Dashboard'))
 const Article = Load(() => import('./pages/Article'))
 const ArticleGenerated = Load(() => import('./pages/ArticleGenerated'))
+const LinkMap = Load(() => import('./pages/LinkMap'))
+const Result21 = Load(() => import('./pages/tables/Result21'))
+const Standings21 = Load(() => import('./pages/tables/Standings21'))
+const Standings21Top = Load(() => import('./pages/tables/Standings21Top'))
+const Standings21Klasik = Load(() => import('./pages/tables/Standings21Klasik'))
+const Standings21Hobby = Load(() => import('./pages/tables/Standings21Hobby'))
+const AllPlayers21 = Load(() => import('./pages/tables/AllPlayers21'))
+const Best10TopPoints21 = Load(() => import('./pages/tables/Best10TopPoints21'))
+const Best10KlasikPoints21 = Load(() =>
+  import('./pages/tables/Best10KlasikPoints21')
+)
+const Best10HobbyPoints21 = Load(() =>
+  import('./pages/tables/Best10HobbyPoints21')
+)
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -66,7 +80,7 @@ const App = () => (
             component={Best10KlasikPoints}
           />
           <Route
-            path={ROUTES.RESULSTALLTIME}
+            path={ROUTES.RESULTSALLTIME}
             exact
             component={ResultsAlltime}
           />
@@ -85,6 +99,40 @@ const App = () => (
             path={ROUTES.ARTICLE_GENERATED}
             exact
             component={ArticleGenerated}
+          />
+          <Route path={ROUTES.LINK_MAP} exact component={LinkMap} />
+          <Route path={ROUTES.RESULT21} exact component={Result21} />
+          <Route path={ROUTES.STANDINGS21} exact component={Standings21} />
+          <Route
+            path={ROUTES.STANDINGS21TOP}
+            exact
+            component={Standings21Top}
+          />
+          <Route
+            path={ROUTES.STANDINGS21KLASIK}
+            exact
+            component={Standings21Klasik}
+          />
+          <Route
+            path={ROUTES.STANDINGS21HOBBY}
+            exact
+            component={Standings21Hobby}
+          />
+          <Route path={ROUTES.ALLPLAYERS21} exact component={AllPlayers21} />
+          <Route
+            path={ROUTES.BEST10TOPPOINTS21}
+            exact
+            component={Best10TopPoints21}
+          />
+          <Route
+            path={ROUTES.BEST10KLASIKPOINTS21}
+            exact
+            component={Best10KlasikPoints21}
+          />
+          <Route
+            path={ROUTES.BEST10HOBBYPOINTS21}
+            exact
+            component={Best10HobbyPoints21}
           />
         </Switch>
       </ErrorBoundary>
