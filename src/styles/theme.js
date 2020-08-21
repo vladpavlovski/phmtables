@@ -22,13 +22,13 @@ const appTheme = {
     card: '0 0.2rem 0.3rem 0 rgba(0, 0, 0, 0.11)',
   },
   fontSize: {
-    xSmall: '0.6rem',
-    small: '1rem',
-    normal: '1.2rem',
-    medium: '1.4rem',
-    large: '1.8rem',
-    xLarge: '2rem',
-    xxLarge: '2.4rem',
+    xSmall: '1.2rem',
+    small: '1.4rem',
+    normal: '1.6rem',
+    medium: '1.8rem',
+    large: '2.2rem',
+    xLarge: '2.4rem',
+    xxLarge: '2.8rem',
   },
   font: {
     light: '"Roboto Condensed Light", sans-serif',
@@ -37,8 +37,8 @@ const appTheme = {
     bold: '"Roboto Condensed Bold", sans-serif',
   },
   lineHeight: {
-    basic: '2rem',
-    large: '4.4rem',
+    basic: '2.4rem',
+    large: '4.8rem',
   },
 }
 
