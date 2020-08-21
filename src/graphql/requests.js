@@ -98,6 +98,17 @@ export const SIGN_IN = gql`
   }
 `
 
+export const SIGN_UP = gql`
+  mutation signup($input: SignupInput!) {
+    signup(input: $input) {
+      id
+      email
+      name
+      accessToken
+    }
+  }
+`
+
 export const COMPOSE_ARTICLE = gql`
   mutation composeArticle($url: String!) {
     composeArticle(url: $url) {

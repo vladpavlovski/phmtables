@@ -121,7 +121,7 @@ const SignIn = () => {
               <Link to="#">Forgot password?</Link>
             </Grid>
             <Grid item>
-              <Link to={ROUTES.SIGN_IN}>
+              <Link to={ROUTES.SIGN_UP}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
