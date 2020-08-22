@@ -38,7 +38,7 @@
     "typeface-fugaz-one": "^0.0.72",
     "typeface-roboto": "^0.0.75",
     "typeface-roboto-condensed": "^0.0.75",
-    "yup": "^0.29.1",
+    "yup": "^0.29.2",
     "react-table": "^7.0.5",
     "react-tabs": "^3.1.1",
     "sanitize.css": "^11.0.1",
