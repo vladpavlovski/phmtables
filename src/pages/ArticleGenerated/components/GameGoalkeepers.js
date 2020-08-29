@@ -1,5 +1,80 @@
 import React from 'react'
 
+import { Grid, Typography, Paper } from '@material-ui/core'
+import { useStyles } from '../styled'
+
+const GoalieCard = props => {
+  const {
+    goalieName,
+    goalieAvatar,
+    goalieWins,
+    goalieSaves,
+    goaliePerc,
+  } = props.data
+  const classes = useStyles()
+
+  return (
+    <Grid item lg={4}>
+      <Paper className={classes.gameStarWrapper}>
+        <Grid
+          container
+          spacing={2}
+          direction="column"
+          justify="center"
+          alignItems="center"
+        >
+          <Grid item lg={12}>
+            <Typography
+              className={classes.gameStarTitle}
+              component="span"
+              variant="h6"
+            >
+              GOLMAN
+            </Typography>
+          </Grid>
+          <Grid item lg={12}>
+            {goalieAvatar ? (
+              <img
+                className={classes.gameStarAvatar}
+                src={goalieAvatar}
+                alt={goalieName}
+              />
+            ) : (
+              <div className={classes.gameStarAvatar} />
+            )}
+          </Grid>
+          <Grid item lg={12}>
+            <Typography
+              className={classes.gameStarStatistics}
+              component="span"
+              variant="h6"
+            >
+              Zákroků: 35 (no data)
+              <br />
+              {`Ob.gólů: ${goalieSaves}`}
+              <br />
+              {`% úspěš.: ${
+                Math.round((goaliePerc + Number.EPSILON) * 100) / 100
+              }%`}
+              <br />
+              {`Vítězství: ${goalieWins}`}
+            </Typography>
+          </Grid>
+          <Grid item lg={12}>
+            <Typography
+              className={classes.gameStarStatistics}
+              component="h4"
+              variant="h4"
+            >
+              {goalieName}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Grid>
+  )
+}
+
 export const GameGoalkeepers = props => {
   const {
     gameData: {
@@ -16,92 +91,40 @@ export const GameGoalkeepers = props => {
     },
   } = props.data
 
+  const classes = useStyles()
+
   return (
-    <section
-      className="u-align-center u-clearfix u-section-13"
-      id="carousel_58b8"
-    >
-      <div className="u-clearfix u-sheet u-sheet-1">
-        <h2 className="u-text u-text-default u-text-1">BRANKAŘI zápasu</h2>
-        <div className="u-container-style u-group u-group-1">
-          <div className="u-container-layout u-valign-bottom u-container-layout-1">
-            <div
-              className="u-align-center u-container-style u-group u-image u-shading u-image-1"
-              data-image-width={1600}
-              data-image-height={1067}
-            >
-              <div className="u-container-layout u-container-layout-2">
-                <div className="u-container-style u-grey-90 u-group u-opacity u-opacity-70 u-group-3">
-                  <div className="u-container-layout u-container-layout-3">
-                    <h2 className="u-align-center u-custom-font u-text u-text-default u-text-2">
-                      GOLMAN
-                    </h2>
-                    {teamOneGoalieAvatar && (
-                      <img
-                        src={teamOneGoalieAvatar}
-                        alt={teamOneGoalieName}
-                        className="u-image u-image-default u-image-2"
-                        data-image-width={1122}
-                        data-image-height={936}
-                      />
-                    )}
-                  </div>
-                </div>
-                <h4 className="u-custom-font u-text u-text-default u-text-3">
-                  Zákroků: 35 (no data)
-                  <br />
-                  {`Ob.gólů: ${teamOneGoalieSaves}`}
-                  <br />
-                  {`% úspěš.: ${
-                    Math.round((teamOneGoaliePerc + Number.EPSILON) * 100) / 100
-                  }%`}
-                  <br />
-                  {`Vítězství: ${teamOneGoalieWins}`}
-                </h4>
-                <h4 className="u-custom-font u-text u-text-4">
-                  {teamOneGoalieName.toUpperCase()}
-                </h4>
-              </div>
-            </div>
-            <div
-              className="u-container-style u-group u-image u-shading u-image-3"
-              data-image-width={1600}
-              data-image-height={1067}
-            >
-              <div className="u-container-layout u-container-layout-4">
-                <div className="u-align-center u-container-style u-grey-90 u-group u-opacity u-opacity-70 u-group-5">
-                  <div className="u-container-layout u-container-layout-5">
-                    <h2 className="u-align-center u-custom-font u-text u-text-5">
-                      GOLMAN
-                    </h2>
-                    {teamTwoGoalieAvatar && (
-                      <img
-                        src={teamTwoGoalieAvatar}
-                        alt={teamTwoGoalieName}
-                        className="u-image u-image-default u-image-4"
-                        data-image-width={1122}
-                        data-image-height={936}
-                      />
-                    )}
-                  </div>
-                </div>
-                <h4 className="u-align-center u-custom-font u-text u-text-default u-text-6">
-                  Zákroků: 35
-                  <br />
-                  {`Ob.gólů: ${teamTwoGoalieSaves}`}
-                  <br />
-                  {`% úspěš.: ${teamTwoGoaliePerc}%`}
-                  <br />
-                  {`Vítězství: ${teamTwoGoalieWins}`}
-                </h4>
-                <h4 className="u-align-center u-custom-font u-text u-text-default u-text-7">
-                  {teamTwoGoalieName.toUpperCase()}
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <>
+      <Typography className={classes.reportTitle} component="h3" variant="h4">
+        BRANKAŘI ZÁPASU
+      </Typography>
+
+      <Grid
+        container
+        spacing={2}
+        direction="row"
+        justify="center"
+        alignItems="center"
+      >
+        {[
+          {
+            goalieName: teamOneGoalieName,
+            goalieAvatar: teamOneGoalieAvatar,
+            goalieWins: teamOneGoalieWins,
+            goalieSaves: teamOneGoalieSaves,
+            goaliePerc: teamOneGoaliePerc,
+          },
+          {
+            goalieName: teamTwoGoalieName,
+            goalieAvatar: teamTwoGoalieAvatar,
+            goalieWins: teamTwoGoalieWins,
+            goalieSaves: teamTwoGoalieSaves,
+            goaliePerc: teamTwoGoaliePerc,
+          },
+        ].map(data => (
+          <GoalieCard key={data.goalieName} data={data} />
+        ))}
+      </Grid>
+    </>
   )
 }

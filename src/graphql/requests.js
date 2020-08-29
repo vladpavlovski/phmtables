@@ -84,6 +84,38 @@ export const GET_ARTICLE = gql`
         playerSurnameThree
         details
       }
+      playersTeamOne {
+        id
+        playerId
+        playerNumber
+        playerName
+        playerGoals
+        playerAssists
+        playerPoints
+        playerPim
+        playerAvatar
+        playerDetail1
+        playerDetail2
+        playerPlaceHolder1
+        playerPlaceHolder2
+        playerPlaceHolder3
+      }
+      playersTeamTwo {
+        id
+        playerId
+        playerNumber
+        playerName
+        playerGoals
+        playerAssists
+        playerPoints
+        playerPim
+        playerAvatar
+        playerDetail1
+        playerDetail2
+        playerPlaceHolder1
+        playerPlaceHolder2
+        playerPlaceHolder3
+      }
     }
   }
 `

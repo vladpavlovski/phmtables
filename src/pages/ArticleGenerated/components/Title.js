@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import dayjs from 'dayjs'
-
+import { Typography } from '@material-ui/core'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
+
+import { useStyles } from '../styled'
 dayjs.extend(localizedFormat)
 
 const Title = props => {
   const { title, date, leagueName } = props.data
+  const classes = useStyles()
+  const formattedDate = useMemo(() => dayjs(date).format('L'), [date])
+
   return (
-    <section className="u-clearfix u-section-1" id="sec-6e05">
-      <div className="u-clearfix u-sheet u-sheet-1">
-        <h1 className="u-custom-font u-text u-text-default u-title u-text-1">
-          {title}
-        </h1>
-        <p className="u-custom-font u-font-roboto-condensed u-text u-text-default u-text-grey-75 u-text-2">
-          {`${dayjs(date).format('L')} - Prague Hockey Masters - ${leagueName}`}
-        </p>
-      </div>
-    </section>
+    <div className={classes.paper}>
+      <Typography variant="h3" component="h1">
+        {title}
+      </Typography>
+      <Typography variant="subtitle1">
+        {`${formattedDate} - Prague Hockey Masters - ${leagueName}`}
+      </Typography>
+    </div>
   )
 }
 

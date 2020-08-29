@@ -1,52 +1,53 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { LoaderPHM } from '../../components/Loader'
 
-import './article-generated.css'
-import './article-base.css'
 import { Title } from './components/Title'
 import { ResultPreview } from './components/ResultPreview'
 import { Perex } from './components/Perex'
 import { SubTitle } from './components/SubTitle'
-import { FirstPeriodComments } from './components/FirstPeriodComments'
+import { PeriodComments } from './components/PeriodComments'
 import { GameStatistics } from './components/GameStatistics'
-import { SecondPeriodComments } from './components/SecondPeriodComments'
 import { Reports } from './components/Reports'
-import { ThirdPeriodComments } from './components/ThirdPeriodComments'
 import { GameStars } from './components/GameStars'
 import { GameGoalkeepers } from './components/GameGoalkeepers'
-import { ClosingComments } from './components/ClosingComments'
+
 import { GET_ARTICLE } from '../../graphql/requests'
 
+import { CssBaseline, Container } from '@material-ui/core'
+import { useStyles } from './styled'
+
 const ArticleGenerated = () => {
+  const classes = useStyles()
   const { gameId } = useParams()
   //error
   const { loading, data } = useQuery(GET_ARTICLE, {
     variables: { gameId },
   })
 
-  // useEffect(() => {
-  //   console.log('data:', data)
-  // }, [data])
+  useEffect(() => {
+    console.log('data:', data)
+  }, [data])
 
   return loading ? (
     <LoaderPHM />
   ) : (
-    <>
+    <Container component="main" maxWidth="lg" className={classes.article}>
+      <CssBaseline />
       <Title data={data.article} />
       <ResultPreview data={data.article} />
       <Perex data={data.article} />
       <SubTitle data={data.article} />
-      <FirstPeriodComments data={data.article} />
+      <PeriodComments comment={data.article.firstPeriodNotes} />
       <GameStatistics data={data.article} />
-      <SecondPeriodComments data={data.article} />
+      <PeriodComments comment={data.article.secondPeriodNotes} />
       <Reports data={data.article} />
-      <ThirdPeriodComments data={data.article} />
+      <PeriodComments comment={data.article.thirdPeriodNotes} />
       <GameStars data={data.article} />
       <GameGoalkeepers data={data.article} />
-      <ClosingComments data={data.article} />
-    </>
+      <PeriodComments comment={data.article.closingNotes} />
+    </Container>
   )
 }
 
