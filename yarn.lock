@@ -11408,10 +11408,10 @@ react-icons@^3.11.0:
   dependencies:
     camelcase "^5.0.0"
 
-react-imported-component@^6.3.11:
-  version "6.3.11"
-  resolved "https://registry.yarnpkg.com/react-imported-component/-/react-imported-component-6.3.11.tgz#35c8541fced6f4384d1823f368ed376e81b2196c"
-  integrity sha512-Q16XVZuinp6XsRvvZqOf1oCw9lwnYkhFGE7CuhTz1iW3uNCpCeZaLngfXOrwIx/+zKalnagkwHYh/p5/nnqF3w==
+react-imported-component@^6.3.12:
+  version "6.3.12"
+  resolved "https://registry.yarnpkg.com/react-imported-component/-/react-imported-component-6.3.12.tgz#d694d84eaccf77320cd12eb9723f8794de4d5af8"
+  integrity sha512-Z/WeU+ezc7qzHYZX8RLINXNVV7T0UvoQ0OQDYM6oSM+/iS4wX5BLPLfmqNsqkhdMBKY3SW8pWkLHjU35lJpDuQ==
   dependencies:
     babel-plugin-macros "^2.6.1"
     crc-32 "^1.2.0"
