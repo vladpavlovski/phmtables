@@ -216,7 +216,7 @@ const Article = props => {
       print: false,
       searchOpen: false,
       download: false,
-      responsive: 'stacked',
+      responsive: 'vertical',
       // onRowClick: (rowData, rowMeta) => {
       //   if (data) {
       //     const { gameId } = data.articles[rowMeta.dataIndex]

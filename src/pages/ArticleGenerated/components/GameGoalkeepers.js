@@ -45,7 +45,7 @@ const GoalieCard = props => {
           </Grid>
           <Grid item lg={12}>
             <Typography
-              className={classes.gameStarStatistics}
+              className={classes.reportPlayerText}
               component="span"
               variant="h6"
             >

@@ -104,9 +104,8 @@ export const Reports = props => {
               {`Soupiska: ${teamOneNameFull}`}
             </Typography>
           </Grid>
-          {playersTeamOne.map(data => (
-            <PlayerRow key={data.id} data={data} />
-          ))}
+          {playersTeamOne &&
+            playersTeamOne.map(data => <PlayerRow key={data.id} data={data} />)}
         </Grid>
       </Paper>
       <Divider />
@@ -128,9 +127,8 @@ export const Reports = props => {
               {`Soupiska: ${teamTwoNameFull}`}
             </Typography>
           </Grid>
-          {playersTeamTwo.map(data => (
-            <PlayerRow key={data.id} data={data} />
-          ))}
+          {playersTeamTwo &&
+            playersTeamTwo.map(data => <PlayerRow key={data.id} data={data} />)}
         </Grid>
       </Paper>
     </>

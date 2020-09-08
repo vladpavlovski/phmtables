@@ -125,9 +125,8 @@ export const GameStatistics = props => {
           </Typography>
         </Grid>
         <div className={classes.gsMinutes}>
-          {gameReport.map(data => (
-            <MinuteEvent key={data.id} data={data} />
-          ))}
+          {gameReport &&
+            gameReport.map(data => <MinuteEvent key={data.id} data={data} />)}
         </div>
       </Grid>
     </Paper>
