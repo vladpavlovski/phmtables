@@ -217,31 +217,289 @@ const Article = props => {
       searchOpen: false,
       download: false,
       responsive: 'vertical',
-      // onRowClick: (rowData, rowMeta) => {
-      //   if (data) {
-      //     const { gameId } = data.articles[rowMeta.dataIndex]
-      //     history.push(getArticleRoute(gameId))
-      //   }
-      // },
+      rowsPerPage: 50,
+      rowsPerPageOptions: [10, 25, 50, 100],
     }),
     []
   )
 
-  // const getGameReportMuiTheme = useCallback(
-  //   () =>
-  //     createMuiTheme({
-  //       overrides: {
-  //         MUIDataTableHeadCell: {
-  //           root: {
-  //             '&:nth-child(2)': {
-  //               width: 70,
-  //             },
-  //           },
-  //         },
-  //       },
-  //     }),
-  //   []
-  // )
+  const playersTeamOneColumns = useMemo(() => {
+    return [
+      {
+        name: 'playerId',
+        label: 'Id',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerId"
+                label="Id"
+                name="playerId"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerNumber',
+        label: 'Number',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerNumber"
+                label="Number"
+                name="playerNumber"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerName',
+        label: 'Name',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerName"
+                label="Name"
+                name="playerName"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerGoals',
+        label: 'Goals',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerGoals"
+                label="Goals"
+                name="playerGoals"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerAssists',
+        label: 'Assists',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerAssists"
+                label="Assists"
+                name="playerAssists"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerPoints',
+        label: 'Points',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerPoints"
+                label="Points"
+                name="playerPoints"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerPim',
+        label: 'Pim',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerPim"
+                label="Pim"
+                name="playerPim"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerAvatar',
+        label: 'Avatar',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerAvatar"
+                label="Avatar"
+                name="playerAvatar"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerDetail1',
+        label: 'Detail 1',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerDetail1"
+                label="Detail 1"
+                name="playerDetail1"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerDetail2',
+        label: 'Detail 2',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerDetail2"
+                label="Detail 2"
+                name="playerDetail2"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerPlaceHolder1',
+        label: 'PH 1',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerPlaceHolder1"
+                label="PH 1"
+                name="playerPlaceHolder1"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerPlaceHolder2',
+        label: 'PH 2',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerPlaceHolder2"
+                label="PH 2"
+                name="playerPlaceHolder2"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerPlaceHolder3',
+        label: 'PH 3',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerPlaceHolder3"
+                label="PH 3"
+                name="playerPlaceHolder3"
+              />
+            )
+          },
+        },
+      },
+    ]
+  }, [control])
+
+  const playersTeamOneOptions = useMemo(
+    () => ({
+      filterType: 'multiselect',
+      print: false,
+      searchOpen: false,
+      download: false,
+      responsive: 'vertical',
+      rowsPerPage: 50,
+      rowsPerPageOptions: [10, 25, 50, 100],
+    }),
+    []
+  )
 
   const onSubmit = useCallback(dataToSubmit => {
     console.log('dataToSubmit', dataToSubmit)
@@ -901,6 +1159,22 @@ const Article = props => {
                   columns={gameReportColumns}
                   data={data.article.gameReport || []}
                   options={gameReportOptions}
+                />
+              </Grid>
+              <Grid item>
+                <DataTable
+                  title="Players Team 1"
+                  columns={playersTeamOneColumns}
+                  data={data.article.playersTeamOne || []}
+                  options={playersTeamOneOptions}
+                />
+              </Grid>
+              <Grid item>
+                <DataTable
+                  title="Players Team 1"
+                  columns={playersTeamOneColumns}
+                  data={data.article.playersTeamTwo || []}
+                  options={playersTeamOneOptions}
                 />
               </Grid>
             </Grid>

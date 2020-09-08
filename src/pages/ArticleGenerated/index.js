@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { LoaderPHM } from '../../components/Loader'
@@ -26,9 +26,9 @@ const ArticleGenerated = () => {
     variables: { gameId },
   })
 
-  useEffect(() => {
-    console.log('data:', data)
-  }, [data])
+  // useEffect(() => {
+  //   console.log('data:', data)
+  // }, [data])
 
   return loading ? (
     <LoaderPHM />
