@@ -1,6 +1,78 @@
 import React from 'react'
-import bauerLogoWhite from '../images/Bauer_Logo_White.png'
+
+import { Grid, Typography, Paper } from '@material-ui/core'
 import StarIcon from '@material-ui/icons/Star'
+import { useStyles } from '../styled'
+
+const StarCard = props => {
+  const {
+    starName,
+    starAvatar,
+    starGoals,
+    starAssists,
+    starPoints,
+  } = props.data
+  const classes = useStyles()
+
+  return (
+    <Grid item lg={4}>
+      <Paper className={classes.gameStarWrapper}>
+        <Grid
+          container
+          spacing={2}
+          direction="column"
+          justify="center"
+          alignItems="center"
+        >
+          <Grid item lg={12}>
+            <div className={classes.gameStarSponsor1} />
+          </Grid>
+          <Grid item lg={12}>
+            <Typography
+              className={classes.gameStarTitle}
+              component="span"
+              variant="h6"
+            >
+              HVĚZDA UTKÁNÍ
+            </Typography>
+          </Grid>
+          <Grid item lg={12}>
+            {starAvatar ? (
+              <img
+                className={classes.gameStarAvatar}
+                src={starAvatar}
+                alt={starName}
+              />
+            ) : (
+              <div className={classes.gameStarAvatar} />
+            )}
+          </Grid>
+          <Grid item lg={12}>
+            <Typography
+              className={classes.gameStarStatistics}
+              component="span"
+              variant="h6"
+            >
+              {`G:${starGoals} A:${starAssists} B:${starPoints} TR:0`}
+            </Typography>
+          </Grid>
+          <Grid item lg={12}>
+            <StarIcon className={classes.gameStarIcon} />
+          </Grid>
+          <Grid item lg={12}>
+            <Typography
+              className={classes.gameStarStatistics}
+              component="h4"
+              variant="h4"
+            >
+              {starName}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Grid>
+  )
+}
 
 export const GameStars = props => {
   const {
@@ -18,105 +90,39 @@ export const GameStars = props => {
     },
   } = props.data
 
+  const classes = useStyles()
+
   return (
-    <section className="u-align-center u-clearfix u-section-12" id="sec-3d28">
-      <div className="u-clearfix u-sheet u-sheet-1">
-        <h2 className="u-text u-text-default u-text-1">Hvězdy zápasu</h2>
-        <div className="u-container-style u-group u-group-1">
-          <div className="u-container-layout u-valign-bottom-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-1">
-            <div
-              className="u-container-style u-group u-image u-shading u-image-1"
-              data-image-width={1600}
-              data-image-height={1067}
-            >
-              <div className="u-container-layout u-valign-bottom u-container-layout-2">
-                <div className="u-align-center u-container-style u-grey-90 u-group u-opacity u-opacity-70 u-group-3">
-                  <div className="u-container-layout u-container-layout-3">
-                    <img
-                      src={bauerLogoWhite}
-                      alt="Bauer"
-                      className="u-image u-image-default u-image-2"
-                      data-image-width={1600}
-                      data-image-height={191}
-                    />
-                    <h2 className="u-custom-font u-text u-text-default u-text-2">
-                      HVĚZDA UTKÁNÍ
-                    </h2>
-                    {teamOneStarAvatar && (
-                      <img
-                        src={teamOneStarAvatar}
-                        alt={teamOneStarName}
-                        className="u-image u-image-default u-image-3"
-                        data-image-width={1122}
-                        data-image-height={936}
-                      />
-                    )}
-                  </div>
-                </div>
-                <h4 className="u-align-center u-custom-font u-text u-text-default u-text-3">
-                  {`G:${teamOneStarGoals} A:${teamOneStarAssists} B:${teamOneStarPoints} TR:0`}
-                </h4>
-                <span className="u-icon u-icon-circle u-spacing-0 u-text-palette-3-base u-icon-1">
-                  <StarIcon style={{ fontSize: '5rem' }} />
-                </span>
-                <h4 className="u-align-center u-custom-font u-text u-text-4">
-                  {teamOneStarName.toUpperCase()}
-                </h4>
-              </div>
-            </div>
-            <div
-              className="u-container-style u-group u-image u-shading u-image-4"
-              data-image-width={1600}
-              data-image-height={1067}
-            >
-              <div className="u-container-layout u-valign-bottom u-container-layout-4">
-                <div className="u-align-center u-container-style u-grey-90 u-group u-opacity u-opacity-70 u-group-5">
-                  <div className="u-container-layout u-container-layout-5">
-                    <img
-                      src={bauerLogoWhite}
-                      alt="Bauer"
-                      className="u-image u-image-default u-image-5"
-                      data-image-width={1600}
-                      data-image-height={191}
-                    />
-                    <h2 className="u-custom-font u-text u-text-5">
-                      HVĚZDA UTKÁNÍ
-                    </h2>
-                    {teamTwoStarAvatar && (
-                      <img
-                        src={teamTwoStarAvatar}
-                        alt={teamTwoStarName}
-                        className="u-image u-image-default u-image-6"
-                        data-image-width={1122}
-                        data-image-height={936}
-                      />
-                    )}
-                  </div>
-                </div>
-                <h4 className="u-align-center u-custom-font u-text u-text-default u-text-6">
-                  {`G:${teamTwoStarGoals} A:${teamTwoStarAssists} B:${teamTwoStarPoints} TR:0`}
-                </h4>
-                <span className="u-icon u-icon-circle u-spacing-0 u-text-palette-3-base u-icon-3">
-                  <StarIcon style={{ fontSize: '5rem' }} />
-                </span>
-                <h4 className="u-align-center u-custom-font u-text u-text-default u-text-7">
-                  {teamTwoStarName.toUpperCase()}
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="u-container-style u-group u-image u-image-7"
-          data-image-width={2592}
-          data-image-height={1728}
-        >
-          <div className="u-container-layout u-container-layout-6" />
-        </div>
-        <div className="u-container-style u-expanded-width-xs u-group u-image u-image-8">
-          <div className="u-container-layout u-container-layout-7" />
-        </div>
-      </div>
-    </section>
+    <>
+      <Typography className={classes.reportTitle} component="h3" variant="h4">
+        HVĚZDY ZÁPASU
+      </Typography>
+      <Grid
+        container
+        spacing={2}
+        direction="row"
+        justify="center"
+        alignItems="center"
+      >
+        {[
+          {
+            starName: teamOneStarName,
+            starAvatar: teamOneStarAvatar,
+            starGoals: teamOneStarGoals,
+            starAssists: teamOneStarAssists,
+            starPoints: teamOneStarPoints,
+          },
+          {
+            starName: teamTwoStarName,
+            starAvatar: teamTwoStarAvatar,
+            starGoals: teamTwoStarGoals,
+            starAssists: teamTwoStarAssists,
+            starPoints: teamTwoStarPoints,
+          },
+        ].map(data => (
+          <StarCard key={data.starName} data={data} />
+        ))}
+      </Grid>
+    </>
   )
 }
