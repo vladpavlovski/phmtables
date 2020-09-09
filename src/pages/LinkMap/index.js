@@ -9,7 +9,28 @@ import * as ROUTES from '../../routes'
 const LinkCard = Load(() => import('./LinkCard'))
 const Layout = Load(() => import('../../components/Layout'))
 
+// {
+//   title: '',
+//   link: ,
+//   description: '',
+//   backgroundLink: '',
+// },
+
 const linkMapData = [
+  {
+    title: 'Result TS55 21',
+    link: ROUTES.RESULT_TS55_21,
+    description: 'Result TS55 21 table',
+    backgroundLink:
+      'https://s1.1zoom.me/b4453/929/Hockey_Men_Ice_rink_Rays_of_light_Uniform_514784_1920x1080.jpg',
+  },
+  {
+    title: 'Standings TS55 21',
+    link: ROUTES.STANDINGS_TS55_21,
+    description: 'Standings TS55 21 table',
+    backgroundLink:
+      'https://wallpaperboat.com/wp-content/uploads/2019/06/ice-hockey-21.jpg',
+  },
   {
     title: 'Best 10 Top Points 21',
     link: ROUTES.BEST10TOPPOINTS21,

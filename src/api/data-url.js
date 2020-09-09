@@ -27,3 +27,9 @@ export const STANDINGS_21_URL =
 
 export const ALL_PLAYERS_21 =
   'https://docs.google.com/spreadsheets/d/1sagqFrj97W0v6cHSTKuekwKRcu0Q7r6mu_4_UuvY4b8/edit?usp=sharing'
+
+export const RESULT_TS_55_21_URL =
+  'https://docs.google.com/spreadsheets/d/1ErdofNIvRLLYmdYfL_ct2Y9SmUPr9B4Z4guZo93C3T4/edit?usp=sharing'
+
+export const STANDINGS_TS_55_21_URL =
+  'https://docs.google.com/spreadsheets/d/1EcWd_zZ3Hg3wnbg6fivIIRKHPmxIug5GQ-hxowIgF5s/edit?usp=sharing'

@@ -26,6 +26,8 @@ export const ALLPLAYERS21 = '/allPlayers21'
 export const BEST10TOPPOINTS21 = '/best10TopPoints21'
 export const BEST10KLASIKPOINTS21 = '/best10KlasikPoints21'
 export const BEST10HOBBYPOINTS21 = '/best10HobbyPoints21'
+export const RESULT_TS55_21 = '/result_ts55_21'
+export const STANDINGS_TS55_21 = '/standings_ts55_21'
 
 export const getArticleRoute = gameId => generatePath(ARTICLE, { gameId })
 export const getArticleGeneratedRoute = gameId =>
