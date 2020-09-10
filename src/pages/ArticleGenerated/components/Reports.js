@@ -31,9 +31,11 @@ const PlayerRow = props => {
         </span>
       </Grid>
       <Grid item xl={1} lg={1} md={1} sm={1} xs={2}>
-        <span className={classes.reportPlayerPoints}>
-          {`${playerPoints}+ bodů`}
-        </span>
+        {playerPoints >= 4 && (
+          <span className={classes.reportPlayerPoints}>
+            {`${playerPoints}+ bodů`}
+          </span>
+        )}
       </Grid>
       <Grid item xl={2} lg={2} md={2} sm={2} xs={3}>
         <span className={classes.reportPlayerText}>{playerName}</span>
