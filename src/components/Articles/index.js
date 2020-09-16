@@ -1,11 +1,27 @@
-import React, { useState, useMemo, useEffect, useContext } from 'react'
-import { useQuery } from '@apollo/client'
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useContext,
+  useCallback,
+} from 'react'
+import { useQuery, useMutation } from '@apollo/client'
 import { useHistory, Link } from 'react-router-dom'
-import { Button } from '@material-ui/core'
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from '@material-ui/core'
 
 import { DataTable } from '../DataTable'
 import { getArticleRoute, getArticleGeneratedRoute } from '../../routes'
-import { GET_ARTICLES_LIST } from '../../graphql/requests'
+import {
+  GET_ARTICLES_LIST,
+  DELETE_COMPOSED_ARTICLE,
+} from '../../graphql/requests'
 import DashboardContext from '../../contexts/dashboard'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
@@ -83,16 +99,41 @@ const CopyIframeButton = props => {
 const Articles = () => {
   const history = useHistory()
 
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false)
+  const [dataForDelete, setDataForDelete] = useState(null)
+
   const { newArticleCreated, setNewArticleCreated } = useContext(
     DashboardContext
   )
   const { loading, error, data, refetch } = useQuery(GET_ARTICLES_LIST)
+  const [deleteArticle] = useMutation(DELETE_COMPOSED_ARTICLE)
+
   useEffect(() => {
     if (newArticleCreated) {
       refetch()
       setNewArticleCreated(false)
     }
   }, [newArticleCreated, refetch, setNewArticleCreated, data])
+
+  const deleteDialogClose = useCallback(() => {
+    setDeleteDialogOpen(false)
+  }, [])
+
+  useEffect(() => {
+    if (deleteConfirmation && dataForDelete && data) {
+      dataForDelete.data.forEach(row => {
+        const { gameId } = data.articles[row.dataIndex]
+        deleteArticle({ variables: { gameId } })
+      })
+      setDeleteConfirmation(false)
+    }
+  }, [data, dataForDelete, deleteArticle, deleteConfirmation])
+
+  const onRowsDelete = useCallback(rowsDeleted => {
+    setDeleteDialogOpen(true)
+    setDataForDelete(rowsDeleted)
+  }, [])
 
   const options = useMemo(
     () => ({
@@ -109,8 +150,9 @@ const Articles = () => {
           history.push(getArticleRoute(gameId))
         }
       },
+      onRowsDelete: onRowsDelete,
     }),
-    [data, history]
+    [data, history, onRowsDelete]
   )
 
   const columns = useMemo(
@@ -164,12 +206,44 @@ const Articles = () => {
   if (loading) return 'Loading...'
   if (error) return `Error! ${error.message}`
   return (
-    <DataTable
-      title="Articles"
-      columns={columns}
-      data={(data && data.articles) || []}
-      options={options}
-    />
+    <>
+      <DataTable
+        title="Articles"
+        columns={columns}
+        data={(data && data.articles) || []}
+        options={options}
+      />
+      <Dialog
+        open={deleteDialogOpen}
+        onClose={deleteDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {'Are you sure you want to delete these articles?'}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            This action will permanently delete articles
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={deleteDialogClose} color="primary">
+            Disagree
+          </Button>
+          <Button
+            onClick={() => {
+              setDeleteConfirmation(true)
+              deleteDialogClose()
+            }}
+            color="primary"
+            autoFocus
+          >
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   )
 }
 

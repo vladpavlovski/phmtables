@@ -151,6 +151,14 @@ export const COMPOSE_ARTICLE = gql`
   }
 `
 
+export const DELETE_COMPOSED_ARTICLE = gql`
+  mutation deleteArticle($gameId: String!) {
+    deleteArticle(gameId: $gameId) {
+      id
+    }
+  }
+`
+
 // export const COMPOSE_ALL_ARTICLES = gql`
 //   mutation composeAllArticles() {
 //     composeAllArticles() {
