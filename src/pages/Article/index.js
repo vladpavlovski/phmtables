@@ -520,18 +520,20 @@ const Article = props => {
               <Grid item xs={12} md={12} lg={12}>
                 <Paper className={classes.paper}>
                   <Title>Google Data Sheet</Title>
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="primary"
-                    href={data.article.googleSheetUrl}
-                    target="_blank"
-                    onClick={e => {
-                      e.stopPropagation()
-                    }}
-                  >
-                    Google Data Sheet
-                  </Button>
+                  {data.article.googleSheetUrl && (
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="primary"
+                      href={data.article.googleSheetUrl}
+                      target="_blank"
+                      onClick={e => {
+                        e.stopPropagation()
+                      }}
+                    >
+                      Google Data Sheet
+                    </Button>
+                  )}
                 </Paper>
               </Grid>
               <Grid item xs={12} md={12} lg={12}>

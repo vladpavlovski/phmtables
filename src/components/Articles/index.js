@@ -201,18 +201,20 @@ const Articles = () => {
             const googleSheetUrl =
               data && data.articles[dataIndex].googleSheetUrl
             return (
-              <Button
-                size="small"
-                variant="contained"
-                color="primary"
-                href={googleSheetUrl}
-                target="_blank"
-                onClick={e => {
-                  e.stopPropagation()
-                }}
-              >
-                Data Sheet
-              </Button>
+              googleSheetUrl && (
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  href={googleSheetUrl}
+                  target="_blank"
+                  onClick={e => {
+                    e.stopPropagation()
+                  }}
+                >
+                  Data Sheet
+                </Button>
+              )
             )
           },
         },
