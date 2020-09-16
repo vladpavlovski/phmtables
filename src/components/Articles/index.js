@@ -191,6 +191,32 @@ const Articles = () => {
           },
         },
       },
+      {
+        name: 'openGoogleSheet',
+        label: 'Google Sheet',
+        options: {
+          filter: false,
+          sort: false,
+          customBodyRenderLite: dataIndex => {
+            const googleSheetUrl =
+              data && data.articles[dataIndex].googleSheetUrl
+            return (
+              <Button
+                size="small"
+                variant="contained"
+                color="primary"
+                href={googleSheetUrl}
+                target="_blank"
+                onClick={e => {
+                  e.stopPropagation()
+                }}
+              >
+                Data Sheet
+              </Button>
+            )
+          },
+        },
+      },
       { name: 'teamOneNameFull', label: 'Team 1' },
       { name: 'teamTwoNameFull', label: 'Team 2' },
       { name: 'date', label: 'Date' },

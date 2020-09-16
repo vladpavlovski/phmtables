@@ -3,10 +3,9 @@ import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { useForm, Controller } from 'react-hook-form'
 import 'react-imported-component/macro'
-import { Container, Grid, Paper, TextField } from '@material-ui/core'
+import { Container, Grid, Paper, TextField, Button } from '@material-ui/core'
 
 import { Title } from '../../components/Title'
-// import { Layout } from '../../components/Layout'
 import { DataTable } from '../../components/DataTable'
 import { useStyles } from './styled'
 import { GET_ARTICLE } from '../../graphql/requests'
@@ -23,11 +22,6 @@ const Article = props => {
   })
   //errors,
   const { handleSubmit, control } = useForm()
-  // const [isSubmitting, setSubmitting] = useState(false)
-
-  // useEffect(() => {
-  //   console.log('data:', data)
-  // }, [data])
 
   const gameReportColumns = useMemo(() => {
     return [
@@ -502,12 +496,10 @@ const Article = props => {
   )
 
   const onSubmit = useCallback(dataToSubmit => {
-    console.log('dataToSubmit', dataToSubmit)
-
+    // console.log('dataToSubmit', dataToSubmit)
     // try {
     //   setSubmitting(true)
     //   const {  } = dataToSubmit
-
     // } catch (error) {
     //   console.error(error)
     // } finally {
@@ -525,6 +517,23 @@ const Article = props => {
             noValidate
           >
             <Grid container spacing={2}>
+              <Grid item xs={12} md={12} lg={12}>
+                <Paper className={classes.paper}>
+                  <Title>Google Data Sheet</Title>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    color="primary"
+                    href={data.article.googleSheetUrl}
+                    target="_blank"
+                    onClick={e => {
+                      e.stopPropagation()
+                    }}
+                  >
+                    Google Data Sheet
+                  </Button>
+                </Paper>
+              </Grid>
               <Grid item xs={12} md={12} lg={12}>
                 <Paper className={classes.paper}>
                   <Title>Header</Title>

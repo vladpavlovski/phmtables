@@ -9,6 +9,7 @@ export const GET_ARTICLES_LIST = gql`
       teamTwoNameFull
       date
       periodsResult
+      googleSheetUrl
     }
   }
 `
@@ -47,6 +48,7 @@ export const GET_ARTICLE = gql`
       teamTwoFaceoffs
       referee
       delegate
+      googleSheetUrl
       gameData {
         teamOneStarId
         teamOneStarName
