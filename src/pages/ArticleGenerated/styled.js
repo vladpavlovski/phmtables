@@ -61,25 +61,25 @@ const useStyles = makeStyles(theme => ({
   resultCardMedia: {
     objectFit: 'cover',
     verticalAlign: 'middle',
-    backgroundSize: 'contain',
-    backgroundPosition: '50% 50%',
-    // transform: 'scale(1.1)',
+    backgroundSize: 'cover',
+    backgroundPosition: '0.2rem 50%',
+    transform: 'scale(1.6)',
 
     borderRadius: '50%',
     [theme.breakpoints.up('xs')]: {
-      width: '25vw',
+      width: '22vw',
     },
     [theme.breakpoints.up('sm')]: {
-      width: '14rem',
-      height: '14rem',
+      width: '12rem',
+      height: '12rem',
     },
     [theme.breakpoints.up('md')]: {
-      width: '14rem',
-      height: '14rem',
+      width: '12rem',
+      height: '12rem',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '16rem',
-      height: '16rem',
+      width: '14rem',
+      height: '14rem',
     },
   },
   resultTeamName: {
@@ -102,11 +102,13 @@ const useStyles = makeStyles(theme => ({
   },
   resultTeamGoalsWrap: {
     display: 'flex',
-    justify: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    [theme.breakpoints.down('sm')]: {
-      width: '20vw',
+    [theme.breakpoints.up('xs')]: {
+      width: '28vw',
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '28vw',
     },
     [theme.breakpoints.up('md')]: {
       width: '14rem',
@@ -118,6 +120,17 @@ const useStyles = makeStyles(theme => ({
   resultTeamGoals: {
     fontFamily: 'Bungee Shade',
     fontSize: '6.4rem',
+    lineHeight: 0,
+    [theme.breakpoints.up('xs')]: {
+      fontSize: '5.4rem',
+      position: 'absolute',
+      left: 'clamp(14rem, 43%, 40rem)',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '6.4rem',
+      position: 'relative',
+      left: 'initial',
+    },
   },
   resultChipList: {
     display: 'flex',
@@ -134,8 +147,10 @@ const useStyles = makeStyles(theme => ({
   },
   resultChip: {
     margin: theme.spacing(0.5),
+    backgroundColor: '#141414 !important',
   },
   perex: {
+    textAlign: 'center',
     [theme.breakpoints.up('xs')]: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(2),

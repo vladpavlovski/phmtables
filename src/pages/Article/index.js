@@ -517,10 +517,10 @@ const Article = props => {
             noValidate
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} md={12} lg={12}>
-                <Paper className={classes.paper}>
-                  <Title>Google Data Sheet</Title>
-                  {data.article.googleSheetUrl && (
+              {data.article.googleSheetUrl && (
+                <Grid item xs={12} md={12} lg={12}>
+                  <Paper className={classes.paper}>
+                    <Title>Google Data Sheet</Title>(
                     <Button
                       size="small"
                       variant="contained"
@@ -533,9 +533,10 @@ const Article = props => {
                     >
                       Google Data Sheet
                     </Button>
-                  )}
-                </Paper>
-              </Grid>
+                    )
+                  </Paper>
+                </Grid>
+              )}
               <Grid item xs={12} md={12} lg={12}>
                 <Paper className={classes.paper}>
                   <Title>Header</Title>
