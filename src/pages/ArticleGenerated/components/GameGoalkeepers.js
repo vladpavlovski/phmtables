@@ -10,6 +10,7 @@ const GoalieCard = props => {
     goalieWins,
     goalieSaves,
     goaliePerc,
+    goalieGoals,
   } = props.data
   const classes = useStyles()
 
@@ -45,17 +46,15 @@ const GoalieCard = props => {
           </Grid>
           <Grid item lg={12}>
             <Typography
-              className={classes.reportPlayerText}
+              className={classes.goaliePlayerStat}
               component="span"
               variant="h6"
             >
-              Zákroků: 35 (no data)
+              {`Zákroků: ${goalieSaves}`}
               <br />
-              {`Ob.gólů: ${goalieSaves}`}
+              {`Ob.gólů: ${goalieGoals}`}
               <br />
-              {`% úspěš.: ${
-                Math.round((goaliePerc + Number.EPSILON) * 100) / 100
-              }%`}
+              {`% úspěš.: ${Math.round(goaliePerc * 100) / 100}%`}
               <br />
               {`Vítězství: ${goalieWins}`}
             </Typography>
@@ -77,6 +76,8 @@ const GoalieCard = props => {
 
 export const GameGoalkeepers = props => {
   const {
+    teamOneGoals,
+    teamTwoGoals,
     gameData: {
       teamOneGoalieAvatar,
       teamOneGoalieName,
@@ -108,6 +109,7 @@ export const GameGoalkeepers = props => {
       >
         {[
           {
+            goalieGoals: teamOneGoals,
             goalieName: teamOneGoalieName,
             goalieAvatar: teamOneGoalieAvatar,
             goalieWins: teamOneGoalieWins,
@@ -115,6 +117,7 @@ export const GameGoalkeepers = props => {
             goaliePerc: teamOneGoaliePerc,
           },
           {
+            goalieGoals: teamTwoGoals,
             goalieName: teamTwoGoalieName,
             goalieAvatar: teamTwoGoalieAvatar,
             goalieWins: teamTwoGoalieWins,

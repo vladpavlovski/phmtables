@@ -503,8 +503,19 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('lg')]: {
       fontSize: '8rem',
     },
-
     color: '#f1c50e',
+  },
+  goaliePlayerStat: {
+    color: theme.palette.common.white,
+    fontWeight: theme.typography.fontWeightLight,
+    fontFamily: `'Roboto Condensed', sans-serif !important`,
+
+    [theme.breakpoints.up('xs')]: {
+      fontSize: '2rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '2.5rem',
+    },
   },
 }))
 

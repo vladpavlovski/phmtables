@@ -27,7 +27,7 @@ const MinuteEvent = props => {
           />
         )}
       </Grid>
-      <Grid item xl={1} lg={1} md={1} sm={1} xs={2}>
+      <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
         <div
           className={classes.gsSituation}
           style={{
