@@ -33,3 +33,6 @@ export const RESULT_TS_55_21_URL =
 
 export const STANDINGS_TS_55_21_URL =
   'https://docs.google.com/spreadsheets/d/1EcWd_zZ3Hg3wnbg6fivIIRKHPmxIug5GQ-hxowIgF5s/edit?usp=sharing'
+
+export const GOALIES_20_URL =
+  'https://docs.google.com/spreadsheets/d/1qjXGftP3bDvbbEWGp2ncRfUTKIU5GnE99tZPhg4nIyU/edit?usp=sharing'

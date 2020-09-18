@@ -71,6 +71,12 @@ export const TeamLogo = styled.img`
   object-fit: cover;
 `
 
+export const AvatarLogo = styled.img`
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+`
+
 export const Wrapper = styled.div`
   background: #272727;
   padding: 1rem;
@@ -130,6 +136,11 @@ export const TeamName = styled.div`
   color: ${theme.color.bigStone};
 `
 
+export const TeamNameSmall = styled.div`
+  font-size: ${theme.fontSize.xSmall};
+  color: ${theme.color.bigStone};
+`
+
 export const Rank = styled.div`
   font-size: ${theme.fontSize.large};
   font-weight: bold;
@@ -138,12 +149,22 @@ export const Rank = styled.div`
 
 export const CellValue = styled.div`
   text-align: right;
+  ${props =>
+    props.left &&
+    css`
+      text-align: left;
+    `};
   padding: 0.2rem 0.5rem;
   width: max-content;
 `
 
 export const Wins = styled(CellValue)`
   color: green;
+  ${props =>
+    props.bold &&
+    css`
+      font-weight: bold;
+    `};
 `
 
 export const Draws = styled(CellValue)`

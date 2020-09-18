@@ -46,6 +46,8 @@ const Best10HobbyPoints21 = Load(() =>
 )
 const ResultTs5521 = Load(() => import('./pages/tables/ResultTs5521'))
 const StandingsTs5521 = Load(() => import('./pages/tables/StandingsTs5521'))
+const Goalies20Top = Load(() => import('./pages/tables/Goalies20Top'))
+const Goalies20Klasik = Load(() => import('./pages/tables/Goalies20Klasik'))
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -141,6 +143,12 @@ const App = () => (
             path={ROUTES.STANDINGS_TS55_21}
             exact
             component={StandingsTs5521}
+          />
+          <Route path={ROUTES.GOALIES_20_TOP} exact component={Goalies20Top} />
+          <Route
+            path={ROUTES.GOALIES_20_KLASIK}
+            exact
+            component={Goalies20Klasik}
           />
         </Switch>
       </ErrorBoundary>

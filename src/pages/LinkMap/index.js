@@ -18,6 +18,19 @@ const Layout = Load(() => import('../../components/Layout'))
 
 const linkMapData = [
   {
+    title: 'Goalies 20 Top',
+    link: ROUTES.GOALIES_20_TOP,
+    description: 'Goalies 20 Top table',
+    backgroundLink: 'https://cdn.wallpapersafari.com/6/49/1dDhUF.jpg',
+  },
+  {
+    title: 'Goalies 20 Klasik',
+    link: ROUTES.GOALIES_20_KLASIK,
+    description: 'Goalies 20 Klasik table',
+    backgroundLink:
+      'https://i.pinimg.com/originals/24/23/ee/2423ee115bdf880478bf05b43146d869.jpg',
+  },
+  {
     title: 'Result TS55 21',
     link: ROUTES.RESULT_TS55_21,
     description: 'Result TS55 21 table',
