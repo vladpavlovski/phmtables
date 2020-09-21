@@ -13,7 +13,7 @@ const Title = props => {
 
   return (
     <div className={classes.paper}>
-      <Typography variant="h3" component="h1">
+      <Typography variant="h3" component="h1" className={classes.title}>
         {title}
       </Typography>
       <Typography variant="subtitle1">

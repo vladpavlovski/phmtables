@@ -7,18 +7,22 @@ import bauerSponsorLogo from './images/bauer_logo_sponsor.png'
 
 const useStyles = makeStyles(theme => ({
   article: {
-    [theme.breakpoints.up('xs')]: {
-      padding: theme.spacing(1),
-    },
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(2),
-    },
-    [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(3),
-    },
-    [theme.breakpoints.up('lg')]: {
-      padding: theme.spacing(4),
-    },
+    padding: 0,
+    // [theme.breakpoints.up('xs')]: {
+    //   padding: theme.spacing(1),
+    // },
+    // [theme.breakpoints.up('sm')]: {
+    //   padding: theme.spacing(2),
+    // },
+    // [theme.breakpoints.up('md')]: {
+    //   padding: theme.spacing(3),
+    // },
+    // [theme.breakpoints.up('lg')]: {
+    //   padding: theme.spacing(4),
+    // },
+  },
+  title: {
+    fontSize: '3.8rem',
   },
   paper: {
     marginTop: theme.spacing(8),
@@ -105,7 +109,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     [theme.breakpoints.up('xs')]: {
-      width: '28vw',
+      width: '22vw',
     },
     [theme.breakpoints.up('sm')]: {
       width: '28vw',
@@ -285,6 +289,15 @@ const useStyles = makeStyles(theme => ({
       paddingLeft: '20$',
     },
   },
+
+  gsMinute: {
+    [theme.breakpoints.up('xs')]: {
+      padding: '5px !important',
+    },
+    [theme.breakpoints.up('sm')]: {
+      padding: '8px !important',
+    },
+  },
   gsTeamLogo: {
     width: '100%',
     height: '3rem',
@@ -304,7 +317,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.common.white,
     fontFamily: `'Roboto Condensed', sans-serif !important`,
     [theme.breakpoints.up('xs')]: {
-      fontSize: '1.3rem',
+      fontSize: '1.2rem',
     },
     [theme.breakpoints.up('sm')]: {
       fontSize: '1.4rem',
@@ -323,7 +336,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     [theme.breakpoints.up('xs')]: {
-      fontSize: '1.3rem',
+      fontSize: '1.2rem',
     },
     [theme.breakpoints.up('sm')]: {
       fontSize: '1.4rem',
@@ -370,7 +383,7 @@ const useStyles = makeStyles(theme => ({
     fontFamily: `'Roboto Condensed', sans-serif !important`,
 
     [theme.breakpoints.up('xs')]: {
-      fontSize: '1.3rem',
+      fontSize: '1.2rem',
     },
     [theme.breakpoints.up('sm')]: {
       fontSize: '1.5rem',

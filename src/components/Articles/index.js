@@ -27,32 +27,28 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 const generateIframeCode = props => {
   const { title, link } = props
-  const generateId = value => {
-    return `${value.replace(/\s/g, '_').toLowerCase()}_id`
-  }
+  const generateId = value => `${value.replace(/\s/g, '_').toLowerCase()}_id`
+  const IframeId = generateId(title)
   const code = `
-  <iframe id="${generateId(
-    title
-  )}" title="${title}" width="920" height="7000" src="${
-    window.location.origin
-  }${link}">
-  </iframe>
+    <iframe id="${IframeId}" title="${title}" width="920" height="7000" src="${window.location.origin}${link}">
+    </iframe>
 
-  <script>
-    function checkSize() {
-      if (window.innerWidth < 920) {
-        document.getElementById("${generateId(
-          title
-        )}").width = window.innerWidth - 40
+    <script>
+      function checkSize() {
+        const Iframe = document.getElementById("${IframeId}")
+        if (window.innerWidth < 920) {
+          const widthForIframe = window.innerWidth < 320 ? 320 : window.innerWidth
+          Iframe.width = widthForIframe
+        }
+        Iframe.parentElement.parentElement.style.padding = "0px"
       }
-    }
 
-    checkSize()
-      window.addEventListener('resize', checkSize)
-      window.onunload = function() {
-        window.removeEventListener('resize', checkSize)
-    }
-  </script>
+      checkSize()
+        window.addEventListener('resize', checkSize)
+        window.onunload = function() {
+          window.removeEventListener('resize', checkSize)
+      }
+    </script>
   `
 
   return code
