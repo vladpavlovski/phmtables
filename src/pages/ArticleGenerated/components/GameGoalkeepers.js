@@ -109,7 +109,7 @@ export const GameGoalkeepers = props => {
       >
         {[
           {
-            goalieGoals: teamOneGoals,
+            goalieGoals: teamTwoGoals,
             goalieName: teamOneGoalieName,
             goalieAvatar: teamOneGoalieAvatar,
             goalieWins: teamOneGoalieWins,
@@ -117,7 +117,7 @@ export const GameGoalkeepers = props => {
             goaliePerc: teamOneGoaliePerc,
           },
           {
-            goalieGoals: teamTwoGoals,
+            goalieGoals: teamOneGoals,
             goalieName: teamTwoGoalieName,
             goalieAvatar: teamTwoGoalieAvatar,
             goalieWins: teamTwoGoalieWins,
