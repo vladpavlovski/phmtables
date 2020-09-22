@@ -35,8 +35,7 @@ const PlayersTable = props => {
           <TableRow>
             <TableCell
               align="right"
-              width="10%"
-              className={classes.reportTableHeadCell}
+              className={`${classes.reportTableHeadCell} ${classes.reportTable10Width}`}
             >
               #
             </TableCell>
@@ -60,9 +59,8 @@ const PlayersTable = props => {
               B
             </TableCell>
             <TableCell
-              width="16%"
               align="right"
-              className={classes.reportTableHeadCell}
+              className={`${classes.reportTableHeadCell} ${classes.reportTable13Width}`}
             >
               TR.MIN
             </TableCell>

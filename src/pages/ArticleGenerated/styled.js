@@ -394,31 +394,37 @@ const useStyles = makeStyles(theme => ({
     },
   },
   reportTable: {
-    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    backgroundColor: 'rgba(255, 255, 255, 0.6) !important',
   },
   reportTableHeadCell: {
     backgroundColor: '#353535 !important',
-    color: theme.palette.common.white,
+    color: `${theme.palette.common.white}  !important`,
     [theme.breakpoints.up('xs')]: {
-      padding: '0.5rem',
+      padding: '0.5rem !important',
     },
     [theme.breakpoints.up('sm')]: {
-      padding: '1rem',
+      padding: '1rem  !important',
     },
+  },
+  reportTable10Width: {
+    width: '10% !important',
+  },
+  reportTable13Width: {
+    width: '13% !important',
   },
   reportTableCell: {
     fontFamily: `'Roboto Condensed', sans-serif !important`,
     [theme.breakpoints.up('xs')]: {
-      fontSize: '1.5rem',
-      padding: '0.5rem',
+      fontSize: '1.5rem !important',
+      padding: '0.5rem !important',
     },
     [theme.breakpoints.up('sm')]: {
-      fontSize: '2rem',
-      padding: '0.5rem',
+      fontSize: '2rem !important',
+      padding: '0.5rem !important',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '2.5rem',
-      padding: '1rem',
+      fontSize: '2.5rem !important',
+      padding: '1rem !important',
     },
     // [theme.breakpoints.up('lg')]: {
     //   fontSize: '2.5rem',
