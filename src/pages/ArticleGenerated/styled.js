@@ -7,7 +7,7 @@ import bauerSponsorLogo from './images/bauer_logo_sponsor.png'
 
 const useStyles = makeStyles(theme => ({
   article: {
-    padding: 0,
+    padding: '0px !important',
     // [theme.breakpoints.up('xs')]: {
     //   padding: theme.spacing(1),
     // },
@@ -353,7 +353,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'visible',
     objectFit: 'cover',
     backgroundSize: 'cover',
-    backgroundColor: 'rgba(0,0,0,0.8) !important',
+    backgroundColor: 'rgba(255,255,255,0.7) !important',
     backgroundBlendMode: 'color',
     borderRadius: '4px',
     display: 'flex',
@@ -373,9 +373,59 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(6),
     },
   },
+  reportTeamLogo: {
+    width: '50%',
+    height: '8rem',
+    margin: '0 auto',
+    backgroundPosition: '50% 50%',
+    overflow: 'visible',
+    objectFit: 'cover',
+    backgroundSize: 'cover',
+    borderRadius: '4px',
+    display: 'flex',
+  },
   reportTitle: {
     textAlign: 'center',
-    padding: theme.spacing(4),
+    [theme.breakpoints.up('xs')]: {
+      padding: '1rem 0',
+    },
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(4),
+    },
+  },
+  reportTable: {
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+  },
+  reportTableHeadCell: {
+    backgroundColor: '#353535 !important',
+    color: theme.palette.common.white,
+    [theme.breakpoints.up('xs')]: {
+      padding: '0.5rem',
+    },
+    [theme.breakpoints.up('sm')]: {
+      padding: '1rem',
+    },
+  },
+  reportTableCell: {
+    fontFamily: `'Roboto Condensed', sans-serif !important`,
+    [theme.breakpoints.up('xs')]: {
+      fontSize: '1.5rem',
+      padding: '0.5rem',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '2rem',
+      padding: '0.5rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '2.5rem',
+      padding: '1rem',
+    },
+    // [theme.breakpoints.up('lg')]: {
+    //   fontSize: '2.5rem',
+    // },
+  },
+  noPadding: {
+    padding: '0 !important',
   },
   reportPlayerText: {
     color: theme.palette.common.white,
@@ -395,49 +445,77 @@ const useStyles = makeStyles(theme => ({
       fontSize: '2.5rem',
     },
   },
-  reportPlayerPoints: {
-    display: 'flex',
-    alignItems: 'center',
-    justify: 'center',
-    justifyContent: 'center',
+  // reportPlayerPoints: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justify: 'center',
+  //   justifyContent: 'center',
 
-    backgroundColor: theme.palette.success.dark,
-    color: theme.palette.common.white,
-    fontFamily: `'Roboto Condensed', sans-serif !important`,
-    [theme.breakpoints.up('xs')]: {
-      fontSize: '1.1rem',
-      width: '4rem',
-      height: '3rem',
-    },
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '1.4rem',
-      width: '5rem',
-      height: '3rem',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.8rem',
-      width: '6rem',
-      height: '3rem',
-    },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '2rem',
-      width: '8rem',
-      height: '3rem',
-    },
+  //   backgroundColor: theme.palette.success.dark,
+  //   color: theme.palette.common.white,
+  //   fontFamily: `'Roboto Condensed', sans-serif !important`,
+  //   [theme.breakpoints.up('xs')]: {
+  //     fontSize: '1.1rem',
+  //     width: '4rem',
+  //     height: '3rem',
+  //   },
+  //   [theme.breakpoints.up('sm')]: {
+  //     fontSize: '1.4rem',
+  //     width: '5rem',
+  //     height: '3rem',
+  //   },
+  //   [theme.breakpoints.up('md')]: {
+  //     fontSize: '1.8rem',
+  //     width: '6rem',
+  //     height: '3rem',
+  //   },
+  //   [theme.breakpoints.up('lg')]: {
+  //     fontSize: '2rem',
+  //     width: '8rem',
+  //     height: '3rem',
+  //   },
+  // },
+  reportPlayerInfoIcon: {
+    width: '4rem',
+    height: '4rem',
   },
   reportPlayerAvatar: {
     [theme.breakpoints.up('xs')]: {
-      width: '6rem',
+      width: '7rem',
+      height: '6rem',
     },
     [theme.breakpoints.up('sm')]: {
-      width: '8rem',
+      width: '7rem',
+      height: '6rem',
     },
     [theme.breakpoints.up('md')]: {
-      width: '10rem',
+      width: '8rem',
+      height: '7rem',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '12rem',
+      width: '8rem',
+      height: '7rem',
     },
+  },
+  reportPlayerSign: {
+    width: '5rem',
+    height: '5rem',
+    // [theme.breakpoints.up('xs')]: {
+    //   width: '6rem',
+    //   height: '6rem',
+    // },
+    // [theme.breakpoints.up('sm')]: {
+    //   width: '6rem',
+    //   height: '6rem',
+    // },
+    // [theme.breakpoints.up('md')]: {
+    //   width: '7rem',
+    //   height: '7rem',
+    // },
+    // [theme.breakpoints.up('lg')]: {
+    //   width: '7rem',
+    //   height: '5rem',
+    // },
   },
   reportCenterize: {
     display: 'flex',

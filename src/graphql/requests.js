@@ -117,6 +117,9 @@ export const GET_ARTICLE = gql`
         playerPlaceHolder1
         playerPlaceHolder2
         playerPlaceHolder3
+        playerIsStar
+        playerIsGoalie
+        playerIsCaptain
       }
     }
   }

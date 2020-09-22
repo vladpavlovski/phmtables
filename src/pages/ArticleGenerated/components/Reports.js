@@ -1,73 +1,186 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
-import { Grid, Typography, Paper, Divider } from '@material-ui/core'
+import {
+  Grid,
+  Typography,
+  Paper,
+  Divider,
+  TableContainer,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Hidden,
+} from '@material-ui/core'
 import { useStyles } from '../styled'
 
-const PlayerRow = props => {
-  const {
-    playerId,
-    playerNumber,
-    playerName,
-    playerGoals,
-    playerAssists,
-    playerPoints,
-    playerPim,
-    playerAvatar,
-    // playerDetail1,
-    // playerDetail2,
-    // playerPlaceHolder1,
-    // playerPlaceHolder2,
-    // playerPlaceHolder3,
-  } = props.data
+const PlayersTable = props => {
+  const { data } = props
   const classes = useStyles()
 
+  const getColor = useCallback(value => {
+    const number = parseInt(value)
+    return number === 0 ? '#7a7a7a' : '#000'
+  }, [])
+
   return (
-    <Grid container spacing={0} justify="center" alignItems="center">
-      <Grid item xl={1} lg={1} md={1} sm={1} xs={1}>
-        <span
-          className={`${classes.reportPlayerText} ${classes.reportCenterize}`}
-        >
-          {playerNumber}
-        </span>
-      </Grid>
-      <Grid item xl={1} lg={1} md={1} sm={1} xs={2}>
-        {playerPoints >= 4 && (
-          <span className={classes.reportPlayerPoints}>
-            {`${playerPoints}+ bodů`}
-          </span>
-        )}
-      </Grid>
-      <Grid item xl={2} lg={2} md={2} sm={2} xs={3}>
-        <span className={classes.reportPlayerText}>{playerName}</span>
-      </Grid>
-      <Grid item lg={2}>
-        {playerAvatar && (
-          <div className={classes.reportCenterize}>
-            <img
-              src={playerAvatar}
-              alt={playerId}
-              className={`${classes.reportPlayerAvatar}`}
-            />
-          </div>
-        )}
-      </Grid>
-      <Grid item lg={1}>
-        <span className={classes.reportPlayerText}>{`${playerGoals} (G)`}</span>
-      </Grid>
-      <Grid item lg={1}>
-        <span
-          className={classes.reportPlayerText}
-        >{`${playerAssists} (A)`}</span>
-      </Grid>
-      <Grid item lg={1}>
-        <span
-          className={classes.reportPlayerText}
-        >{`${playerPoints} (B)`}</span>
-      </Grid>
-      <Grid item lg={1}>
-        <span className={classes.reportPlayerText}>{`${playerPim} (MIN)`}</span>
-      </Grid>
-    </Grid>
+    <TableContainer>
+      <Table
+        className={classes.reportTable}
+        size="small"
+        aria-label="a dense table"
+      >
+        <TableHead>
+          <TableRow>
+            <TableCell
+              align="right"
+              width="10%"
+              className={classes.reportTableHeadCell}
+            >
+              #
+            </TableCell>
+            <Hidden only="xs">
+              <TableCell
+                align="right"
+                className={classes.reportTableHeadCell}
+              />
+            </Hidden>
+            <TableCell className={classes.reportTableHeadCell}>Name</TableCell>
+            <TableCell align="left" className={classes.reportTableHeadCell}>
+              Avatar
+            </TableCell>
+            <TableCell align="right" className={classes.reportTableHeadCell}>
+              G
+            </TableCell>
+            <TableCell align="right" className={classes.reportTableHeadCell}>
+              A
+            </TableCell>
+            <TableCell align="right" className={classes.reportTableHeadCell}>
+              B
+            </TableCell>
+            <TableCell
+              width="16%"
+              align="right"
+              className={classes.reportTableHeadCell}
+            >
+              TR.MIN
+            </TableCell>
+            <Hidden only="xs">
+              <TableCell align="left" className={classes.reportTableHeadCell} />
+            </Hidden>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map(row => (
+            <TableRow key={row.playerId}>
+              <TableCell className={classes.reportTableCell} align="right">
+                {row.playerNumber}
+              </TableCell>
+              <Hidden only="xs">
+                <TableCell align="right" className={classes.noPadding}>
+                  {row.playerIsStar && (
+                    <img
+                      src={row.playerIsStar}
+                      alt={'Star'}
+                      className={`${classes.reportPlayerSign}`}
+                    />
+                  )}
+                  {row.playerIsGoalie && (
+                    <img
+                      src={row.playerIsGoalie}
+                      alt={'Goalie'}
+                      className={`${classes.reportPlayerSign}`}
+                    />
+                  )}
+                  {row.playerIsCaptain && (
+                    <img
+                      src={row.playerIsCaptain}
+                      alt={'Captain'}
+                      className={`${classes.reportPlayerSign}`}
+                    />
+                  )}
+                </TableCell>
+              </Hidden>
+              <TableCell
+                className={classes.reportTableCell}
+                component="th"
+                scope="row"
+              >
+                {row.playerName}
+              </TableCell>
+              <TableCell align="left" className={classes.noPadding}>
+                {
+                  <img
+                    src={row.playerAvatar}
+                    alt={row.playerName}
+                    className={`${classes.reportPlayerAvatar}`}
+                  />
+                }
+              </TableCell>
+              <TableCell
+                style={{
+                  color: getColor(row.playerGoals),
+                }}
+                className={classes.reportTableCell}
+                align="right"
+              >
+                {row.playerGoals}
+              </TableCell>
+              <TableCell
+                style={{
+                  color: getColor(row.playerAssists),
+                }}
+                className={classes.reportTableCell}
+                align="right"
+              >
+                {row.playerAssists}
+              </TableCell>
+              <TableCell
+                style={{
+                  color: getColor(row.playerPoints),
+                }}
+                className={classes.reportTableCell}
+                align="right"
+              >
+                {row.playerPoints}
+              </TableCell>
+              <TableCell
+                style={{
+                  color: parseInt(row.playerPim) === 0 ? '#7a7a7a' : '#ff0000',
+                }}
+                className={classes.reportTableCell}
+                align="right"
+              >
+                {row.playerPim}
+              </TableCell>
+              <Hidden only="xs">
+                <TableCell align="left" className={classes.noPadding}>
+                  {parseInt(row.playerGoals) === 3 && (
+                    <img
+                      src={
+                        'https://drive.google.com/uc?export=view&id=1rd28NwESkVlwUbyKCO-IJJik4d6uwdcZ'
+                      }
+                      alt={'Hattrick'}
+                      className={`${classes.reportPlayerInfoIcon}`}
+                    />
+                  )}
+                  {row.playerPoints >= 4 && (
+                    <img
+                      src={
+                        'https://drive.google.com/uc?export=view&id=16zdtTz3AAfvDhxx-UlpoSRKYpk5OezKn'
+                      }
+                      alt={'4+bodů'}
+                      className={`${classes.reportPlayerInfoIcon}`}
+                    />
+                  )}
+                </TableCell>
+              </Hidden>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
 
@@ -97,17 +210,30 @@ export const Reports = props => {
         <Grid
           container
           spacing={2}
-          direction="column"
+          direction="row"
           justify="space-between"
           alignItems="center"
         >
-          <Grid item lg={12}>
-            <Typography className={classes.gsTitle} component="h3" variant="h4">
+          <Grid item xs={12} sm={6}>
+            <Typography
+              className={classes.reportTitle}
+              component="h3"
+              variant="h4"
+            >
               {`Soupiska: ${teamOneNameFull}`}
             </Typography>
           </Grid>
-          {playersTeamOne &&
-            playersTeamOne.map(data => <PlayerRow key={data.id} data={data} />)}
+          <Hidden only="xs">
+            <Grid item sm={6}>
+              <Paper
+                className={classes.reportTeamLogo}
+                style={{
+                  backgroundImage: `url(${teamOneLogo})`,
+                }}
+              />
+            </Grid>
+          </Hidden>
+          {playersTeamOne && <PlayersTable data={playersTeamOne} />}
         </Grid>
       </Paper>
       <Divider />
@@ -120,17 +246,30 @@ export const Reports = props => {
         <Grid
           container
           spacing={2}
-          direction="column"
+          direction="row"
           justify="space-between"
           alignItems="center"
         >
-          <Grid item lg={12}>
-            <Typography className={classes.gsTitle} component="h3" variant="h4">
+          <Grid item xs={12} sm={6}>
+            <Typography
+              className={classes.reportTitle}
+              component="h3"
+              variant="h4"
+            >
               {`Soupiska: ${teamTwoNameFull}`}
             </Typography>
           </Grid>
-          {playersTeamTwo &&
-            playersTeamTwo.map(data => <PlayerRow key={data.id} data={data} />)}
+          <Hidden only="xs">
+            <Grid item sm={6}>
+              <Paper
+                className={classes.reportTeamLogo}
+                style={{
+                  backgroundImage: `url(${teamTwoLogo})`,
+                }}
+              />
+            </Grid>
+          </Hidden>
+          {playersTeamTwo && <PlayersTable data={playersTeamTwo} />}
         </Grid>
       </Paper>
     </>

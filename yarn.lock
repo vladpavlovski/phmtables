@@ -13611,16 +13611,6 @@ typeface-fugaz-one@^0.0.72:
   resolved "https://registry.yarnpkg.com/typeface-fugaz-one/-/typeface-fugaz-one-0.0.72.tgz#5eeaa2e76eb49e2dbfab6c836ebb6b7aa4b773b5"
   integrity sha512-l4dy8SvzjzohZ3mT8c5g59O6SYdpObXwzHBCiOMCtWHmsmiywDK2aB5cV0S2aydFf91S8cDtA+waMUtJGOjVEw==
 
-typeface-roboto-condensed@^0.0.75:
-  version "0.0.75"
-  resolved "https://registry.yarnpkg.com/typeface-roboto-condensed/-/typeface-roboto-condensed-0.0.75.tgz#d2cc7b8e4ee0f4dec1c035312ef8991827682925"
-  integrity sha512-Cq0slVsJ0uR1BmV9XCtIV2fJ3lr3vKsGTi4NyRX94Fkvwf/J3nh++NGpZ6gN5P+AzKetZEUifdpM5EQ2HCvb5g==
-
-typeface-roboto@^0.0.75:
-  version "0.0.75"
-  resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.75.tgz#98d5ba35ec234bbc7172374c8297277099cc712b"
-  integrity sha512-VrR/IiH00Z1tFP4vDGfwZ1esNqTiDMchBEXYY9kilT6wRGgFoCAlgkEUMHb1E3mB0FsfZhv756IF0+R+SFPfdg==
-
 typescript@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.2.tgz#7ea7c88777c723c681e33bf7988be5d008d05ac2"
