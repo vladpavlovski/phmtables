@@ -479,6 +479,66 @@ const Article = props => {
           },
         },
       },
+      {
+        name: 'playerIsStar',
+        label: 'Star',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerIsStar"
+                label="Star"
+                name="playerIsStar"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerIsGoalie',
+        label: 'Goalie',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerIsGoalie"
+                label="Goalie"
+                name="playerIsGoalie"
+              />
+            )
+          },
+        },
+      },
+      {
+        name: 'playerIsCaptain',
+        label: 'Goalie',
+        options: {
+          filter: true,
+          customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+              <Controller
+                as={TextField}
+                control={control}
+                defaultValue={value}
+                required
+                id="playerIsCaptain"
+                label="Captain"
+                name="playerIsCaptain"
+              />
+            )
+          },
+        },
+      },
     ]
   }, [control])
 
@@ -520,7 +580,7 @@ const Article = props => {
               {data.article.googleSheetUrl && (
                 <Grid item xs={12} md={12} lg={12}>
                   <Paper className={classes.paper}>
-                    <Title>Google Data Sheet</Title>(
+                    <Title>Google Data Sheet</Title>
                     <Button
                       size="small"
                       variant="contained"
@@ -533,7 +593,6 @@ const Article = props => {
                     >
                       Google Data Sheet
                     </Button>
-                    )
                   </Paper>
                 </Grid>
               )}
@@ -902,6 +961,17 @@ const Article = props => {
                     // error={Boolean(errors.email)}
                     // helperText={errors.email && errors.email.message}
                   />
+                  <Controller
+                    as={TextField}
+                    control={control}
+                    defaultValue={data.article.teamOneWtl}
+                    required
+                    id="teamOneWtl"
+                    label="T1 WtL"
+                    name="teamOneWtl"
+                    // error={Boolean(errors.email)}
+                    // helperText={errors.email && errors.email.message}
+                  />
                 </Paper>
               </Grid>
               <Grid item xs={12} md={12} lg={12}>
@@ -1103,6 +1173,17 @@ const Article = props => {
                     id="teamTwoGoaliePerc"
                     label="T2 Goalie Perc"
                     name="teamTwoGoaliePerc"
+                    // error={Boolean(errors.email)}
+                    // helperText={errors.email && errors.email.message}
+                  />
+                  <Controller
+                    as={TextField}
+                    control={control}
+                    defaultValue={data.article.teamTwoWtl}
+                    required
+                    id="teamTwoWtl"
+                    label="T2 WtL"
+                    name="teamTwoWtl"
                     // error={Boolean(errors.email)}
                     // helperText={errors.email && errors.email.message}
                   />

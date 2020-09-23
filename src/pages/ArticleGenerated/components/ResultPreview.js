@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import dayjs from 'dayjs'
 
 import {
@@ -21,6 +21,8 @@ import { useStyles } from '../styled'
 
 export const ResultPreview = props => {
   const {
+    teamOneWtl,
+    teamTwoWtl,
     teamOneNameFull,
     teamOneGoals,
     teamOneLogo,
@@ -35,6 +37,22 @@ export const ResultPreview = props => {
   } = props.data
   const classes = useStyles()
 
+  const getBorderColorClassName = useCallback(
+    value => {
+      switch (value) {
+        case 'P':
+          return classes.borderRed
+        case 'V':
+          return classes.borderGreen
+        case 'R':
+          return classes.borderOrange
+        default:
+          return ''
+      }
+    },
+    [classes.borderGreen, classes.borderOrange, classes.borderRed]
+  )
+
   return (
     <Paper className={classes.resultPreview}>
       <Grid
@@ -46,7 +64,11 @@ export const ResultPreview = props => {
       >
         <Grid item lg={6}>
           <Card className={classes.resultCard}>
-            <div className={classes.resultCardDetails}>
+            <div
+              className={`${
+                classes.resultCardDetails
+              } ${getBorderColorClassName(teamOneWtl)}`}
+            >
               <CardContent>
                 <Typography
                   className={classes.resultTeamName}
@@ -76,7 +98,11 @@ export const ResultPreview = props => {
         </Grid>
         <Grid item lg={6}>
           <Card className={classes.resultCard}>
-            <div className={classes.resultCardDetails}>
+            <div
+              className={`${
+                classes.resultCardDetails
+              } ${getBorderColorClassName(teamTwoWtl)}`}
+            >
               <CardContent>
                 <Typography
                   className={classes.resultTeamName}

@@ -49,6 +49,8 @@ export const GET_ARTICLE = gql`
       referee
       delegate
       googleSheetUrl
+      teamOneWtl
+      teamTwoWtl
       gameData {
         teamOneStarId
         teamOneStarName

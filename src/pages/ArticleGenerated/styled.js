@@ -61,6 +61,17 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
     display: 'flex',
     alignItems: 'center',
+    borderLeftStyle: 'solid',
+    borderLeftWidth: '1.6rem',
+  },
+  borderRed: {
+    borderLeftColor: '#ca1b1b',
+  },
+  borderGreen: {
+    borderLeftColor: '#0a7412',
+  },
+  borderOrange: {
+    borderLeftColor: 'orange',
   },
   resultCardMedia: {
     objectFit: 'cover',
