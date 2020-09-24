@@ -6,7 +6,7 @@ import { TiStarFullOutline, TiStarOutline } from 'react-icons/ti'
 import { Table } from '../../../components/Table'
 import { LoaderPHM } from '../../../components/Loader'
 import { getData } from '../../../api/get-data'
-import { STANDINGS_URL } from '../../../api/data-url'
+import { STANDINGS_20_URL } from '../../../api/data-url'
 import { Filters } from './Filters'
 import {
   TableStyles,
@@ -32,7 +32,7 @@ const Standings20 = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getData(STANDINGS_URL, data => {
+    getData(STANDINGS_20_URL, data => {
       const newData = data['Standing_ALL4publish'].elements.slice(0)
       setData(newData)
       setFilteredData(newData)

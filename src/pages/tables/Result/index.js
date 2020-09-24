@@ -4,7 +4,7 @@ import { useTable, useSortBy, useExpanded } from 'react-table'
 
 import { LoaderPHM } from '../../../components/Loader'
 import { getData } from '../../../api/get-data'
-import { RESULT_URL } from '../../../api/data-url'
+import { RESULT_20_URL } from '../../../api/data-url'
 import {
   TableStyles,
   TrOver,
@@ -89,7 +89,7 @@ const Result = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getData(RESULT_URL, (data, tabletop) => {
+    getData(RESULT_20_URL, (data, tabletop) => {
       const newData = data['Matches4publish'].elements
         .slice(0)
         .filter(item => item['Game ID'] !== '')

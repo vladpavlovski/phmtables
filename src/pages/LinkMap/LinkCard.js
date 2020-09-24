@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import {
   Grid,
   Card,
@@ -8,6 +8,12 @@ import {
   CardMedia,
   Button,
   Typography,
+  Popper,
+  Grow,
+  Paper,
+  ClickAwayListener,
+  MenuList,
+  MenuItem,
 } from '@material-ui/core'
 import { useStyles } from './styled'
 
@@ -46,9 +52,66 @@ const generateIframeCode = props => {
   return code
 }
 
+const DataMenu = props => {
+  const { data } = props
+  const [open, setOpen] = useState(false)
+  const btnRef = useRef()
+
+  return (
+    <>
+      <Button
+        buttonRef={btnRef}
+        aria-owns={open ? 'menu-list-grow' : null}
+        aria-haspopup="true"
+        onClick={() => {
+          setOpen(!open)
+        }}
+        size="small"
+        color="primary"
+      >
+        Data Menu
+      </Button>
+      <Popper open={open} anchorEl={btnRef.current} transition disablePortal>
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            id="menu-list-grow"
+            style={{
+              transformOrigin:
+                placement === 'bottom' ? 'center top' : 'center bottom',
+            }}
+          >
+            <Paper>
+              <ClickAwayListener
+                onClickAway={() => {
+                  setOpen(false)
+                }}
+              >
+                <MenuList>
+                  {data.map((item, index) => (
+                    <MenuItem
+                      key={item}
+                      onClick={() => {
+                        setOpen(false)
+                        window.open(item, '_blank')
+                      }}
+                    >
+                      {`Data ${index}`}
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </>
+  )
+}
+
 const LinkCard = props => {
   const { data } = props
-  const { title, link, description, backgroundLink } = data
+  const { title, link, description, backgroundLink, linkDataSheet } = data
   const [copied, setCopied] = useState(false)
   const classes = useStyles()
 
@@ -89,9 +152,21 @@ const LinkCard = props => {
             }}
           >
             <Button size="small" color="primary" disabled={copied}>
-              {copied ? 'Copied!' : 'Copy Iframe code'}
+              {copied ? 'Copied!' : 'Iframe code'}
             </Button>
           </CopyToClipboard>
+          {Array.isArray(linkDataSheet) ? (
+            <DataMenu data={linkDataSheet} />
+          ) : (
+            <Button
+              href={linkDataSheet}
+              target="_blank"
+              size="small"
+              color="primary"
+            >
+              Data
+            </Button>
+          )}
         </CardActions>
       </Card>
     </Grid>
