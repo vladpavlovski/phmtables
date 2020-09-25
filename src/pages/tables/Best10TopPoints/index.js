@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useMedia } from 'use-media'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
@@ -11,7 +11,63 @@ import { ItemInfo } from '../../../components/ItemInfo'
 
 import { TableStyles, TeamLogo, CellValue } from './styled'
 
-const Best10TopPoints = () => {
+const columnsBest10 = [
+  {
+    accessor: 'TeamLogo',
+    Cell: data => <TeamLogo src={data.cell.value} alt={'team'} />,
+  },
+  {
+    accessor: 'Jméno',
+    Cell: data => <CellValue>{data.cell.value}</CellValue>,
+  },
+  {
+    accessor: 'Zápasů',
+    Header: 'GP',
+    Cell: data => <CellValue>{data.cell.value}</CellValue>,
+  },
+  {
+    accessor: 'Gólů',
+    Header: 'G',
+    Cell: data => <CellValue>{data.cell.value}</CellValue>,
+  },
+  {
+    accessor: 'Asistencí',
+    Header: 'A',
+    Cell: data => <CellValue>{data.cell.value}</CellValue>,
+  },
+  {
+    accessor: 'Bodů',
+    Header: 'B',
+    Cell: data => <CellValue>{data.cell.value}</CellValue>,
+  },
+]
+
+const columnsHide530 = ['Bodů', 'Asistencí', 'Gólů', 'Zápasů']
+
+const getColumnId = index => {
+  let columnId
+  switch (index) {
+    case 0:
+      columnId = 'Bodů'
+      break
+    case 1:
+      columnId = 'Zápasů'
+      break
+    case 2:
+      columnId = 'Gólů'
+      break
+    case 3:
+      columnId = 'Asistencí'
+      break
+    default:
+      columnId = null
+  }
+
+  return columnId
+}
+
+const Best10 = props => {
+  const { fetchUrl, tabName } = props
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [dataPreview, setDataPreview] = useState({
@@ -22,30 +78,7 @@ const Best10TopPoints = () => {
     value: '',
   })
   const [tabIndex, setTabIndex] = useState(0)
-  const [tabsOn, setTabsOn] = useState(false)
   const [columnToSort, setColumnToSort] = useState(null)
-
-  const getColumnId = useCallback(index => {
-    let columnId
-    switch (index) {
-      case 0:
-        columnId = 'Bodů'
-        break
-      case 1:
-        columnId = 'Zápasů'
-        break
-      case 2:
-        columnId = 'Gólů'
-        break
-      case 3:
-        columnId = 'Asistencí'
-        break
-      default:
-        columnId = null
-    }
-
-    return columnId
-  }, [])
 
   const rowOnMouseEnter = useCallback(
     data => {
@@ -59,57 +92,19 @@ const Best10TopPoints = () => {
       }
       setDataPreview(nextDataPreview)
     },
-    [getColumnId, tabIndex]
+    [tabIndex]
   )
 
   useEffect(() => {
-    getData(PLAYERS_URL, data => {
-      const newData = data['Best10TOPpoints4publish'].elements.slice(0)
+    getData(fetchUrl, data => {
+      const newData = data[tabName].elements.slice(0)
       setData(newData)
       rowOnMouseEnter({ original: newData[0] })
       setIsLoading(false)
     })
-  }, [rowOnMouseEnter])
+  }, [fetchUrl, rowOnMouseEnter, tabName])
 
   const min530 = useMedia({ minWidth: '530px' })
-
-  const columns = useMemo(
-    () => [
-      {
-        accessor: 'TeamLogo',
-        Cell: data => <TeamLogo src={data.cell.value} alt={'team'} />,
-      },
-      {
-        accessor: 'Jméno',
-        Cell: data => <CellValue>{data.cell.value}</CellValue>,
-      },
-      {
-        accessor: 'Zápasů',
-        Header: 'GP',
-        show: (!min530 && tabIndex === 1 && tabsOn) || min530,
-        Cell: data => <CellValue>{data.cell.value}</CellValue>,
-      },
-      {
-        accessor: 'Gólů',
-        Header: 'G',
-        show: (!min530 && tabIndex === 2 && tabsOn) || min530,
-        Cell: data => <CellValue>{data.cell.value}</CellValue>,
-      },
-      {
-        accessor: 'Asistencí',
-        Header: 'A',
-        show: (!min530 && tabIndex === 3 && tabsOn) || min530,
-        Cell: data => <CellValue>{data.cell.value}</CellValue>,
-      },
-      {
-        accessor: 'Bodů',
-        Header: 'B',
-        show: (!min530 && tabIndex === 0 && tabsOn) || min530,
-        Cell: data => <CellValue>{data.cell.value}</CellValue>,
-      },
-    ],
-    [min530, tabIndex, tabsOn]
-  )
 
   const renderTable = useCallback(
     () => (
@@ -117,39 +112,37 @@ const Best10TopPoints = () => {
         <ItemInfo data={dataPreview} />
         <TableStyles>
           <Table
-            columns={columns}
+            columns={columnsBest10}
             data={data}
             rowOnMouseEnter={rowOnMouseEnter}
             columnToSort={columnToSort}
+            columnsHide530={columnsHide530}
+            tabIndex={min530 ? null : tabIndex}
           />
         </TableStyles>
       </>
     ),
-    [columnToSort, columns, data, dataPreview, rowOnMouseEnter]
+    [columnToSort, data, dataPreview, min530, rowOnMouseEnter, tabIndex]
   )
 
   useEffect(() => {
     if (!min530) {
       setTabIndex(0)
-      setTabsOn(true)
     }
   }, [min530])
 
-  const onTabSelect = useCallback(
-    index => {
-      setTabIndex(index)
+  const onTabSelect = useCallback(index => {
+    setTabIndex(index)
 
-      const columnId = getColumnId(index)
-      if (columnId) {
-        const newColumnToSort = {
-          columnId,
-          desc: true,
-        }
-        setColumnToSort(newColumnToSort)
+    const columnId = getColumnId(index)
+    if (columnId) {
+      const newColumnToSort = {
+        columnId,
+        desc: true,
       }
-    },
-    [getColumnId]
-  )
+      setColumnToSort(newColumnToSort)
+    }
+  }, [])
 
   return isLoading ? (
     <LoaderPHM />
@@ -172,4 +165,14 @@ const Best10TopPoints = () => {
   )
 }
 
-export { Best10TopPoints as default }
+const Best10TopPoints = () => (
+  <Best10 fetchUrl={PLAYERS_URL} tabName={'Best10TOPpoints4publish'} />
+)
+
+export {
+  Best10TopPoints as default,
+  Best10,
+  columnsBest10,
+  columnsHide530,
+  getColumnId,
+}

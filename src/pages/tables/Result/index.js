@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { useMedia } from 'use-media'
 import { useTable, useSortBy, useExpanded } from 'react-table'
-
 import { LoaderPHM } from '../../../components/Loader'
 import { getData } from '../../../api/get-data'
 import { RESULT_20_URL } from '../../../api/data-url'
@@ -31,13 +30,25 @@ import { Filters } from './Filters'
 import { TiStopwatch, TiCameraOutline } from 'react-icons/ti'
 import { GiWhistle } from 'react-icons/gi'
 
-const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
+const columnsHide630 = ['Datum a Místo', 'Fotoalbum']
+
+const columnsHide980 = ['Časoměřič']
+
+const Table = ({
+  columns,
+  data,
+  renderRowUnder,
+  renderRowOver,
+  columnsHide980,
+  columnsHide630,
+}) => {
   const {
     getTableProps,
     getTableBodyProps,
     rows,
     prepareRow,
     visibleColumns,
+    toggleHideColumn,
   } = useTable(
     {
       columns,
@@ -48,6 +59,16 @@ const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
   )
 
   const min630 = useMedia({ minWidth: '630px' })
+  const min980 = useMedia({ minWidth: '980px' })
+
+  useEffect(() => {
+    columnsHide980.forEach(col => {
+      toggleHideColumn(col, !min980)
+    })
+    columnsHide630.forEach(col => {
+      toggleHideColumn(col, !min630)
+    })
+  }, [toggleHideColumn, columnsHide980, columnsHide630, min980, min630])
 
   return (
     <table {...getTableProps()}>
@@ -83,30 +104,34 @@ const Table = ({ columns, data, renderRowUnder, renderRowOver }) => {
   )
 }
 
-const Result = () => {
+Table.defaultProps = {
+  columnsHide980: [],
+  columnsHide630: [],
+}
+
+const Result = props => {
+  const { fetchUrl, tabName } = props
   const [data, setData] = useState([])
   const [filteredData, setFilteredData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getData(RESULT_20_URL, (data, tabletop) => {
-      const newData = data['Matches4publish'].elements
+    getData(fetchUrl, (data, tabletop) => {
+      const newData = data[tabName].elements
         .slice(0)
         .filter(item => item['Game ID'] !== '')
       setData(newData)
       setFilteredData(newData)
       setIsLoading(false)
     })
-  }, [])
+  }, [fetchUrl, tabName])
 
   const min630 = useMedia({ minWidth: '630px' })
-  const min980 = useMedia({ minWidth: '980px' })
 
   const columns = useMemo(
     () => [
       {
         accessor: 'Datum a Místo',
-        show: min630,
         Cell: data => {
           const detailsValue = data.data[data.row.index]['Detaily zápasu']
             .split(',')
@@ -186,7 +211,6 @@ const Result = () => {
       },
       {
         accessor: 'Časoměřič',
-        show: min980,
         Cell: data => {
           return (
             <>
@@ -204,7 +228,6 @@ const Result = () => {
       },
       {
         accessor: 'Fotoalbum',
-        show: min630,
         Cell: data => {
           return (
             data.cell.value !== '' &&
@@ -221,7 +244,7 @@ const Result = () => {
         },
       },
     ],
-    [min630, min980]
+    [min630]
   )
 
   const renderRowOver = useCallback(
@@ -250,6 +273,8 @@ const Result = () => {
             data={filteredData}
             renderRowUnder={renderRowUnder}
             renderRowOver={renderRowOver}
+            columnsHide630={columnsHide630}
+            columnsHide980={columnsHide980}
           />
         </TableStyles>
       </AllFilters>
@@ -257,4 +282,8 @@ const Result = () => {
   )
 }
 
-export { Result as default, Table }
+const Result20 = () => (
+  <Result fetchUrl={RESULT_20_URL} tabName={'Matches4publish'} />
+)
+
+export { Result20 as default, Result, Table }

@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useTable, useSortBy, useExpanded } from 'react-table'
+import { useMedia } from 'use-media'
 
-const Table = ({ columns, data, rowOnMouseEnter, columnToSort }) => {
+const Table = props => {
+  const {
+    columns,
+    data,
+    rowOnMouseEnter,
+    columnToSort,
+    columnsHide736,
+    columnsHide480,
+    columnsHide980,
+    columnsHide630,
+    columnsHide530,
+    tabIndex,
+  } = props
   const {
     getTableProps,
     getTableBodyProps,
@@ -9,6 +22,7 @@ const Table = ({ columns, data, rowOnMouseEnter, columnToSort }) => {
     rows,
     prepareRow,
     toggleSortBy,
+    toggleHideColumn,
   } = useTable(
     {
       columns,
@@ -17,6 +31,12 @@ const Table = ({ columns, data, rowOnMouseEnter, columnToSort }) => {
     useSortBy,
     useExpanded
   )
+
+  const min630 = useMedia({ minWidth: '630px' })
+  const min980 = useMedia({ minWidth: '980px' })
+  const min736 = useMedia({ minWidth: '736px' })
+  const min480 = useMedia({ minWidth: '480px' })
+  const min530 = useMedia({ minWidth: '530px' })
 
   const [cts, setCts] = useState(columnToSort)
 
@@ -30,6 +50,44 @@ const Table = ({ columns, data, rowOnMouseEnter, columnToSort }) => {
   useEffect(() => {
     rowOnMouseEnter(rows[0])
   }, [rowOnMouseEnter, rows])
+
+  useEffect(() => {
+    columnsHide736.forEach(col => {
+      toggleHideColumn(col, !min736)
+    })
+    columnsHide480.forEach(col => {
+      toggleHideColumn(col, !min480)
+    })
+    columnsHide980.forEach(col => {
+      toggleHideColumn(col, !min980)
+    })
+    columnsHide630.forEach(col => {
+      toggleHideColumn(col, !min630)
+    })
+    //onlyFor tables "BEST10*"
+    columnsHide530.forEach(col => {
+      const togglePosition =
+        min530 ||
+        (!min530 && tabIndex === 1 && col === 'Zápasů') ||
+        (!min530 && tabIndex === 2 && col === 'Gólů') ||
+        (!min530 && tabIndex === 3 && col === 'Asistencí') ||
+        (!min530 && tabIndex === 0 && col === 'Bodů')
+      toggleHideColumn(col, !togglePosition)
+    })
+  }, [
+    columnsHide736,
+    min736,
+    min480,
+    toggleHideColumn,
+    columnsHide480,
+    columnsHide980,
+    columnsHide630,
+    min980,
+    min630,
+    columnsHide530,
+    min530,
+    tabIndex,
+  ])
 
   return (
     <table {...getTableProps()}>
@@ -74,6 +132,12 @@ const Table = ({ columns, data, rowOnMouseEnter, columnToSort }) => {
 Table.defaultProps = {
   rowOnMouseEnter: () => {},
   columnToSort: null,
+  columnsHide736: [],
+  columnsHide480: [],
+  columnsHide630: [],
+  columnsHide980: [],
+  columnsHide530: [],
+  tabIndex: null,
 }
 
 export { Table }

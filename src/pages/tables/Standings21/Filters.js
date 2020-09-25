@@ -4,7 +4,7 @@ import Select from 'react-select'
 import { useMedia } from 'use-media'
 import { useOnClickOutside } from '../../../utils/hooks/useOnClickOutside'
 
-import { phmStyles, Wrapper, FilterButton } from './styled'
+import { phmStyles, Wrapper, FilterButton } from '../Standings20/styled'
 
 const getValue = value =>
   typeof value === 'string' ? value.toUpperCase() : value
