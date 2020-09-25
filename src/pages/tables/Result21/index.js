@@ -100,13 +100,10 @@ const Result21 = () => {
   }, [])
 
   const min630 = useMedia({ minWidth: '630px' })
-  const min980 = useMedia({ minWidth: '980px' })
-  // console.log('r21: min630', min630)
   const columns = useMemo(
     () => [
       {
         accessor: 'Datum a Místo',
-        // show: min630,
         Cell: data => {
           const detailsValue = data.data[data.row.index]['Detaily zápasu']
             .split(',')
@@ -186,7 +183,6 @@ const Result21 = () => {
       },
       {
         accessor: 'Časoměřič',
-        // show: min980,
         Cell: data => {
           return (
             <>
@@ -204,7 +200,6 @@ const Result21 = () => {
       },
       {
         accessor: 'Fotoalbum',
-        // show: min630,
         Cell: data => {
           return (
             data.cell.value !== '' &&
