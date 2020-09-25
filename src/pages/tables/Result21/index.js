@@ -101,12 +101,12 @@ const Result21 = () => {
 
   const min630 = useMedia({ minWidth: '630px' })
   const min980 = useMedia({ minWidth: '980px' })
-
+  // console.log('r21: min630', min630)
   const columns = useMemo(
     () => [
       {
         accessor: 'Datum a Místo',
-        show: min630,
+        // show: min630,
         Cell: data => {
           const detailsValue = data.data[data.row.index]['Detaily zápasu']
             .split(',')
@@ -186,7 +186,7 @@ const Result21 = () => {
       },
       {
         accessor: 'Časoměřič',
-        show: min980,
+        // show: min980,
         Cell: data => {
           return (
             <>
@@ -204,7 +204,7 @@ const Result21 = () => {
       },
       {
         accessor: 'Fotoalbum',
-        show: min630,
+        // show: min630,
         Cell: data => {
           return (
             data.cell.value !== '' &&
@@ -221,8 +221,36 @@ const Result21 = () => {
         },
       },
     ],
-    [min630, min980]
+    [min630]
   )
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    rows,
+    prepareRow,
+    visibleColumns,
+    toggleHideColumn,
+  } = useTable(
+    {
+      columns,
+      data: filteredData,
+    },
+    useSortBy,
+    useExpanded
+  )
+
+  useEffect(() => {
+    if (min630) {
+      toggleHideColumn('Fotoalbum', false)
+      toggleHideColumn('Datum a Místo', false)
+      toggleHideColumn('Časoměřič', false)
+    } else {
+      toggleHideColumn('Fotoalbum', true)
+      toggleHideColumn('Datum a Místo', true)
+      toggleHideColumn('Časoměřič', true)
+    }
+  }, [min630, toggleHideColumn])
 
   const renderRowOver = useCallback(
     ({ row }) => <InfoMobile>{row.values['Datum a Místo']}</InfoMobile>,
@@ -245,12 +273,36 @@ const Result21 = () => {
       <Filters data={data} setFilteredData={setFilteredData} />
       <AllFilters>
         <TableStyles>
-          <Table
-            columns={columns}
-            data={filteredData}
-            renderRowUnder={renderRowUnder}
-            renderRowOver={renderRowOver}
-          />
+          <table {...getTableProps()}>
+            <tbody {...getTableBodyProps()}>
+              {rows.map(row => {
+                prepareRow(row)
+                return (
+                  <React.Fragment key={row.index}>
+                    {!min630 && (
+                      <TrOver>
+                        <td colSpan={visibleColumns.length}>
+                          {renderRowOver({ row })}
+                        </td>
+                      </TrOver>
+                    )}
+                    <Tr borders={min630} {...row.getRowProps()}>
+                      {row.cells.map(cell => (
+                        <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                      ))}
+                    </Tr>
+                    {!min630 && (
+                      <TrUnder>
+                        <td colSpan={visibleColumns.length}>
+                          {renderRowUnder({ row })}
+                        </td>
+                      </TrUnder>
+                    )}
+                  </React.Fragment>
+                )
+              })}
+            </tbody>
+          </table>
         </TableStyles>
       </AllFilters>
     </>
