@@ -30,6 +30,8 @@ export const RESULT_TS55_21 = '/result_ts55_21'
 export const STANDINGS_TS55_21 = '/standings_ts55_21'
 export const GOALIES_20_TOP = '/goalies_20_top'
 export const GOALIES_20_KLASIK = '/goalies_20_klasik'
+export const STANDINGS_17 = '/standings17'
+export const STANDINGS_19 = '/standings19'
 
 export const getArticleRoute = gameId => generatePath(ARTICLE, { gameId })
 export const getArticleGeneratedRoute = gameId =>

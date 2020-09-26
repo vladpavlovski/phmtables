@@ -48,6 +48,8 @@ const ResultTs5521 = Load(() => import('./pages/tables/ResultTs5521'))
 const StandingsTs5521 = Load(() => import('./pages/tables/StandingsTs5521'))
 const Goalies20Top = Load(() => import('./pages/tables/Goalies20Top'))
 const Goalies20Klasik = Load(() => import('./pages/tables/Goalies20Klasik'))
+const Standings17 = Load(() => import('./pages/tables/Standings17'))
+const Standings19 = Load(() => import('./pages/tables/Standings19'))
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -150,6 +152,8 @@ const App = () => (
             exact
             component={Goalies20Klasik}
           />
+          <Route path={ROUTES.STANDINGS_17} exact component={Standings17} />
+          <Route path={ROUTES.STANDINGS_19} exact component={Standings19} />
         </Switch>
       </ErrorBoundary>
     </ThemeProvider>

@@ -36,3 +36,9 @@ export const STANDINGS_TS_55_21_URL =
 
 export const GOALIES_20_URL =
   'https://docs.google.com/spreadsheets/d/1qjXGftP3bDvbbEWGp2ncRfUTKIU5GnE99tZPhg4nIyU/edit?usp=sharing'
+
+export const STANDINGS_17_URL =
+  'https://docs.google.com/spreadsheets/d/1xbAzTJOKUweyuojLH_Ds25UroC6T6ZC7GBa-SFWIByQ/edit?usp=sharing'
+
+export const STANDINGS_19_URL =
+  'https://docs.google.com/spreadsheets/d/1lR3msH90hyATdb_QKCbZtZ8yS55WB3cvvdCx4yao5y4/edit?usp=sharing'

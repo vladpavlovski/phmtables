@@ -121,7 +121,7 @@ const Standings = props => {
 
   useEffect(() => {
     getData(fetchUrl, data => {
-      const newData = data[tabName].elements.slice(0)
+      const newData = data[tabName].elements.slice(0).filter(i => i.teamName)
       setData(newData)
       setFilteredData(newData)
       setIsLoading(false)

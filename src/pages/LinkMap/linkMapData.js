@@ -6,10 +6,24 @@ import * as SHEETS from '../../api/data-url'
 //   link: ,
 //   description: '',
 //   backgroundLink: '',
-//   linkDataSheet: '',
+//   linkDataSheet: ,
 // },
 
 export const linkMapData = [
+  {
+    title: 'Standings 17',
+    link: ROUTES.STANDINGS_17,
+    description: 'Standings 17 table',
+    backgroundLink: 'https://cdn.wallpapersafari.com/3/84/3Cl4yR.jpg',
+    linkDataSheet: SHEETS.STANDINGS_17_URL,
+  },
+  {
+    title: 'Standings 19',
+    link: ROUTES.STANDINGS_19,
+    description: 'Standings 19 table',
+    backgroundLink: 'https://cdn.hipwallpaper.com/i/3/75/AU9pqm.jpg',
+    linkDataSheet: SHEETS.STANDINGS_19_URL,
+  },
   {
     title: 'Goalies 20 Top',
     link: ROUTES.GOALIES_20_TOP,
