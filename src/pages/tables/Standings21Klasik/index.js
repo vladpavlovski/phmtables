@@ -1,7 +1,7 @@
 import React from 'react'
 import { STANDINGS_21_URL } from '../../../api/data-url'
 
-import { Filters } from './Filters'
+import { Filters } from '../Standings20Klasik/Filters'
 
 import { Standings } from '../Standings20'
 
