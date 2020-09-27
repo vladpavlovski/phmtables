@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import media from '../../../styles/media'
 import theme from '../../../styles/theme'
+import { TabList } from 'react-tabs'
 
 export const phmStyles = {
   option: provided => ({
@@ -21,6 +22,26 @@ export const phmStyles = {
     color: theme.color.bigStone,
   }),
 }
+
+export const PhmTabList = styled(TabList)`
+  display: block;
+  position: fixed;
+  width: 100vw;
+  height: 4rem;
+  z-index: 10;
+  background: ${theme.color.white};
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: disc;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+  }
+`
 
 export const TableStyles = styled.div`
   ${media.md`
@@ -73,6 +94,10 @@ export const Wrapper = styled.div`
     height: 100vh;
     position: fixed;
   `}
+`
+
+export const TabInsider = styled.div`
+  padding-top: 4rem;
 `
 
 export const FilterButton = styled.div`

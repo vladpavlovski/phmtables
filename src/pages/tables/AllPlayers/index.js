@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react'
-// import { useMedia } from 'use-media'
+import React, { useState, useEffect } from 'react'
+
 import { Table } from '../../../components/Table'
 import { LoaderPHM } from '../../../components/Loader'
 import { getData } from '../../../api/get-data'
@@ -23,98 +23,89 @@ import {
 } from './styled'
 import { TiStarFullOutline } from 'react-icons/ti'
 
-const AllPlayers = () => {
+const columnsAllPlayers = [
+  {
+    accessor: 'Fotka',
+    Cell: data => {
+      return (
+        data.cell.value !== '' && (
+          <PlayerCell
+            src={data.cell.value}
+            alt={data.data[data.row.index]['Jméno']}
+          />
+        )
+      )
+    },
+  },
+  {
+    accessor: 'Jméno',
+    Cell: data => {
+      return (
+        <>
+          <PlayerName>{data.cell.value}</PlayerName>
+          <TeamName>{data.data[data.row.index]['Tým']}</TeamName>
+        </>
+      )
+    },
+  },
+  {
+    accessor: 'Zápasů',
+    Header: 'Z',
+    Cell: data => {
+      return <CellValue>{data.cell.value}</CellValue>
+    },
+  },
+  {
+    accessor: 'Gólů',
+    Header: 'G',
+    Cell: data => {
+      return <Goals>{data.cell.value}</Goals>
+    },
+  },
+  {
+    accessor: 'Asistencí',
+    Header: 'A',
+    Cell: data => {
+      return <Assistance>{data.cell.value}</Assistance>
+    },
+  },
+  {
+    accessor: 'Bodů',
+    Header: 'B',
+    Cell: data => {
+      return <Points>{data.cell.value}</Points>
+    },
+  },
+  {
+    accessor: 'PIM',
+    Header: 'Tr.M',
+    Cell: data => {
+      return <Pim>{data.cell.value}</Pim>
+    },
+  },
+  {
+    accessor: 'Hvězda',
+    Header: <TiStarFullOutline style={{ color: 'gold' }} />,
+    Cell: data => {
+      return <Star>{data.cell.value}</Star>
+    },
+  },
+]
+
+const AllPlayers = props => {
+  const { fetchUrl, tabName } = props
   const [data, setData] = useState([])
   const [filteredData, setFilteredData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getData(PLAYERS_URL, data => {
-      const newData = data['allPlayers4publish'].elements.slice(0)
+    getData(fetchUrl, data => {
+      const newData = data[tabName].elements.slice(0).filter(i => i.ID)
       setData(newData)
       setFilteredData(newData)
       setIsLoading(false)
     })
-  }, [])
-
-  // const min736 = useMedia({ minWidth: '736px' })
-  // const min480 = useMedia({ minWidth: '480px' })
-
-  const columns = useMemo(
-    () => [
-      // {
-      //   accessor: 'Pořadí',
-      //   Cell: data => <div>{data.cell.value}</div>,
-      // },
-      {
-        accessor: 'Fotka',
-        Cell: data => {
-          return (
-            data.cell.value !== '' && (
-              <PlayerCell
-                src={data.cell.value}
-                alt={data.data[data.row.index]['Jméno']}
-              />
-            )
-          )
-        },
-      },
-      {
-        accessor: 'Jméno',
-        Cell: data => {
-          return (
-            <>
-              <PlayerName>{data.cell.value}</PlayerName>
-              <TeamName>{data.data[data.row.index]['Tým']}</TeamName>
-            </>
-          )
-        },
-      },
-      {
-        accessor: 'Zápasů',
-        Header: 'Z',
-        Cell: data => {
-          return <CellValue>{data.cell.value}</CellValue>
-        },
-      },
-      {
-        accessor: 'Gólů',
-        Header: 'G',
-        Cell: data => {
-          return <Goals>{data.cell.value}</Goals>
-        },
-      },
-      {
-        accessor: 'Asistencí',
-        Header: 'A',
-        Cell: data => {
-          return <Assistance>{data.cell.value}</Assistance>
-        },
-      },
-      {
-        accessor: 'Bodů',
-        Header: 'B',
-        Cell: data => {
-          return <Points>{data.cell.value}</Points>
-        },
-      },
-      {
-        accessor: 'PIM',
-        Header: 'Tr.M',
-        Cell: data => {
-          return <Pim>{data.cell.value}</Pim>
-        },
-      },
-      {
-        accessor: 'Hvězda',
-        Header: <TiStarFullOutline style={{ color: 'gold' }} />,
-        Cell: data => {
-          return <Star>{data.cell.value}</Star>
-        },
-      },
-    ],
-    []
-  )
+  }, [fetchUrl, tabName])
 
   return isLoading ? (
     <LoaderPHM />
@@ -123,7 +114,7 @@ const AllPlayers = () => {
       <Filters data={data} setFilteredData={setFilteredData} />
       <AllFilters>
         <TableStyles>
-          <Table columns={columns} data={filteredData} />
+          <Table columns={columnsAllPlayers} data={filteredData} />
         </TableStyles>
       </AllFilters>
     </>
@@ -152,4 +143,7 @@ const PlayerCell = props => {
   )
 }
 
-export { AllPlayers as default }
+const AllPlayersAll = () => (
+  <AllPlayers fetchUrl={PLAYERS_URL} tabName={'allPlayers4publish'} />
+)
+export { AllPlayersAll as default, AllPlayers, columnsAllPlayers }
