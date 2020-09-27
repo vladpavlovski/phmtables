@@ -10,7 +10,7 @@ const Table = props => {
     columnToSort,
     columnsHide736,
     columnsHide480,
-    columnsHide980,
+    columnsHide960,
     columnsHide630,
     columnsHide530,
     tabIndex,
@@ -33,7 +33,7 @@ const Table = props => {
   )
 
   const min630 = useMedia({ minWidth: '630px' })
-  const min980 = useMedia({ minWidth: '980px' })
+  const min960 = useMedia({ minWidth: '960px' })
   const min736 = useMedia({ minWidth: '736px' })
   const min480 = useMedia({ minWidth: '480px' })
   const min530 = useMedia({ minWidth: '530px' })
@@ -58,8 +58,8 @@ const Table = props => {
     columnsHide480.forEach(col => {
       toggleHideColumn(col, !min480)
     })
-    columnsHide980.forEach(col => {
-      toggleHideColumn(col, !min980)
+    columnsHide960.forEach(col => {
+      toggleHideColumn(col, !min960)
     })
     columnsHide630.forEach(col => {
       toggleHideColumn(col, !min630)
@@ -80,9 +80,9 @@ const Table = props => {
     min480,
     toggleHideColumn,
     columnsHide480,
-    columnsHide980,
+    columnsHide960,
     columnsHide630,
-    min980,
+    min960,
     min630,
     columnsHide530,
     min530,
@@ -135,7 +135,7 @@ Table.defaultProps = {
   columnsHide736: [],
   columnsHide480: [],
   columnsHide630: [],
-  columnsHide980: [],
+  columnsHide960: [],
   columnsHide530: [],
   tabIndex: null,
 }

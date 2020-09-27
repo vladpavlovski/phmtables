@@ -32,14 +32,14 @@ import { GiWhistle } from 'react-icons/gi'
 
 const columnsHide630 = ['Datum a Místo', 'Fotoalbum']
 
-const columnsHide980 = ['Časoměřič']
+const columnsHide960 = ['Časoměřič']
 
 const Table = ({
   columns,
   data,
   renderRowUnder,
   renderRowOver,
-  columnsHide980,
+  columnsHide960,
   columnsHide630,
 }) => {
   const {
@@ -59,16 +59,16 @@ const Table = ({
   )
 
   const min630 = useMedia({ minWidth: '630px' })
-  const min980 = useMedia({ minWidth: '980px' })
+  const min960 = useMedia({ minWidth: '960px' })
 
   useEffect(() => {
-    columnsHide980.forEach(col => {
-      toggleHideColumn(col, !min980)
+    columnsHide960.forEach(col => {
+      toggleHideColumn(col, !min960)
     })
     columnsHide630.forEach(col => {
       toggleHideColumn(col, !min630)
     })
-  }, [toggleHideColumn, columnsHide980, columnsHide630, min980, min630])
+  }, [toggleHideColumn, columnsHide960, columnsHide630, min960, min630])
 
   return (
     <table {...getTableProps()}>
@@ -105,7 +105,7 @@ const Table = ({
 }
 
 Table.defaultProps = {
-  columnsHide980: [],
+  columnsHide960: [],
   columnsHide630: [],
 }
 
@@ -274,7 +274,7 @@ const Result = props => {
             renderRowUnder={renderRowUnder}
             renderRowOver={renderRowOver}
             columnsHide630={columnsHide630}
-            columnsHide980={columnsHide980}
+            columnsHide960={columnsHide960}
           />
         </TableStyles>
       </AllFilters>

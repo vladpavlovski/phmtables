@@ -5,7 +5,7 @@ import theme from '../../../styles/theme'
 export const TableStyles = styled.div`
   margin-left: 18rem;
   ${media.xs`
-    margin-left: 26rem;
+    margin-left: 24rem;
   `}
   padding: 0;
   font-size: ${theme.fontSize.medium};

@@ -21,24 +21,22 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 const generateIframeCode = props => {
   const { title, link } = props
-  const generateId = value => {
-    return `${value.replace(/\s/g, '_').toLowerCase()}_id`
-  }
+  const generateId = value => `${value.replace(/\s/g, '_').toLowerCase()}_id`
+  const IframeId = generateId(title)
   const code = `
-  <iframe id="${generateId(
-    title
-  )}" title="${title}" width="920" height="1200" src="${
-    window.location.origin
-  }${link}">
+  <iframe id="${IframeId}" title="${title}" width="960" height="1200" src="${window.location.origin}${link}">
   </iframe>
 
   <script>
     function checkSize() {
-      if (window.innerWidth < 920) {
-        document.getElementById("${generateId(
-          title
-        )}").width = window.innerWidth - 40
+      const Iframe = document.getElementById("${IframeId}")
+      if (window.innerWidth < 960) {
+        const widthForIframe = window.innerWidth < 320 ? 320 : window.innerWidth
+        Iframe.width = widthForIframe
+      } else {
+        Iframe.width = window.innerWidth
       }
+      Iframe.parentElement.parentElement.style.padding = "0px"
     }
 
     checkSize()
