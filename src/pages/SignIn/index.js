@@ -15,7 +15,6 @@ import {
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { Copyright } from '../../components/Copyright'
-import { setToken } from '../../utils/token'
 
 import * as ROUTES from '../../routes'
 import { useStyles } from './styled'
@@ -32,12 +31,7 @@ const SignIn = () => {
   const [isSubmitting, setSubmitting] = useState(false)
 
   useEffect(() => {
-    window.localStorage.removeItem('phm-generator-tkn')
-  }, [])
-
-  useEffect(() => {
     if (data && data.login) {
-      setToken(data.login.accessToken)
       history.push(ROUTES.DASHBOARD)
     }
   }, [data, history])

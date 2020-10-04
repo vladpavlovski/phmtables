@@ -18,7 +18,6 @@ import * as ROUTES from '../../routes'
 
 import { Copyright } from '../../components/Copyright'
 import { SIGN_UP } from '../../graphql/requests'
-import { setToken } from '../../utils/token'
 
 import { useStyles } from './styled'
 import { schema } from './schema'
@@ -33,12 +32,7 @@ const SignUp = () => {
   })
 
   useEffect(() => {
-    window.localStorage.removeItem('phm-generator-tkn')
-  }, [])
-
-  useEffect(() => {
     if (data && data.signup) {
-      setToken(data.signup.accessToken)
       history.push(ROUTES.DASHBOARD)
     }
   }, [data, history])

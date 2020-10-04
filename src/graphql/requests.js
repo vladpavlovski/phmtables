@@ -135,7 +135,6 @@ export const SIGN_IN = gql`
     login(input: $input) {
       id
       email
-      accessToken
     }
   }
 `
@@ -146,7 +145,6 @@ export const SIGN_UP = gql`
       id
       email
       name
-      accessToken
     }
   }
 `
