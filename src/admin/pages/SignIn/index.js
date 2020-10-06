@@ -14,12 +14,12 @@ import {
 } from '@material-ui/core'
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import { Copyright } from '../../components/Copyright'
+import { Copyright } from '../../../components/Copyright'
 
-import * as ROUTES from '../../routes'
+import * as ROUTES from '../../../routes'
 import { useStyles } from './styled'
 import { schema } from './schema'
-import { SIGN_IN } from '../../graphql/requests'
+import { SIGN_IN } from '../../../graphql/requests'
 
 const SignIn = () => {
   const history = useHistory()

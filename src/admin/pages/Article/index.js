@@ -5,13 +5,13 @@ import { useForm, Controller } from 'react-hook-form'
 import 'react-imported-component/macro'
 import { Container, Grid, Paper, TextField, Button } from '@material-ui/core'
 
-import { Title } from '../../components/Title'
-import { DataTable } from '../../components/DataTable'
+import { Title } from '../../../components/Title'
+import { DataTable } from '../../../components/DataTable'
 import { useStyles } from './styled'
-import { GET_ARTICLE } from '../../graphql/requests'
-import Load from '../../utils/load'
+import { GET_ARTICLE } from '../../../graphql/requests'
+import Load from '../../../utils/load'
 
-const Layout = Load(() => import('../../components/Layout'))
+const Layout = Load(() => import('../../../components/Layout'))
 
 const Article = props => {
   const classes = useStyles()

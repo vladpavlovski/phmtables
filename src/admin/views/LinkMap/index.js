@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import 'react-imported-component/macro'
 import { Container, Grid, Paper, TextField } from '@material-ui/core'
 
-import { Title } from '../../components/Title'
-import Load from '../../utils/load'
+import { Title } from '../../../components/Title'
+import Load from '../../../utils/load'
 import { useStyles } from './styled'
 import { linkMapData } from './linkMapData'
 
 const LinkCard = Load(() => import('./LinkCard'))
-const Layout = Load(() => import('../../components/Layout'))
+const Layout = Load(() => import('../../../components/Layout'))
 
 const LinkMap = () => {
   const classes = useStyles()

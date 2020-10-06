@@ -14,10 +14,10 @@ import {
 } from '@material-ui/core'
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import * as ROUTES from '../../routes'
+import * as ROUTES from '../../../routes'
 
-import { Copyright } from '../../components/Copyright'
-import { SIGN_UP } from '../../graphql/requests'
+import { Copyright } from '../../../components/Copyright'
+import { SIGN_UP } from '../../../graphql/requests'
 
 import { useStyles } from './styled'
 import { schema } from './schema'

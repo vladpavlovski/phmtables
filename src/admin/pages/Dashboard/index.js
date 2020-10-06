@@ -3,15 +3,15 @@ import clsx from 'clsx'
 import 'react-imported-component/macro'
 import { Container, Grid, Paper } from '@material-ui/core'
 
-import Load from '../../utils/load'
+import Load from '../../../utils/load'
 import { useStyles } from './styled'
 
-import { DashboardProvider } from '../../contexts/dashboard/Provider'
+import { DashboardProvider } from '../../../contexts/dashboard/Provider'
 
-const Layout = Load(() => import('../../components/Layout'))
-const Articles = Load(() => import('../../components/Articles'))
+const Layout = Load(() => import('../../../components/Layout'))
+const Articles = Load(() => import('../../../components/Articles'))
 const CreatePanel = Load(() =>
-  import('../../components/Articles/components/CreatePanel')
+  import('../../../components/Articles/components/CreatePanel')
 )
 
 const Dashboard = () => {
