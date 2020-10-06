@@ -174,3 +174,55 @@ export const DELETE_COMPOSED_ARTICLE = gql`
 //     }
 //   }
 // `
+
+export const IMPORT_TEAMS = gql`
+  mutation importTeams {
+    importTeams {
+      id
+    }
+  }
+`
+
+export const GET_ALL_TEAMS = gql`
+  query getTeams {
+    teams {
+      id
+      name
+      fullName
+      nick
+      shortcut
+      logoRound
+    }
+  }
+`
+
+export const DELETE_TEAM = gql`
+  mutation deleteTeam($id: ID!) {
+    deleteTeam(id: $id) {
+      disabled
+    }
+  }
+`
+
+export const GET_TEAM = gql`
+  query getTeam($id: ID!) {
+    team(id: $id) {
+      id
+      name
+      fullName
+      nick
+      shortcut
+      logoRound
+      shortcutLabel
+      shortLabel
+      longLabel
+      bigLabel
+      logoGrey
+      primaryColor
+      secondaryColor
+      jerseyDark
+      jerseyLight
+      disabled
+    }
+  }
+`
