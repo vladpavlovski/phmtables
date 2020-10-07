@@ -226,3 +226,26 @@ export const GET_TEAM = gql`
     }
   }
 `
+
+export const UPDATE_TEAM = gql`
+  mutation updateTeam($input: TeamInput!) {
+    updateTeam(input: $input) {
+      id
+      name
+      fullName
+      nick
+      shortcut
+      logoRound
+      shortcutLabel
+      shortLabel
+      longLabel
+      bigLabel
+      logoGrey
+      primaryColor
+      secondaryColor
+      jerseyDark
+      jerseyLight
+      disabled
+    }
+  }
+`

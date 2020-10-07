@@ -12,6 +12,18 @@ import * as ROUTES from './routes'
 import { client } from './graphql'
 import Load from './utils/load'
 
+// ADMIN:
+
+const SignUp = Load(() => import('./admin/pages/SignUp'))
+const SignIn = Load(() => import('./admin/pages/SignIn'))
+const SignOut = Load(() => import('./admin/pages/SignOut'))
+const Dashboard = Load(() => import('./admin/pages/Dashboard'))
+const Article = Load(() => import('./admin/pages/Article'))
+const LinkMap = Load(() => import('./admin/views/LinkMap'))
+const Teams = Load(() => import('./admin/views/Teams'))
+const Team = Load(() => import('./admin/pages/Team'))
+
+// WEB:
 const Result = Load(() => import('./pages/tables/Result'))
 const Standings20 = Load(() => import('./pages/tables/Standings20'))
 const Standings20Top = Load(() => import('./pages/tables/Standings20Top'))
@@ -24,13 +36,6 @@ const Best10KlasikPoints = Load(() =>
 const ResultsAlltime = Load(() => import('./pages/tables/ResultsAlltime'))
 const AllPlayers19 = Load(() => import('./pages/tables/AllPlayers19'))
 const AllPlayersYears = Load(() => import('./pages/tables/AllPlayersYears'))
-const SignUp = Load(() => import('./pages/SignUp'))
-const SignIn = Load(() => import('./pages/SignIn'))
-const SignOut = Load(() => import('./pages/SignOut'))
-const Dashboard = Load(() => import('./admin/pages/Dashboard'))
-const Article = Load(() => import('./admin/pages/Article'))
-const ArticleGenerated = Load(() => import('./pages/ArticleGenerated'))
-const LinkMap = Load(() => import('./admin/views/LinkMap'))
 const Result21 = Load(() => import('./pages/tables/Result21'))
 const Standings21 = Load(() => import('./pages/tables/Standings21'))
 const Standings21Top = Load(() => import('./pages/tables/Standings21Top'))
@@ -50,6 +55,7 @@ const Goalies20Top = Load(() => import('./pages/tables/Goalies20Top'))
 const Goalies20Klasik = Load(() => import('./pages/tables/Goalies20Klasik'))
 const Standings17 = Load(() => import('./pages/tables/Standings17'))
 const Standings19 = Load(() => import('./pages/tables/Standings19'))
+const ArticleGenerated = Load(() => import('./pages/ArticleGenerated'))
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -154,6 +160,8 @@ const App = () => (
           />
           <Route path={ROUTES.STANDINGS_17} exact component={Standings17} />
           <Route path={ROUTES.STANDINGS_19} exact component={Standings19} />
+          <Route path={ROUTES.TEAMS} exact component={Teams} />
+          <Route path={ROUTES.TEAM} exact component={Team} />
         </Switch>
       </ErrorBoundary>
     </ThemeProvider>
