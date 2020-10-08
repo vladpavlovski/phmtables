@@ -8,6 +8,7 @@ import { Container, Grid, Paper, TextField, Button } from '@material-ui/core'
 import { Title } from '../../../components/Title'
 import { DataTable } from '../../../components/DataTable'
 import { useStyles } from './styled'
+// UPDATE_ARTICLE
 import { GET_ARTICLE } from '../../../graphql/requests'
 import Load from '../../../utils/load'
 
@@ -489,7 +490,7 @@ const Article = props => {
               <Controller
                 as={TextField}
                 control={control}
-                defaultValue={value}
+                defaultValue={value || ''}
                 required
                 id="playerIsStar"
                 label="Star"
@@ -509,7 +510,7 @@ const Article = props => {
               <Controller
                 as={TextField}
                 control={control}
-                defaultValue={value}
+                defaultValue={value || ''}
                 required
                 id="playerIsGoalie"
                 label="Goalie"
@@ -529,7 +530,7 @@ const Article = props => {
               <Controller
                 as={TextField}
                 control={control}
-                defaultValue={value}
+                defaultValue={value || ''}
                 required
                 id="playerIsCaptain"
                 label="Captain"
@@ -555,11 +556,15 @@ const Article = props => {
     []
   )
 
+  // const [isSubmitting, setSubmitting] = useState(false)
+  // const [updateArticle] = useMutation(UPDATE_ARTICLE)
   const onSubmit = useCallback(dataToSubmit => {
     // console.log('dataToSubmit', dataToSubmit)
     // try {
     //   setSubmitting(true)
-    //   const {  } = dataToSubmit
+    //   updateArticle({
+    //     variables: { input: { id: data.id, ...dataToSubmit } },
+    //   })
     // } catch (error) {
     //   console.error(error)
     // } finally {
@@ -577,6 +582,19 @@ const Article = props => {
             noValidate
           >
             <Grid container spacing={2}>
+              {/* <Grid item md={2} lg={2}>
+                <Paper className={classes.paper}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    {isSubmitting ? 'Saving...' : 'Save'}
+                  </Button>
+                </Paper>
+              </Grid> */}
               {data.article.googleSheetUrl && (
                 <Grid item xs={12} md={12} lg={12}>
                   <Paper className={classes.paper}>
@@ -964,7 +982,7 @@ const Article = props => {
                   <Controller
                     as={TextField}
                     control={control}
-                    defaultValue={data.article.teamOneWtl}
+                    defaultValue={data.article.teamOneWtl || ''}
                     required
                     id="teamOneWtl"
                     label="T1 WtL"
@@ -1179,7 +1197,7 @@ const Article = props => {
                   <Controller
                     as={TextField}
                     control={control}
-                    defaultValue={data.article.teamTwoWtl}
+                    defaultValue={data.article.teamTwoWtl || ''}
                     required
                     id="teamTwoWtl"
                     label="T2 WtL"

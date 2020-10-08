@@ -129,6 +129,13 @@ export const GET_ARTICLE = gql`
     }
   }
 `
+export const UPDATE_ARTICLE = gql`
+  mutation updateArticle($input: ArticleInput) {
+    updateArticle(input: $input) {
+      id
+    }
+  }
+`
 
 export const SIGN_IN = gql`
   mutation login($input: LoginInput!) {
