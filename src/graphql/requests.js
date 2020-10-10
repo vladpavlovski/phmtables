@@ -146,6 +146,14 @@ export const SIGN_IN = gql`
   }
 `
 
+export const LOG_OUT = gql`
+  mutation logout {
+    logout {
+      loggedOut
+    }
+  }
+`
+
 export const SIGN_UP = gql`
   mutation signup($input: SignupInput!) {
     signup(input: $input) {
