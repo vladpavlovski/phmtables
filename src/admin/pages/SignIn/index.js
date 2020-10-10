@@ -19,16 +19,22 @@ import { Copyright } from '../../../components/Copyright'
 import * as ROUTES from '../../../routes'
 import { useStyles } from './styled'
 import { schema } from './schema'
-import { SIGN_IN } from '../../../graphql/requests'
+import { SIGN_IN, LOG_OUT } from '../../../graphql/requests'
 
 const SignIn = () => {
   const history = useHistory()
   const classes = useStyles()
   const [login, { data }] = useMutation(SIGN_IN)
+  const [logout] = useMutation(LOG_OUT)
   const { handleSubmit, errors, control } = useForm({
     validationSchema: schema,
   })
   const [isSubmitting, setSubmitting] = useState(false)
+
+  useEffect(() => {
+    logout()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (data && data.login) {

@@ -10,7 +10,7 @@ import {
   ListSubheader,
   Divider,
 } from '@material-ui/core'
-import { Dashboard, GridOn } from '@material-ui/icons'
+import { Dashboard, GridOn, Group } from '@material-ui/icons'
 
 const ListItemLink = props => {
   const { icon, primary, to } = props
@@ -44,6 +44,7 @@ const MainListItems = () => (
     <List>
       <ListSubheader inset>PHM Tables</ListSubheader>
       <ListItemLink icon={<GridOn />} primary="Link Map" to={ROUTES.LINK_MAP} />
+      <ListItemLink icon={<Group />} primary="Teams" to={ROUTES.TEAMS} />
     </List>
   </>
 )

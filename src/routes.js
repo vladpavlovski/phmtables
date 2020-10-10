@@ -1,4 +1,16 @@
 import { generatePath } from 'react-router'
+
+// ADMIN:
+export const SIGN_UP = '/signup'
+export const SIGN_IN = '/signin'
+export const SIGN_OUT = '/signout'
+export const DASHBOARD = '/dashboard'
+export const ARTICLE = '/article/:gameId'
+export const LINK_MAP = '/linkMap'
+export const TEAMS = '/teams'
+export const TEAM = '/team/:teamId'
+
+// WEB:
 export const HOMEPAGE = '/'
 export const RESULT = '/result'
 export const RESULTSALLTIME = '/resultsAlltime'
@@ -10,13 +22,6 @@ export const BEST10TOPPOINTS = '/best10TopPoints'
 export const BEST10KLASIKPOINTS = '/best10KlasikPoints'
 export const ALLPLAYERS19 = '/allPlayers19'
 export const ALLPLAYERSYEARS = '/allPlayersYears'
-export const SIGN_UP = '/signup'
-export const SIGN_IN = '/signin'
-export const SIGN_OUT = '/signout'
-export const DASHBOARD = '/dashboard'
-export const ARTICLE = '/article/:gameId'
-export const ARTICLE_GENERATED = '/articleGenerated/:gameId'
-export const LINK_MAP = '/linkMap'
 export const RESULT21 = '/result21'
 export const STANDINGS21 = '/standings21'
 export const STANDINGS21TOP = '/standings21top'
@@ -32,7 +37,9 @@ export const GOALIES_20_TOP = '/goalies_20_top'
 export const GOALIES_20_KLASIK = '/goalies_20_klasik'
 export const STANDINGS_17 = '/standings17'
 export const STANDINGS_19 = '/standings19'
+export const ARTICLE_GENERATED = '/articleGenerated/:gameId'
 
 export const getArticleRoute = gameId => generatePath(ARTICLE, { gameId })
 export const getArticleGeneratedRoute = gameId =>
   generatePath(ARTICLE_GENERATED, { gameId })
+export const getTeamRoute = teamId => generatePath(TEAM, { teamId })

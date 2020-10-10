@@ -129,12 +129,27 @@ export const GET_ARTICLE = gql`
     }
   }
 `
+export const UPDATE_ARTICLE = gql`
+  mutation updateArticle($input: ArticleInput) {
+    updateArticle(input: $input) {
+      id
+    }
+  }
+`
 
 export const SIGN_IN = gql`
   mutation login($input: LoginInput!) {
     login(input: $input) {
       id
       email
+    }
+  }
+`
+
+export const LOG_OUT = gql`
+  mutation logout {
+    logout {
+      loggedOut
     }
   }
 `
@@ -174,3 +189,78 @@ export const DELETE_COMPOSED_ARTICLE = gql`
 //     }
 //   }
 // `
+
+export const IMPORT_TEAMS = gql`
+  mutation importTeams {
+    importTeams {
+      id
+    }
+  }
+`
+
+export const GET_ALL_TEAMS = gql`
+  query getTeams {
+    teams {
+      id
+      name
+      fullName
+      nick
+      shortcut
+      logoRound
+    }
+  }
+`
+
+export const DELETE_TEAM = gql`
+  mutation deleteTeam($id: ID!) {
+    deleteTeam(id: $id) {
+      disabled
+    }
+  }
+`
+
+export const GET_TEAM = gql`
+  query getTeam($id: ID!) {
+    team(id: $id) {
+      id
+      name
+      fullName
+      nick
+      shortcut
+      logoRound
+      shortcutLabel
+      shortLabel
+      longLabel
+      bigLabel
+      logoGrey
+      primaryColor
+      secondaryColor
+      jerseyDark
+      jerseyLight
+      disabled
+    }
+  }
+`
+
+export const UPDATE_TEAM = gql`
+  mutation updateTeam($input: TeamInput!) {
+    updateTeam(input: $input) {
+      id
+      name
+      fullName
+      nick
+      shortcut
+      logoRound
+      shortcutLabel
+      shortLabel
+      longLabel
+      bigLabel
+      logoGrey
+      primaryColor
+      secondaryColor
+      jerseyDark
+      jerseyLight
+      disabled
+    }
+  }
+`
