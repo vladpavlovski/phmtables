@@ -1296,6 +1296,4 @@ const Article = props => {
   )
 }
 
-Article.propTypes = {}
-
 export { Article as default }
