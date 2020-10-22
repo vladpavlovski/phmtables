@@ -159,7 +159,11 @@ export const SIGN_UP = gql`
     signup(input: $input) {
       id
       email
-      name
+      firstName
+      lastName
+      phone
+      birthday
+      username
     }
   }
 `
@@ -261,6 +265,63 @@ export const UPDATE_TEAM = gql`
       jerseyDark
       jerseyLight
       disabled
+    }
+  }
+`
+export const CREATE_PLAYER = gql`
+  mutation createPlayer($input: PlayerInput) {
+    createPlayer(input: $input) {
+      id
+      playerId
+      userId
+      firstName
+      lastName
+      birthday
+      avatar
+      isActive
+      country
+      city
+      position
+      stick
+      height
+      weight
+      startLeagueDate
+      jersey
+      gender
+      disabled
+    }
+  }
+`
+
+export const UPDATE_PLAYER = gql`
+  mutation updatePlayer($input: PlayerInput) {
+    updatePlayer(input: $input) {
+      id
+      playerId
+      userId
+      firstName
+      lastName
+      birthday
+      avatar
+      isActive
+      country
+      city
+      position
+      stick
+      height
+      weight
+      startLeagueDate
+      jersey
+      gender
+      disabled
+    }
+  }
+`
+
+export const DELETE_PLAYER = gql`
+  mutation deletePlayer($id: ID) {
+    deletePlayer(id: $id) {
+      id
     }
   }
 `
