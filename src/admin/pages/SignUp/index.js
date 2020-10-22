@@ -41,8 +41,7 @@ const SignUp = () => {
     dataToSubmit => {
       try {
         setSubmitting(true)
-        const { email, password, name } = dataToSubmit
-        signup({ variables: { input: { email, password, name } } })
+        signup({ variables: { input: dataToSubmit } })
       } catch (error) {
         console.error(error)
       } finally {
@@ -68,21 +67,38 @@ const SignUp = () => {
           noValidate
         >
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <Controller
                 as={TextField}
                 control={control}
-                autoComplete="fname"
-                name="name"
+                autoComplete="firstName"
+                name="firstName"
                 variant="outlined"
                 required
                 fullWidth
-                id="name"
-                label="Name"
+                id="firstName"
+                label="First Name"
                 autoFocus
                 defaultValue=""
-                error={Boolean(errors.name)}
-                helperText={errors.name && errors.name.message}
+                error={Boolean(errors.firstName)}
+                helperText={errors.firstName && errors.firstName.message}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Controller
+                as={TextField}
+                control={control}
+                autoComplete="lastName"
+                name="lastName"
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                autoFocus
+                defaultValue=""
+                error={Boolean(errors.lastName)}
+                helperText={errors.lastName && errors.lastName.message}
               />
             </Grid>
             <Grid item xs={12}>
@@ -99,6 +115,22 @@ const SignUp = () => {
                 defaultValue=""
                 error={Boolean(errors.email)}
                 helperText={errors.email && errors.email.message}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Controller
+                as={TextField}
+                control={control}
+                variant="outlined"
+                required
+                fullWidth
+                id="phone"
+                label="Phone"
+                name="phone"
+                autoComplete="phone"
+                defaultValue=""
+                error={Boolean(errors.phone)}
+                helperText={errors.phone && errors.phone.message}
               />
             </Grid>
             <Grid item xs={12}>

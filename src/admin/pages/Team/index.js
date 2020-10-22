@@ -12,7 +12,7 @@ import Load from '../../../utils/load'
 
 const Layout = Load(() => import('../../../components/Layout'))
 
-const Article = props => {
+const Team = props => {
   const classes = useStyles()
   const { teamId } = useParams()
   const [isSubmitting, setSubmitting] = useState(false)
@@ -228,6 +228,4 @@ const Article = props => {
   )
 }
 
-Article.propTypes = {}
-
-export { Article as default }
+export { Team as default }

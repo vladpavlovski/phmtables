@@ -10,6 +10,9 @@ const DashboardProvider = props => {
   const [newTeamsImported, setNewTeamsImported] = useState(
     initialContextState.newTeamsImported
   )
+  const [newPlayersImported, setNewPlayersImported] = useState(
+    initialContextState.newPlayersImported
+  )
 
   return (
     <DashboardContext.Provider
@@ -18,6 +21,8 @@ const DashboardProvider = props => {
         setNewArticleCreated,
         newTeamsImported,
         setNewTeamsImported,
+        newPlayersImported,
+        setNewPlayersImported,
       }}
     >
       {props.children}
