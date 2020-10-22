@@ -9,6 +9,8 @@ export const ARTICLE = '/article/:gameId'
 export const LINK_MAP = '/linkMap'
 export const TEAMS = '/teams'
 export const TEAM = '/team/:teamId'
+export const PLAYERS = '/players'
+export const PLAYER = '/player/:playerId'
 
 // WEB:
 export const HOMEPAGE = '/'
@@ -38,8 +40,10 @@ export const GOALIES_20_KLASIK = '/goalies_20_klasik'
 export const STANDINGS_17 = '/standings17'
 export const STANDINGS_19 = '/standings19'
 export const ARTICLE_GENERATED = '/articleGenerated/:gameId'
+export const USER_SIGN_UP = '/userSignUp'
 
 export const getArticleRoute = gameId => generatePath(ARTICLE, { gameId })
 export const getArticleGeneratedRoute = gameId =>
   generatePath(ARTICLE_GENERATED, { gameId })
 export const getTeamRoute = teamId => generatePath(TEAM, { teamId })
+export const getPlayerRoute = playerId => generatePath(PLAYER, { playerId })
