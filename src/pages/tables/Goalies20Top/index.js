@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { Table } from '../../../components/Table'
-import { LoaderPHM } from '../../../components/Loader'
+import { Loader } from '../../../components/Loader'
 import { getData } from '../../../api/get-data'
 import { GOALIES_20_URL } from '../../../api/data-url'
 
@@ -118,7 +118,7 @@ const Goalies = props => {
   }, [fetchUrl, tabName])
 
   return isLoading ? (
-    <LoaderPHM />
+    <Loader />
   ) : (
     <>
       <Filters data={data} setFilteredData={setFilteredData} />

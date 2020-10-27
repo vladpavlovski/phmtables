@@ -3,7 +3,7 @@ import { useMedia } from 'use-media'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
 import { Table } from '../../../components/Table'
-import { LoaderPHM } from '../../../components/Loader'
+import { Loader } from '../../../components/Loader'
 import { getData } from '../../../api/get-data'
 import { PLAYERS_URL } from '../../../api/data-url'
 
@@ -145,7 +145,7 @@ const Best10 = props => {
   }, [])
 
   return isLoading ? (
-    <LoaderPHM />
+    <Loader />
   ) : min530 ? (
     renderTable()
   ) : (

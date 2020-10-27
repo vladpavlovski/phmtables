@@ -3,7 +3,7 @@ import Rating from 'react-rating'
 import { TiStarFullOutline, TiStarOutline } from 'react-icons/ti'
 
 import { Table } from '../../../components/Table'
-import { LoaderPHM } from '../../../components/Loader'
+import { Loader } from '../../../components/Loader'
 import { getData } from '../../../api/get-data'
 import { STANDINGS_20_URL } from '../../../api/data-url'
 import { Filters as Standings20Filters } from './Filters'
@@ -129,7 +129,7 @@ const Standings = props => {
   }, [fetchUrl, tabName])
 
   return isLoading ? (
-    <LoaderPHM />
+    <Loader />
   ) : (
     <>
       <Filters data={data} setFilteredData={setFilteredData} />

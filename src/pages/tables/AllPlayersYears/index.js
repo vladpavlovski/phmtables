@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Tab, Tabs, TabPanel } from 'react-tabs'
 
 import { Table } from '../../../components/Table'
-import { LoaderPHM } from '../../../components/Loader'
+import { Loader } from '../../../components/Loader'
 import { getData } from '../../../api/get-data'
 import {
   PLAYERS_URL,
@@ -168,11 +168,11 @@ const AllPlayersYears = () => {
         <Tab>Všechny sezóny</Tab>
       </PhmTabList>
 
-      <TabPanel>{isLoading ? <LoaderPHM /> : render2020()}</TabPanel>
-      <TabPanel>{isLoading ? <LoaderPHM /> : render2019()}</TabPanel>
-      <TabPanel>{isLoading ? <LoaderPHM /> : render2018()}</TabPanel>
-      <TabPanel>{isLoading ? <LoaderPHM /> : render2017()}</TabPanel>
-      <TabPanel>{isLoading ? <LoaderPHM /> : renderAllTime()}</TabPanel>
+      <TabPanel>{isLoading ? <Loader /> : render2020()}</TabPanel>
+      <TabPanel>{isLoading ? <Loader /> : render2019()}</TabPanel>
+      <TabPanel>{isLoading ? <Loader /> : render2018()}</TabPanel>
+      <TabPanel>{isLoading ? <Loader /> : render2017()}</TabPanel>
+      <TabPanel>{isLoading ? <Loader /> : renderAllTime()}</TabPanel>
     </Tabs>
   )
 }

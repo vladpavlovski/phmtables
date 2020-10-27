@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import { useMedia } from 'use-media'
 import { useTable, useSortBy, useExpanded } from 'react-table'
-import { LoaderPHM } from '../../../components/Loader'
+import { Loader } from '../../../components/Loader'
 import { getData } from '../../../api/get-data'
 import { RESULT_20_URL } from '../../../api/data-url'
 import {
@@ -262,7 +262,7 @@ const Result = props => {
   )
 
   return isLoading ? (
-    <LoaderPHM />
+    <Loader />
   ) : (
     <>
       <Filters data={data} setFilteredData={setFilteredData} />

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
-import { LoaderPHM } from '../../components/Loader'
+import { Loader } from '../../components/Loader'
 
 import { Title } from './components/Title'
 import { ResultPreview } from './components/ResultPreview'
@@ -31,7 +31,7 @@ const ArticleGenerated = () => {
   // }, [data])
 
   return loading ? (
-    <LoaderPHM />
+    <Loader />
   ) : (
     <Container component="main" maxWidth="lg" className={classes.article}>
       <CssBaseline />

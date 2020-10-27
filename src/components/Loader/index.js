@@ -1,24 +1,29 @@
 import React from 'react'
-import Loader from 'react-loader-spinner'
+import { default as LoaderLib } from 'react-loader-spinner'
 import { LoaderWrapper } from './styled'
 
-const LoaderPHM = props => {
+const Loader = props => {
   return (
     <LoaderWrapper>
-      <Loader {...props} />
-      <p>Tahám výsledky z centrály...</p>
-      <p>Prosím vydrž...</p>
+      <LoaderLib {...props} />
+      {!props.noText && (
+        <>
+          <p>Tahám výsledky z centrály...</p>
+          <p>Prosím vydrž...</p>
+        </>
+      )}
     </LoaderWrapper>
   )
 }
 
-LoaderPHM.propTypes = {}
+Loader.propTypes = {}
 
-LoaderPHM.defaultProps = {
+Loader.defaultProps = {
   type: 'Rings',
   color: '#323C46',
   height: 250,
   width: 250,
+  noText: false,
 }
 
-export { LoaderPHM }
+export { Loader }
