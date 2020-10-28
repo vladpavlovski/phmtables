@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
@@ -26,16 +26,14 @@ const SignUp = () => {
   const history = useHistory()
   const classes = useStyles()
   const [isSubmitting, setSubmitting] = useState(false)
-  const [signup, { data }] = useMutation(SIGN_UP)
+  const [signup] = useMutation(SIGN_UP, {
+    onCompleted: () => {
+      history.push(ROUTES.DASHBOARD)
+    },
+  })
   const { handleSubmit, errors, control } = useForm({
     validationSchema: schema,
   })
-
-  useEffect(() => {
-    if (data && data.signup) {
-      history.push(ROUTES.DASHBOARD)
-    }
-  }, [data, history])
 
   const onSubmit = useCallback(
     dataToSubmit => {

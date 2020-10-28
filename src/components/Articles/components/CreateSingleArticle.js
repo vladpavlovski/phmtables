@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useContext } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useMutation } from '@apollo/client'
 import { object, string } from 'yup'
@@ -20,7 +20,14 @@ const CreateSingleArticle = () => {
 
   const { setNewArticleCreated } = useContext(DashboardContext)
 
-  const [composeArticle, { data }] = useMutation(COMPOSE_ARTICLE)
+  const [composeArticle] = useMutation(COMPOSE_ARTICLE, {
+    onCompleted: () => {
+      setValue('articleSingleLink', '')
+      setOpenSnackbar(true)
+      setNewArticleCreated(true)
+      setSubmitting(false)
+    },
+  })
   const { handleSubmit, errors, control, setValue } = useForm({
     validationSchema: schema,
   })
@@ -30,16 +37,6 @@ const CreateSingleArticle = () => {
   const handleCloseSnackbar = useCallback(() => {
     setOpenSnackbar(false)
   }, [])
-
-  useEffect(() => {
-    if (data && data.composeArticle && data.composeArticle.id) {
-      setValue('articleSingleLink', '')
-      setOpenSnackbar(true)
-      setNewArticleCreated(true)
-      setSubmitting(false)
-      // console.log('composeArticle', data)
-    }
-  }, [data, setNewArticleCreated, setValue])
 
   const onSubmit = useCallback(
     dataToSubmit => {

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useContext } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { useMutation } from '@apollo/client'
 import { Button, Snackbar } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert'
@@ -14,19 +14,17 @@ const ImportTeams = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false)
   const { setNewTeamsImported } = useContext(DashboardContext)
 
-  const [importTeams, { data }] = useMutation(IMPORT_TEAMS)
+  const [importTeams] = useMutation(IMPORT_TEAMS, {
+    onCompleted: () => {
+      setOpenSnackbar(true)
+      setNewTeamsImported(true)
+      setSubmitting(false)
+    },
+  })
 
   const handleCloseSnackbar = useCallback(() => {
     setOpenSnackbar(false)
   }, [])
-
-  useEffect(() => {
-    if (data && data.importTeams) {
-      setOpenSnackbar(true)
-      setNewTeamsImported(true)
-      setSubmitting(false)
-    }
-  }, [data, setNewTeamsImported])
 
   return (
     <>
