@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Controller } from 'react-hook-form'
-import Autocomplete from '@material-ui/lab/Autocomplete'
+import { default as AutocompleteLib } from '@material-ui/lab/Autocomplete'
 import { TextField } from '@material-ui/core'
 
 const getOpObj = (option, propName, data) => {
@@ -9,21 +9,75 @@ const getOpObj = (option, propName, data) => {
   return option
 }
 
-const RHFAutocomplete = props => {
+const Autocomplete = props => {
   const {
     options,
-    control,
     id,
-    name,
     optionPropertyToCompare,
     optionPropertyToShow,
     defaultValue,
+    value,
     label,
     variant,
     renderOption,
     multiple,
     fullWidth,
     renderTags,
+    onChange,
+  } = props
+
+  return (
+    <AutocompleteLib
+      id={id}
+      openOnFocus
+      value={value}
+      fullWidth={fullWidth}
+      multiple={multiple}
+      options={options}
+      autoHighlight
+      filterSelectedOptions
+      onChange={onChange}
+      getOptionLabel={option => {
+        const optionObj = getOpObj(option, optionPropertyToCompare, options)
+        return (optionObj && optionObj[optionPropertyToShow]) || ''
+      }}
+      getOptionSelected={(option, value) => {
+        const optionObj = getOpObj(value, optionPropertyToCompare, options)
+        return (
+          (option &&
+            optionObj &&
+            option[optionPropertyToCompare] ===
+              optionObj[optionPropertyToCompare]) ||
+          ''
+        )
+      }}
+      renderOption={renderOption}
+      renderInput={params => (
+        <TextField
+          {...params}
+          label={label}
+          variant={variant}
+          fullWidth={fullWidth}
+          value={multiple ? defaultValue : null}
+          inputProps={{
+            ...params.inputProps,
+            autoComplete: 'disabled', // disable autocomplete and autofill
+          }}
+        />
+      )}
+      renderTags={renderTags}
+    />
+  )
+}
+
+const RHFAutocomplete = props => {
+  const {
+    options,
+    control,
+    name,
+    optionPropertyToCompare,
+    defaultValue,
+    multiple,
   } = props
 
   const onChange = useCallback(
@@ -38,52 +92,7 @@ const RHFAutocomplete = props => {
 
   return (
     <Controller
-      as={
-        <Autocomplete
-          id={id}
-          openOnFocus
-          fullWidth={fullWidth}
-          multiple={multiple}
-          options={options}
-          autoHighlight
-          filterSelectedOptions
-          getOptionLabel={option => {
-            const optionObj = getOpObj(option, optionPropertyToCompare, options)
-            return (optionObj && optionObj[optionPropertyToShow]) || ''
-          }}
-          getOptionSelected={(option, value) => {
-            const optionObj = getOpObj(value, optionPropertyToCompare, options)
-            // console.log(
-            //   option &&
-            //     optionObj &&
-            //     option[optionPropertyToCompare] ===
-            //       optionObj[optionPropertyToCompare]
-            // )
-            return (
-              (option &&
-                optionObj &&
-                option[optionPropertyToCompare] ===
-                  optionObj[optionPropertyToCompare]) ||
-              ''
-            )
-          }}
-          renderOption={renderOption}
-          renderInput={params => (
-            <TextField
-              {...params}
-              label={label}
-              variant={variant}
-              fullWidth={fullWidth}
-              value={multiple ? defaultValue : null}
-              inputProps={{
-                ...params.inputProps,
-                autoComplete: 'disabled', // disable autocomplete and autofill
-              }}
-            />
-          )}
-          renderTags={renderTags}
-        />
-      }
+      as={<Autocomplete {...props} />}
       onChange={!multiple ? onChange : onChangeMultiple}
       name={name}
       control={control}
@@ -100,4 +109,4 @@ RHFAutocomplete.defaultProps = {
   filterSelectedOptions: true,
 }
 
-export { RHFAutocomplete }
+export { RHFAutocomplete, Autocomplete }

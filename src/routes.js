@@ -11,6 +11,7 @@ export const TEAMS = '/teams'
 export const TEAM = '/team/:teamId'
 export const PLAYERS = '/players'
 export const PLAYER = '/player/:playerId'
+export const PLAYER_MERGE = '/playerMerge'
 
 // WEB:
 export const HOMEPAGE = '/'
