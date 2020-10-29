@@ -24,7 +24,7 @@
     "@material-ui/pickers": "^3.2.10",
     "dayjs": "^1.9.1",
     "graphql": "^15.3.0",
-    "mui-datatables": "^3.4.1",
+    "mui-datatables": "^3.5.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-app-rewire-hot-loader": "^2.0.1",
